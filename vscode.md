@@ -86,7 +86,22 @@ gitlen, gitkaren的插件
                 ]
             }
         }        
-        ```
+```
+使用Clang + lldb:
+一般在linux上, 由于很多第三方库编译时使用的是libstdc++(g++的库), 所以还是链接libstdc++.
+vscode安装codelldb插件.
+clang用来编译比g++运行更高效, 对于debug程序需要在cmake上加入`-fno-limit-debug-info` .
+```
+{
+    "name": "debug lunch",
+    "type": "lldb",
+    "request": "launch",
+    // Resolved by CMake Tools:
+    "program": "${command:cmake.launchTargetPath}",
+    "args": [],
+    "cwd": "${workspaceFolder}"
+}
+```
 
 ## 搜索消失
 
