@@ -45,6 +45,7 @@ gitlen, gitkaren的插件
     configure完成之后, 在下方`task bar`上进行编译. 
     * 对于没有输入参数以及环境变量设置的程序, 可以直接点击`task bar`上的调试按钮进行调试. 
     * 通过右边的工具栏, 打开调试工具栏目, 点击右上方齿轮按钮, 进行调试环境json设置.
+		若没有该选项(可能是个bug), 可以在当前目录下创建`.vscode/launch.json`
         ```json
         {
         // Use IntelliSense to learn about possible attributes.
@@ -90,7 +91,7 @@ gitlen, gitkaren的插件
 使用Clang + lldb:
 一般在linux上, 由于很多第三方库编译时使用的是libstdc++(g++的库), 所以还是链接libstdc++.
 vscode安装codelldb插件.
-clang用来编译比g++运行更高效, 对于debug程序需要在cmake上加入`-fno-limit-debug-info` .
+clang用来编译比g++运行更高效(但是代码规范要求更高, 很多代码可能编译不过), 对于debug程序需要在cmake上加入`-fno-limit-debug-info` .
 ```
 {
     "name": "debug lunch",
@@ -102,6 +103,7 @@ clang用来编译比g++运行更高效, 对于debug程序需要在cmake上加入
     "cwd": "${workspaceFolder}"
 }
 ```
+使用CMakePreset.json后需要在cacheVariables中指定CMAKE_BUILD_TYPE="Debug"才能用vscode进行调试.
 
 ## 搜索消失
 

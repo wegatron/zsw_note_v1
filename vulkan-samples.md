@@ -21,7 +21,7 @@ void StartSample::init(const vkb::CommandParser &parser)
 		if (sample != nullptr)
 		{
 			vkb::Window::OptionalProperties properties;
-			std::string                     title = "Vulkan Samples: " + sample->name;
+			std::string title = "Vulkan Samples: " + sample->name;
 			properties.title                      = title;
 			platform->set_window_properties(properties);
 			platform->request_application(sample);

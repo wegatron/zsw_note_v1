@@ -53,8 +53,8 @@ sudo apt install docker-ce docker-compose
 
 4. 进入容器(执行容器中的一个命令比如进入bash): `docker exec`(从终端退出, 不会终止), `docker attach`
     ```bash
-    docker exec -it 6914
-    docker attach -it 6914 #进入
+    docker exec -it 6914 /bin/bash
+    docker attach 6914 #进入
     ```
 
 4. 列出所有容器: `docker container ls -a`
