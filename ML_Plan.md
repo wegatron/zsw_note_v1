@@ -4,10 +4,6 @@ tag: summary/basic_theory
 ## 经验
 [深度学习项目各阶段经验总结](https://zhuanlan.zhihu.com/p/68045564)
 
-## 适合入门的开源项目
-
-* [适合初学者的18个经典开源计算机视觉项目](https://www.leiphone.com/category/yanxishe/bUbJNFYR79c3VM5Q.html)
-
 * [使用fast.ai构建神经网络项目pipeline](https://towardsdatascience.com/exploring-convolutional-neural-network-architectures-with-fast-ai-de4757eeeebf)
     开头部分:
     Part 1: Building an Image Database
@@ -15,10 +11,19 @@ tag: summary/basic_theory
     Part 3: Targeting and Removing Bad Training Data
     另外, 还介绍了resnet的各种演化变种.
 
+## 适合入门的开源项目
+
+* [适合初学者的18个经典开源计算机视觉项目](https://www.leiphone.com/category/yanxishe/bUbJNFYR79c3VM5Q.html)
+* GAN
+	[superres gan](https://github.com/fastai/course-v3/blob/master/nbs/dl1/lesson7-superres-gan.ipynb)
+	wgan: https://github.com/fastai/course-v3/blob/master/nbs/dl1/lesson7-wgan.ipynb
+	CycleGAN: 
+	video: https://www.youtube.com/watch?v=ondivPiwQho
+* [RotationNet](https://medium.com/@mathis.alex/rotationnet-in-fast-ai-adventures-in-virtual-set-creation-and-computer-vision-cd694ad7ec1b)
 
 [Building an Object Detection Model with FastAI and IceVision](https://sadiva-madaan9.medium.com/building-an-object-detection-model-with-fastai-and-icevision-5738a3142263)
 
-[RotationNet](https://medium.com/@mathis.alex/rotationnet-in-fast-ai-adventures-in-virtual-set-creation-and-computer-vision-cd694ad7ec1b)
+
 
 分类:
 * 图像分类
