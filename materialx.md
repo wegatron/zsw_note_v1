@@ -88,8 +88,7 @@ MaterialX 提供了一套完整的材质体系+渲染方案(相关实现opengl/m
 	uniform float SR_default_metalness = 0.000000;
 	uniform float SR_default_specular = 1.000000;
 	```
-
-3. 绘制
+1. 绘制
 	![[materialx_render.png]]
 
 	```c++
@@ -126,20 +125,122 @@ MaterialX 提供了一套完整的材质体系+渲染方案(相关实现opengl/m
 [usd-hydra siggraph 2019 introduction](https://graphics.pixar.com/usd/files/Siggraph2019_Hydra.pdf)
 ![[rc/usd_hydra.png]]
 
+在Hydra中, 场景元素可以用HydraPrimitives来表示:
+![[hydra_scene_description.png]]
+![[rc/hydra_primitives.png]]
 
+example code:
+```c++
+// 主要流程
+int main() 
+{
+    // Hydra initialization
+    HdEngine engine;
+    TinyRenderDelegate renderDelegate;
+    HdRenderIndex *renderIndex = HdRenderIndex::New(&renderDelegate);
+    TinySceneDelegate sceneDelegate(
+	    renderIndex, SdfPath::AbsoluteRootPath()); 
+    // Create your task graph 
+    // collection determine what you want to render from the render index
+    HdRprimCollection collection(...);
+    HdRenderPassSharedPtr renderPass(
+	    renderDelegate.CreateRenderPass(renderIndex, collection));
+    HdRenderPassStateSharedPtr renderPassState(
+	    renderDelegate.CreateRenderPassState());
+    HdTaskSharedPtr taskRender(
+	    new RenderTask(renderPass, renderPassState));
+    HdTaskSharedPtr taskColorCorrection(new ColorCorrectionTask());
+    HdTaskSharedPtrVector tasks = { taskRender, taskColorCorrection };
+    // Populate scene graph and generate image
+    sceneDelegate->Populate();
+    engine.Execute(renderIndex, &tasks);
+    // Change time causes invalidations, and generate image
+    sceneDelegate->SetTime(1);
+    engine.Execute(renderIndex, &tasks);
+    return EXIT_SUCCESS;
+}
+
+class TinySceneDelegate final: public HdSceneDelegate 
+{ 
+public:
+    // Scene delegate implementation 
+    HdMeshTopology GetMeshTopology(SdfPath const& id) override;
+    GfMatrix4d GetTransform(SdfPath const& id) override;
+    VtValue Get(SdfPath const& id, TfToken const& key) override;
+
+    // Primvar data is organized by its topological dimension,
+    // That is: per-prrimitive, per-face, per-vertex, etc.
+    HdPrimvarDescriptorVector GetPrimvarDescriptors(
+	    SdfPath const& id,...) override; 
+    // Scene graph population
+    void Populate(); // 更新数据
+    ... 
+};
+
+class TinyRenderDelegate final: public HdRenderDelegate
+{
+public:
+    // Create/Destroy supported types of 
+    // Hydra primitives (Rprim, Sprim, Bprim) 
+    HdRprim *CreateRprim(TfToken const& typeId, SdfPath const& rprimId, 
+	    SdfPath const& instancerId) override 
+    {
+	    return new TinyRenderDelegate_Mesh(
+		    typeId, rprimId, instancerId);
+    } 
+
+    void DestroyRprim(HdRprim *rPrim) override 
+    {
+	    delete rPrim;
+    } 
+    ...
+};
+
+class TinyRenderDelegate_Mesh final: public HdMesh 
+{
+public:
+    void Sync(HdSceneDelegate *delegate, HdDirtyBits *dirtyBits ...) override 
+    {
+        SdfPath const& id = GetId();
+        if (HdChangeTracker::IsTransformDirty(*dirtyBits, id))
+        {
+            delegate->GetTransform(id);
+            cout << "Pulling new transform -> " << id << endl;
+        }
+        *dirtyBits &= ~HdChangeTracker::AllSceneDirtyBits;
+    }
+    HdDirtyBits GetInitialDirtyBitsMask() const override
+    {
+        return HdChangeTracker::AllDirty;
+    }
+    ...
+};
+```
+在整套 Hydra `scene graph` 是外部的, `USD/pxr/usd/usd/stage.h:UsdStage` 提供了usd文件的加载.
+	![[usd_view.png]]
+
+USD Hydra结合方式:
+![[usd_hydra_integrating.png]]
+[AMD RadeonProRenderUSD](https://github.com/GPUOpen-LibrariesAndSDKs/RadeonProRenderUSD/tree/3d90ef60534545d6a4b7af97092560740b26b65a/pxr/imaging/plugin/hdRpr) 实现了HdEngine.
+[simple USD Render View Example with Qt C++ / QML](https://mtw75.medium.com/simple-usd-render-view-example-with-qt-c-qml-4bc000d15567_) 直接使用UsdImagingGLEngine.
 
 ## Reference
 
-重要的参考:
+### 重要的参考
 [usd-hydra siggraph 2019 introduction](https://graphics.pixar.com/usd/files/Siggraph2019_Hydra.pdf)
 [A Deep Dive into Universal Scene Description and Hydra](https://dl.acm.org/doi/pdf/10.1145/3305366.3328033)
 [MaterialX Interoperability in USD/Hydra](https://wiki.aswf.io/pages/viewpage.action?pageId=22286781)
 
-USD 相关:
+
+### USD 相关
+
+[simple USD Render View Example with Qt C++ / QML](https://mtw75.medium.com/simple-usd-render-view-example-with-qt-c-qml-4bc000d15567_)
+[usd library python examples](https://developer.nvidia.com/usd/tutorials#traversal)
+
 [Universal Scene Description](https://openusd.org/release/index.html)
 [AMD USD™ Hydra™ plug-in for Blender®](https://gpuopen.com/learn/amd-usd-hydra-blender/)
 
-
+### MaterialX
 glTF MaterialX:
 [Create a MaterialX graph for the glTF BSDF](https://github.com/KhronosGroup/glTF/issues/2001)
 
@@ -150,3 +251,15 @@ https://materialx.org/assets/ASWF_OSD2021_MaterialX_slides_final.pdf
 
 MaterialX Data Libraries:
 https://github.com/AcademySoftwareFoundation/MaterialX/tree/main/libraries#bxdf-graph-library
+
+### 其他
+
+[sketchfab 3d模型下载](https://sketchfab.com/)
+
+[3d 模型文件格式对比](https://www.rapidcompact.com/doc/3dformats/index.html)
+
+[gltf vs usd](https://help.sketchfab.com/hc/en-us/articles/360046421631-glTF-GLB-and-USDZ)
+
+[usd 介绍(知乎)](https://zhuanlan.zhihu.com/p/486361476)
+
+[实时虚拟角色 知乎专栏](https://www.zhihu.com/column/soulshell)
