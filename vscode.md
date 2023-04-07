@@ -105,6 +105,11 @@ clang用来编译比g++运行更高效(但是代码规范要求更高, 很多代
 ```
 使用CMakePreset.json后需要在cacheVariables中指定CMAKE_BUILD_TYPE="Debug"才能用vscode进行调试.
 
+memory break point
+```
+-exec watch *(int*)0xb79b90
+```
+
 ## 搜索消失
 
 若搜索栏与`explore`显示在一起, 进入`Explore`, 在搜索区域上右键, `reset search...`.

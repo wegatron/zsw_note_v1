@@ -113,6 +113,11 @@ sudo apt-get autoclean && sudo apt-get autoremove # 自动清理不需要的软�
 sudo apt --fix-broken install
 ```
 
+list packages installed
+```bash
+apt list --installed
+```
+
 ## 显卡驱动问题
 进入recovery-mode, enable network, `apt install nvidia-driver-[515]`
 
