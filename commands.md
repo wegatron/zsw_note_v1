@@ -49,3 +49,8 @@ find ./ -name=project.pbxproj -exec git stage {} \;
 # -u --update 仅仅进行更新, 也就是跳过所有已经存在于DST, 并且文件时间晚于要备份的文件, 不覆盖更新的文件.
 rsync -vru [src] [dst]
 ```
+
+gdb print long string
+```bash
+call (void)puts(stage._code)
+```

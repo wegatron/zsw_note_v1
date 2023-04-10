@@ -1,5 +1,5 @@
 ---
-tag: programming_language/c++
+tag: tools
 ---
 ## git
 gitlen, gitkaren的插件
@@ -104,6 +104,8 @@ clang用来编译比g++运行更高效(但是代码规范要求更高, 很多代
 }
 ```
 使用CMakePreset.json后需要在cacheVariables中指定CMAKE_BUILD_TYPE="Debug"才能用vscode进行调试.
+
+gdb命令, 需要在debug console中添加 `-exec` 然后再输入gdb命令.
 
 memory break point
 ```
