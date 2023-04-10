@@ -1,5 +1,5 @@
 ---
-tag: programming_language/rendering
+tag: rendering
 ---
 ## RDG Basic Concept
 RDG全称是Rendering Dependency Graph，意为渲染依赖性图表，渲染子系统，基于有向无环图(Directed Acyclic Graph，DAG)的调度系统，用于执行渲染管线的整帧优化。

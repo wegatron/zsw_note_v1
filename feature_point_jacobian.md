@@ -1,5 +1,5 @@
 ---
-tag: summary/paper_note
+tag: paper_note
 ---
 ## 特征点关于IMU位姿态求导
 左扰动推导

@@ -1,5 +1,5 @@
 ---
-tag: summary/paper_note
+tag: paper_note
 ---
 # ORB-SLAM模块分析
 概要: 提出了一个实时、准确、可靠的视觉里程计系统

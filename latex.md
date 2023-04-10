@@ -1,6 +1,10 @@
 ---
 tag: tools
 ---
+
+## latex ocr
+https://huggingface.co/spaces/lukbl/LaTeX-OCR
+
 ## latex 中文
 查询可用中文字体
 ```bash

@@ -1,5 +1,5 @@
 ---
-tag: summary/paper_note
+tag: paper_note
 ---
 ## Gmapping
 ### 算法原理

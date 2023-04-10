@@ -1,5 +1,5 @@
 ---
-tag: summary/paper_note
+tag: paper_note
 ---
 # ORB-SLAM代码架构分析
 ## 代码概要

@@ -1,5 +1,5 @@
 ---
-tag: summary/paper_note
+tag: paper_note
 ---
 # PoseMap
 概要: 抽取点云的surfel特征, 并与其观察的位姿势相结合, 维护一个可以自更新的地图. 以在环境变化时, 实现精准可靠的定位. 

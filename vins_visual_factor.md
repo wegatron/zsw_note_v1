@@ -1,5 +1,5 @@
 ---
-tag: summary/paper_note
+tag: paper_note
 ---
 # VINS 视觉残差&先验残差
 ## 优化变量

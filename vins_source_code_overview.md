@@ -1,5 +1,5 @@
 ---
-tag: summary/paper_note
+tag: paper_note
 ---
 # VINS Source Code Analysis
 ## 总体框架

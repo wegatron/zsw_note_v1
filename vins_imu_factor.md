@@ -1,5 +1,5 @@
 ---
-tag: summary/paper_note
+tag: paper_note
 ---
 # VINS IMU预积分&IMU残差
 [TOC]

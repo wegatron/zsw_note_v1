@@ -332,9 +332,7 @@ Oasis 物理第一弹：基于WebAssembly 的 PhysX : https://juejin.cn/post/700
 
 使用entt构建自己的scene manager. 然后利用MaterialX构建renderpass, 进行渲染. 后期, 可以通过加入converter将scene graph转化为 Hydra 的prim, 从而利用其他渲染器进行渲染.
 
-scene graph           | 
-:-------------------------:|:-------------------------:
-![[scene_graph_0.png]] |  ![[scene_graph_1.png]]
+![[scene_graph_0.png|280]]  ![[scene_graph_1.png|400]]
 
 render graph可参考:
 1. [OpenSceneGraph/VulkanSceneGraph](https://github.com/vsg-dev/VulkanSceneGraph/tree/master/include/vsg/nodes) 渲染和场景共享同一份数据, 只参考, 难度适中
