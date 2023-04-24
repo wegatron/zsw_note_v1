@@ -1,6 +1,10 @@
 ---
-tag: work_alg
+tags:
+ - work_alg
+ - digital_human
 ---
+
+
 ## Talking Head
 
 后期可以考虑类似Nvidia的方案(Audio to face): 通过深度学习得到人脸表情的feature(maybe 关键点), 驱动3d模型.
@@ -18,12 +22,16 @@ tag: work_alg
 
 * [EAMM: One-Shot Emotional Talking Face via Audio-Based Emotion-Aware Motion Model](https://github.com/jixinya/EAMM/)
 
+* [MetaPortrait](https://github.com/Meta-Portrait/MetaPortrait) dense landmark? landmark直接给出npy文件, 但可以使用其他landmark来替代.
+
+
 ## 其他
 
 * [Live Speech Portraits: Real-Time Photorealistic Talking-Head Animation](https://yuanxunlu.github.io/projects/LiveSpeechPortraits/) ACM TOG
 
-* [MetaPortrait]MetaPortrait: Identity-Preserving Talking Head Generation with Fast Personalized Adaptation](https://download.arxiv.org/pdf/2212.08062v2)
-    感觉使用了微软的dense landmark
+* panic 3d
+* next 3d
+* 3DV 2021: Synergy between 3DMM and 3D Landmarks for Accurate 3D Facial Geometry
 
 ## Nerf
 [Learning Dynamic Facial Radiance Fields for Few-Shot Talking Head Synthesis](https://github.com/sstzal/DFRF)

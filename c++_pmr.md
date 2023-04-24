@@ -3,10 +3,8 @@ tag: programming_language/c++
 ---
 ## Advance Memory Management
 ### 关于内存的知识
-<figure class="image">
-<img src="rc/main_memory.png" width=500>
-<em><center>内存分布, stack memory相对于Dynamic Memory是非常快的, 但是内存大小是被限制的. 如windows 1MB, linux 8MB.</center></em>
-</figure>
+![[main_memory.png|500]]
+内存分布, stack memory相对于Dynamic Memory是非常快的, 但是内存大小是被限制的. 如windows 1MB, linux 8MB.
 
 访问速度:
 ```
@@ -54,10 +52,8 @@ tag: programming_language/c++
 
 
 ### 处理策略
-<figure class="image">
-<img src="rc/memory_stragety.jpg" width=600>
-<em><center>根据范围和使用场景, 划分为4类</center></em>
-</figure>
+![[rc/memory_stragety.jpg]]
+								根据范围和使用场景, 划分为4类
 
 好处, 针对1~3内存问题的性能提升, 外加:
 
@@ -77,9 +73,7 @@ tag: programming_language/c++
 #### Filament
 
 * Memory Arena(Pool) - 预先分配一大块内存, 然后在这块内存上, 继续sub-allocate小一点的内存, 构造我们需要的对象.
-  <figure class="image">
-  <img src="rc/memory_arena.jpg" width=600>
-  </figure>
+  ![[rc/memory_arena.jpg]]
   
 * Allocator - 负责内存的分配
     * Heap Allocator, 默认的分配释放

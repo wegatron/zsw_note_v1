@@ -35,6 +35,8 @@ tag: programming_language
     ```objective-c
     @autoreleasepool { ... }
     ```
+	参考: [自动释放池的前世今生 ---- 深入解析 autoreleasepool](https://draveness.me/autoreleasepool/)
+	TODO::::!!!!
 
 ## 深入理解 Objective-c
 使用命令行编译, 理解objective-c的类, example code:

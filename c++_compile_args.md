@@ -28,6 +28,12 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -march=native")
 
 ## 编译c++文件
 
+将objective c重写为c:
+```bash
+clang -rewrite-objc main.m
+```
+
+
 # Reference
 [15个常用的gcc 命令选项](https://blog.csdn.net/typename/article/details/8170213)
 [gcc中-march与-arch的使用](https://blog.csdn.net/listener51/article/details/80468021)

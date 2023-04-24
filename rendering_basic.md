@@ -1,7 +1,7 @@
 ### 3d render basic
 1. 坐标空间变换
 	![[coordinate_transform.png]]
-	(Vertex Shader) => Clip Space => (透视除法) => NDC => (视口变换) => Window Space => (Fragment Shader)
+	(Vertex Shader) => Clip Space => (透视除法) => NDC => (视口变换>>是指将内容映射到窗口的哪个位置) => Window Space => (Fragment Shader)
 	[opengl projection deduce](http://www.songho.ca/opengl/gl_projectionmatrix.html)
 	right hand coordinate system(opengl)
 	![[right_hand_coordinate.png]]
