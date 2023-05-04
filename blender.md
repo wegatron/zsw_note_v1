@@ -25,7 +25,7 @@ blender 渲染相关设置
 
 ## Blender python
 ### python console
-![[Pasted image 20230419183004.png]]
+![[blender_python_console.png]]
 
 根据id选择顶点:
 ```python
@@ -72,7 +72,8 @@ else:
 
 ## Blender显示选中index
 先开启`develop extras`: _Edit_ > Preferences > Interface > Display > Develop Extras
-![[Pasted image 20230419200713.png]]
+![[blender_show_index.png]]
 
 ## Blender install plugin
 `Edit` -> `Preference` -> `Add ons`
+

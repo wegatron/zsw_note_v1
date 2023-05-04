@@ -110,9 +110,8 @@ $$
 
 ## Application
 ### 四元素插值
-<center>
-<img src="rc/quaternion_inter.JPG" width="200%" height="200%">
-</center>
+
+![[rc/quaternion_inter.JPG]]
 
 ### IMU Gyro读数与四元素
 陀螺仪的输出为x,y,z轴此刻的角速度读数$\vec{\omega}$, 经过$\Delta t$后三轴的旋转为欧拉角$\vec{\theta}$:
