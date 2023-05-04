@@ -247,6 +247,11 @@ typedef struct VkMemoryBarrier {
 
 
 
+
+## Project
+
+[(99+ 封私信 / 81 条消息) WebGL支持 几何着色器 吗？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/270018627/answer/2664089164)
+
 ## Reference
 [khronos vulkan official site](https://www.khronos.org/vulkan/)
 [lunarg vulkan site](https://vulkan.lunarg.com/doc/sdk/1.2.162.1/windows/tutorial/html/index.html)

@@ -212,6 +212,16 @@ gdbserver :4000 ./xxx
 docker commit -a "wegatron" -m "install ***" -p [container id] [rep:tag]
 ```
 
+## Docker file of basic c++ compiler
+
+```
+FROM alpine:latest
+
+RUN apk update \
+    && apk upgrade \
+    && apk add --no-cache clang15 cmake make libc++ openssh-server openrc
+```
+
 ## Reference
 [docker小记](https://yeasy.gitbooks.io/docker_practice/content/image/build.html)
 [docker volume](https://www.binss.me/blog/learn-docker-with-me-about-volume/)
