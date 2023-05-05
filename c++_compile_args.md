@@ -15,16 +15,18 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -march=native")
 
 ## 编译性能优化选项
 * `-march=native`
-此选项可以让编译器根据本机器的cpu的架构信息, 进行指令集层次的优化, 构建专为此种cpu上运行的可执行程序(不同的cpu指令集不同). 例如, 启用AVX指令. `-mtune`也类似(在一些老的机器上使用之:i386 and i486), 不过更弱些, 不考虑指令集. 还有`-mcpu`则被废弃.
+	此选项可以让编译器根据本机器的cpu的架构信息, 进行指令集层次的优化, 构建专为此种cpu上运行的可执行程序(不同的cpu指令集不同). 例如, 启用AVX指令. `-mtune`也类似(在一些老的机器上使用之:i386 and i486), 不过更弱些, 不考虑指令集. 还有`-mcpu`则被废弃.
 
 * `-O`
-`-O`有七个等级: `-O0`, `-O1`, `-O2`, `-O3`, `-Os`, `-Og`, `-Ofast`.
-`O2`: 推荐的优化级别, 开始使用AVX和SSE, 但默认不启用YMM寄存器.
-`O3`: 最高的优化级别, 完全启用AVX和SSE, 并启用`-ftree-vectorize`, 一些循环被矢量化.
+	`-O`有七个等级: `-O0`, `-O1`, `-O2`, `-O3`, `-Os`, `-Og`, `-Ofast`.
+	`O2`: 推荐的优化级别, 开始使用AVX和SSE, 但默认不启用YMM寄存器.
+	`O3`: 最高的优化级别, 完全启用AVX和SSE, 并启用`-ftree-vectorize`, 一些循环被矢量化.
 
 备注: 当下CMake默认Release默认使用`-O3`
 
 [compiler Explorer](https://godbolt.org/) 用来分析编译产生的汇编代码
+
+
 
 ## 编译c++文件
 

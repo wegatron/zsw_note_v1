@@ -154,19 +154,32 @@ Key to Flags:
 
 example:
 ```c++
-int a = 0;    //全局初始化区 
-char *p1;     //全局未初始化区 
-main() 
+const char * g_str_a = "global const char * str a"; // g_str_a存于全局(静态)初始化区, 值为1e200000 00000000, 字符串数据存于.rodata in elf 地址: 04200000 00000000
+const char * g_str_b = "global const char * str b"; // g_str_b存于全局(静态)初始化区, 值为1e200000 00000000, 字符串存于.rodata in elf
+
+unsigned int a = 0xFFFFFFFF;    //全局初始化区 存于.data
+char * p1;     //全局未初始化区 .bss
+
+int main(int argc, char * argv[]) 
 { 
     int b;                   //栈 
-    char s[] = "abc";        //s[]在栈区，abc在常量区 
+    char s[] = "abc";        //s[]在栈区，abc在常量区 .rodata 
     char *p2;                //栈 
-    char *p3 = "123456";     //123456\0在常量区，p3在栈上。 
-    static int c = 0；       //全局（静态）初始化区 
-    p1 = (char *)malloc(10); 
-    p2 = (char *)malloc(20); //分配得来得10和20字节的区域就在堆区。 
-    strcpy(p1, "123456");    //123456\0放在常量区，编译器可能会将它与p3所指向的"123456"优化成一块。 
+    const char *p3 = "123456";     // .rodata in elf; 123456在常量区, p3在栈上 
+    static int c = 0xABCDEFAA;       //全局（静态）初始化区, 值存在.data
+    static char * p4;
+    return 0;
 } 
+```
+
+```bash
+objdump -s zsw_test
+...
+Contents of section .data:
+ 4000 00000000 00000000 08400000 00000000  .........@......
+ 4010 ffffffff aaefcdab 04200000 00000000  ......... ......
+ 4020 1e200000 00000000                    . ......        
+# 这里数据是小端, 低位数据存于低位地址
 ```
 
 堆和栈的区别
