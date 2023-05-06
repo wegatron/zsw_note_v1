@@ -96,7 +96,9 @@ _objc_autoreleasePoolPrint();
 NSString *heap_str_autorelease = [NSString stringWithFormat:@"堆区string-autorelease"];
 // 在末尾插入了 [[NSString stringWithFormat:@"堆区string-autorelease"] autorelease]
 ```
-值得一提的是，**即便编译器插入autorelease关键字，也不一定会将这个对象放入** autoreleasepool. 为了减轻autoreleasePool的负担, 苹果做了一项优化... [TODO]
+值得一提的是，**即便编译器插入autorelease关键字，也不一定会将这个对象放入** autoreleasepool. 为了减轻autoreleasePool的负担, 苹果做了优化.
+参考: [iOS 内存管理思考 - autorelease](https://minosjy.com/2021/09/12/18/439/)
+苹果引入了(**objc_autoreleaseReturnValue** / **objc_retainAutoreleaseReturnValue**) 用以修饰创建的对象, (**objc_retainAutoreleasedReturnValue** / **objc_unsafeClaimAutoreleasedReturnValue**）用以修饰被赋值的对象.
 
 
 ## autoreleasepool 实现原理
@@ -108,6 +110,7 @@ NSString *heap_str_autorelease = [NSString stringWithFormat:@"堆区string-autor
 什么时候会添加`autorelease`标记呢？
  在其他函数中创建对象, 并返回时. 例如使用工厂方法创建对象.
  在同一个函数中, 不同作用域之间 __不会__ 添加.
+
 
 第二份代码
 ```c++
@@ -136,8 +139,8 @@ NSLog(@"strong_stu_release: %p\n", strong_stu_release);
 _objc_autoreleasePoolPrint();
 ```
 
-output:
-```
+debug 模式下output:
+```bash
 const_str size: 0
 stack_str size: 0
 heap_str_release size: 64
@@ -168,11 +171,42 @@ finish!!!
 deallocated 2
 ```
 
+在release模式下, 编译器会进行优化, **即便编译器插入autorelease关键字，也不一定会将这个对象放入** autoreleasepool. release模式下output:
+```bash
+const_str size: 0
+stack_str size: 0
+heap_str_release size: 64
+heap_str_autorelease size: 64
+heap_stu_release size: 32
+heap_stu_autorelease size: 32
+objc[6429]: ##############
+objc[6429]: AUTORELEASE POOLS for thread 0x102a38580
+objc[6429]: 1 releases pending.
+objc[6429]: [0x15480a000]  ................  PAGE  (hot) (cold)
+objc[6429]: [0x15480a038]    0x600000df8280  __NSCFString
+objc[6429]: ##############
+deallocated 1
+deallocated 0
+2023-05-06 11:41:18.240 test_2[6429:83328] weak_str_release: (null)
+2023-05-06 11:41:18.241 test_2[6429:83328] weak_str_autorelease: 堆区string-autorelease
+2023-05-06 11:41:18.241 test_2[6429:83328] weak_stu_release: 0x0
+2023-05-06 11:41:18.241 test_2[6429:83328] weak_stu_autorelease: 0x0
+2023-05-06 11:41:18.241 test_2[6429:83328] strong_stu_release: 0x6000018face0
+objc[6429]: ##############
+objc[6429]: AUTORELEASE POOLS for thread 0x102a38580
+objc[6429]: 1 releases pending.
+objc[6429]: [0x15480a000]  ................  PAGE  (hot) (cold)
+objc[6429]: [0x15480a038]    0x600000df8280  __NSCFString
+objc[6429]: ##############
+finish!!!
+deallocated 2
+```
+
 ## How to do?
 
 
 ## 附件资源
-完整代码: https://github.com/wegatron/autorelease_pool_test
+文档中的完整代码: https://github.com/wegatron/autorelease_pool_test
 
 
 ## Reference
