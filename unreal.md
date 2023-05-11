@@ -1,6 +1,18 @@
 ---
 tag: rendering
 ---
+
+## Unreal Editor基本操作
+
+[参考](https://docs.unrealengine.com/5.1/en-US/viewport-controls-in-unreal-engine/)
+| key | description |
+| :------: | --- |
+|**LMB + Drag** | Moves the camera forward and backward and rotates left and right. |
+| **RMB + Drag** | Rotates the viewport camera. |
+| **LMB + RMB + Drag** | Moves up and down. |
+| **F** | Focuses the camera on the selected object. This is essential to make the most out of tumbling the camera. |
+
+
 ## RDG Basic Concept
 RDG全称是Rendering Dependency Graph，意为渲染依赖性图表，渲染子系统，基于有向无环图(Directed Acyclic Graph，DAG)的调度系统，用于执行渲染管线的整帧优化。
 利用现代的图形API（DirectX 12、Vulkan和Metal 2），实现自动异步计算调度以及更高效的内存管理和屏障管理来提升性能.
@@ -17,9 +29,7 @@ UE代码路径: `UnrealEngine/Engine/Source/Runtime/RenderCore/Public`
 
 ### Design
 Shader Parameter和过程分离
-```c++
 
-```
 
 ## 一些需要关注的问题
 * Resource Tracking/Manage, 资源别名和重复利用

@@ -59,6 +59,58 @@ tag: programming_language/c++
 #endif
 ```
 
+## Initialization
+
+refer to: https://en.cppreference.com/w/cpp/language/initialization
+
+对于局部变量需要进行初始化
+```c++
+#include <iostream>
+int get() {
+    int a;
+    std::cout << "a1:" << &a << " " << a << std::endl;
+    return a;
+}
+int get2()
+{
+    int a = 100;
+    std::cout << "a2:" <<  &a << " " << a << std::endl;
+    return a;
+}
+int main()
+{
+    get2();
+    get();
+    return 0;
+}
+```
+
+在使用uniform constructor时, 若不包含参数会调用默认初始化函数 TODO
+```c++
+struct Base
+{
+    int a;
+    int b;
+};
+#include <iostream>
+void get() {
+    Base b{}; // 这里若换成 Base b; 则输出100.
+    std::cout << "a1:" << &b << " " << b.a << std::endl;
+}
+void get2()
+{
+    Base b{100, 200};
+    std::cout << "a2:" <<  &b << " " << b.a << std::endl;
+}
+int main()
+{
+    get2();
+    get();
+    return 0;
+}
+```
+
+
 ### 参考资料
 [C++静态库与动态库的区别](https://blog.csdn.net/sinat_20265495/article/details/52502673)
 [浅谈静态库和动态库](https://zhuanlan.zhihu.com/p/71372182)

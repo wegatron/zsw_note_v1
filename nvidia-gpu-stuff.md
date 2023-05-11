@@ -45,4 +45,6 @@ Ada Lovelace: GTX40x0系列
 
 * [一文讲清楚CUDA、CUDA toolkit、CUDNN、NVCC关系](https://blog.csdn.net/qq_41094058/article/details/116207333)
 
-* CUDA Compatibility: [官方英文版](https://docs.nvidia.com/deploy/cuda-compatibility/index.html) [知乎中文版](https://zhuanlan.zhihu.com/p/459431437)
+* CUDA Compatibility: 
+	[官方英文版](https://docs.nvidia.com/deploy/cuda-compatibility/index.html)
+	[知乎中文版](https://zhuanlan.zhihu.com/p/459431437)

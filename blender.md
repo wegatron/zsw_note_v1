@@ -39,14 +39,12 @@ obj = bpy.context.object
 me = obj.data
 bm = bmesh.from_edit_mesh(me)
 
-# eye land marks
-lm_eye = np.loadtxt('/home/wegatron/win-data/workspace/MeInGame/data/mesh/eye_lm_idx.txt', dtype=np.int)
-lm_bfm = np.loadtxt('/home/wegatron/win-data/workspace/MeInGame/data/mesh/lm_bfm_230.txt', dtype=np.int)[:,0]
+lm_bfm = np.loadtxt('/home/wegatron/win-data/workspace/MeInGame/data/mesh/mine/lm.txt', dtype=np.int)[:,0]
 
 for v in bm.verts:
     v.select = False
     
-for ind in lm_eye:
+for ind in lm_bfm:
     bm.verts[ind].select = True
 
 # update highlight the selected vertex
