@@ -4,6 +4,7 @@ tag: rendering
 
 ## Unreal Editor基本操作
 
+### 视角操作
 [参考](https://docs.unrealengine.com/5.1/en-US/viewport-controls-in-unreal-engine/)
 | key | description |
 | :------: | --- |
@@ -11,6 +12,14 @@ tag: rendering
 | **RMB + Drag** | Rotates the viewport camera. |
 | **LMB + RMB + Drag** | Moves up and down. |
 | **F** | Focuses the camera on the selected object. This is essential to make the most out of tumbling the camera. |
+
+鼠标alt+ LMB 可绕选中物体进行视角旋转.
+
+### Content Browser
+内容/资源管理器中包含所有资源, 双击可以对资源进行修改.
+![[Pasted image 20230512112240.png]]
+
+资源的修改与blender中类似:
 
 
 ## RDG Basic Concept

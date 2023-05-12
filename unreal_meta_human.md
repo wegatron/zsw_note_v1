@@ -3,15 +3,18 @@ tags:
 - GameEngine
 ---
 
-
 ## Linux install Quixel Bridge
 [官网](https://www.unrealengine.com/en-US/linux)直接下载, Linux_Unreal_Engine_5.1.0.zip, Linux_Bridge_5.1.0_2022.1.0.zip. 将后者内容覆盖到前者对应目录中去即可.
 
-使用`Lutris`安装epic game launcher, 可以通过使用game launcher来浏览、添加公开的项目素材.
+## Mesh to MetaHuman
+其基本原理是对输入的mesh进行关键点检测, 拟合得到一个metahuman head.
 
-## MetaHuman Plugin
 用来将Mesh转为MetaHuman, [官方文档](https://docs.metahuman.unrealengine.com/en-US/mesh-to-metahuman-quick-start-in-unreal-engine/)
 当下只支持windows: https://www.unrealengine.com/marketplace/en-US/product/metahuman-plugin
+![[Pasted image 20230512111842.png]]
+
+安装完成后, 需要在unreal editor->plugin启用该插件
+![[Pasted image 20230512113709.png]]
 
 ## 参考
 [Unreal MetaHuman Documentation](https://docs.metahuman.unrealengine.com/en-US/)

@@ -8,7 +8,7 @@
 5. 使用神经网络分离得到albedo
 
 ### MeInGame 改造后 Pipeline
-
+1. 
 
 ### 积累
 1. Radial Base Function Interpolation
