@@ -123,6 +123,8 @@ apt list --installed
 
 在更新显卡驱动失败的时候, 可以尝试在命令行安装, 此时会显示依赖失败的问题, 从而逐个解决.
 
+## 输入法快捷键去除
+![[input_method_remove_shortcut.png]]
 
 ## Reference
 [linux 安装教程](https://linuxmint-installation-guide.readthedocs.io/zh_CN/latest/burn.html)

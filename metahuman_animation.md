@@ -8,23 +8,22 @@
 	* 点击convert进行convert, 在`mixamo_converter/OutgoingFbx` 得到输出的fbx.
 
 2. 新建UE project. `film` -> `blank`, 通过Quexel Bridge添加metahuman, 在content browser中将metahuman拖入场景, 然后在项目中添加`ThirdPerson`
-	![[Pasted image 20230509142343.png]]
-	![[Pasted image 20230509154814.png]]
+	![[rc/add_metahuman.png]]
+	![[rc/metahuman_assert.png]]
 
 3. 将转换好的fbx拖入下方content browser, skeleton选择`SK_Mannequin_Skeleton`, import.
-	![[Pasted image 20230509142931.png]]
+	![[rc/import_mannequin_sk.png]]
 
 4. 在content browser中搜索`RTG_UE4Manny_UE5Manny`打开.
-	![[Pasted image 20230509144229.png]]
+	![[rc/mannequin_animation.png]]
 
 5. 在`Target Preview Mesh`中选择与metahuman对应的body mesh. 在下方`Asset Browser`中选择导入的Animation, 即可进行预览. 然后点击export将动画导出到自定义目录.
-	![[Pasted image 20230509145045.png]]
+	![[rc/mannequin2metahuman_animation.png]]
 
 6. 将Animation Mode设置为 Use Animation Assert
-	![[Pasted image 20230509202552.png]]
-	![[Pasted image 20230509150243.png]]
+	![[rc/apply_animation2metahuman.png]]
 
 7. force lod 0
-	![[Pasted image 20230510105123.png]]
-	![[Pasted image 20230510105143.png]]
-	![[Pasted image 20230510105200.png]]
+	![[rc/force_lod1.png]]
+	![[rc/force_lod2.png]]
+	![[rc/force_lod3.png]]

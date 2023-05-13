@@ -11,10 +11,10 @@ tags:
 
 用来将Mesh转为MetaHuman, [官方文档](https://docs.metahuman.unrealengine.com/en-US/mesh-to-metahuman-quick-start-in-unreal-engine/)
 当下只支持windows: https://www.unrealengine.com/marketplace/en-US/product/metahuman-plugin
-![[Pasted image 20230512111842.png]]
+![[rc/ue_mesh2metahuman.png]]
 
 安装完成后, 需要在unreal editor->plugin启用该插件
-![[Pasted image 20230512113709.png]]
+![[rc/ue_enable_plugin.png]]
 
 ## 参考
 [Unreal MetaHuman Documentation](https://docs.metahuman.unrealengine.com/en-US/)

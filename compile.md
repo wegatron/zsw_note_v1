@@ -5,14 +5,8 @@ tag: tools
 编译器粗略分为
 前端: 词法分析、语法分析、类型检查、中间代码生成. 
 后端: 代码优化、目标代码生成、目标代码优化. 
-<figure class="image">
-<center>
-<img src="rc/Clang-LLVM.jpg" width=500>
 
-<em>Clang-llvm编译器</em>
-</center>
-</figure>
-
+![[rc/Clang-LLVM.jpg]]
 
 编译程序工程过程一般划分为如下阶段: 词法分析 语法分析 语义分析 中间代码产生 中间代码优化 目标代码生成.
 

@@ -88,7 +88,11 @@ gitlen, gitkaren的插件
             }
         }        
 ```
-使用Clang + lldb:
+使用Clang + lldb， linux安装`clang libc++ libc++abi`
+在使用cmake生成项目时:
+```bash
+cmake .. `-DCMAKE_C_COMPILER=clang-10 -DCMAKE_CXX_COMPILER=clang-10'`
+```
 一般在linux上, 由于很多第三方库编译时使用的是libstdc++(g++的库), 所以还是链接libstdc++.
 vscode安装codelldb插件.
 clang用来编译比g++运行更高效(但是代码规范要求更高, 很多代码可能编译不过), 对于debug程序需要在cmake上加入`-fno-limit-debug-info` .
@@ -110,6 +114,14 @@ gdb命令, 需要在debug console中添加 `-exec` 然后再输入gdb命令.
 memory break point
 ```
 -exec watch *(int*)0xb79b90
+```
+
+clang 使用`libc++`:
+```cmake
+if (NOT APPLE AND ${CMAKE_CXX_COMPILER} MATCHES "(C|c?)lang")
+    add_link_options(-stdlib=libc++)
+    add_compile_options(-stdlib=libc++)
+endif()
 ```
 
 ## 搜索消失
