@@ -124,6 +124,28 @@ if (NOT APPLE AND ${CMAKE_CXX_COMPILER} MATCHES "(C|c?)lang")
 endif()
 ```
 
+windows上配置调试
+```
+"configurations": [
+      {
+        "name": "C/C++: cl.exe build and debug active file",
+        "type": "cppvsdbg",
+        "request": "launch",
+        "program": "${command:cmake.launchTargetPath}",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [
+            {
+                "name": "PATH",
+                "value": "$PATH:${command:cmake.launchTargetDirectory}"
+            }
+        ],
+        "externalConsole": false
+      }
+    ]
+```
+
 ## 搜索消失
 
 若搜索栏与`explore`显示在一起, 进入`Explore`, 在搜索区域上右键, `reset search...`.
