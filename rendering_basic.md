@@ -42,3 +42,14 @@ vt 1 0
 f 1/1 2/2 3/3
 ```
 ![[obj_tri.png]]
+
+
+### graphics api coordinate
+
+|    | NDC | Frame Buffer  | Texture Sampling | Texture Upload |
+|  ----  | ----  | ---- | ---- | ---- |
+| OpenGL  | +Y Up <br>bottom left=(-1,-1) <br>near2far=(-1, 1) | +Y Up <br>bottom left=(0,0) | +Y Up <br>bottom left=(0,0) | +Y Up <br>bottom left=(0,0) |
+| Metal/D3D12  | +Y Up <br>bottom left=(-1,-1)<br>near2far=(0, 1)| +Y Down <br>top left=(0,0) | +Y Down <br>top left=(0,0) | +Y Down <br>top left=(0,0) |
+| Vulkan | +Y Down <br>top left=(-1, -1)<br>near2far=(0,1) | +Y Down<br>top left=(0,0) | +Y Down<br>top left=(0,0) | +Y Down <br>top left=(0,0) |
+
+__上传(Texture)和下载(从Frame Buffer)的第一个像素均为(0,0)坐标的像素点.__
