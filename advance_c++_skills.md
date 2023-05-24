@@ -96,6 +96,14 @@ if (target == GL_UNIFORM_BUFFER || target == GL_TRANSFORM_FEEDBACK_BUFFER) {
  [@高并发编程--多处理器编程中的一致性问题(上)](https://zhuanlan.zhihu.com/p/48157076)
  [@理解 C++ 的 Memory Order](http://senlinzhan.github.io/2017/12/04/cpp-memory-order/)
 
+## unaligned access
+
+> Complete object types have alignment requirements which place restrictions on the addresses at which objects of that type may be allocated. An alignment is an implementation-defined integer value representing the number of bytes between successive addresses at which a given object can be allocated.
+
+完整的数据类型有对齐要求, 该要求限制了可以分配该类型对象的地址. 在指针转换时需要特别注意.
+参考: [unaligned access in c/c++](https://blog.quarkslab.com/unaligned-accesses-in-cc-what-why-and-solutions-to-do-it-properly.html)
+
+
 ## 内存布局对齐分配释放
 字节对齐的细节和编译器实现相关，但一般而言，满足三个准则：
 * (结构体)变量的首地址能够被其(最宽)基本类型成员的大小所整除；
@@ -131,12 +139,7 @@ alignas(128) char cacheline[128];
 | `std::max_align_t` | c++11 值 | std::malloc返回的内存地址, 对齐大小不能小于std::max_align_t的对齐大小 |
 | `aligned_alloc(input_bytes)` | c++11 函数 | 规定了分配空间的起始地址对齐的位置 |
 
-<figure class="image">
-<center>
-<img src="rc/cpu_cacheline_size.JPG" width=300>
-</center>
-<center><em>cpu cache line size i7</em></center>
-</figure>
+![[rc/cpu_cacheline_size.JPG]]
 
 __`alignas`用来修饰类型, 使之在`new`时就能够按照给定的内存对齐方式申请空间. 而`aligned_alloc`则是申请一个指定大小的内存块.__
 

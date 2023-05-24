@@ -1,3 +1,4 @@
+## Coordinate
 ### 3d render basic
 1. 坐标空间变换
 	![[coordinate_transform.png]]
@@ -18,3 +19,26 @@
  2. graphics pipeline detail
 	 scissor testing, refer to vulkan programming language:ch7, ch10. 
 ![[rc/render_pipeline_detail.png]]
+
+
+
+### Coordinate of different graphics API
+
+
+### obj file uv coordinate
+
+uv (0,0) is in the left bottom.
+
+```obj file
+mtllib material.mtl
+usemtl material_0
+
+v 0 0 0
+v 0 1 0
+v 1 0 0
+vt 0 0
+vt 0 1
+vt 1 0
+f 1/1 2/2 3/3
+```
+![[obj_tri.png]]
