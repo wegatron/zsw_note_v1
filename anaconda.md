@@ -52,6 +52,12 @@ conda env create -f env.yml
 conda env update --file env.yml --prune
 ```
 
+拷贝环境
+
+```
+conda create -n [env_name] --clone [base_name]
+```
+
 删除环境
 ```bash
 conda env remove -n [ENV_NAME]

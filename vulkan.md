@@ -6,6 +6,17 @@ tag: programming_language/rendering
 
 另外[Vulkan Guide](https://vkguide.dev/docs/chapter-1/vulkan_init_code/) 教你一步一步如何搭建绘制流程, 对新手非常友好!
 
+相关学习资源:
+https://www.bilibili.com/video/BV1Vu411R7cb?p=5&vd_source=7a062262419c40cd25995ee92315e93c
+
+https://zhuanlan.zhihu.com/p/536049700
+
+## Vulkan Create Pipeline
+
+refer to: https://web.engr.oregonstate.edu/~mjb/cs557/Handouts/VulkanGLSL.1pp.pdf
+
+![[rc/vulkan_pipeline_create.png]]
+
 ### Overview
 
 首先理清vulkan的那些对象的作用以及各自的关联性.  在Vulkan中, 每个object以Vk开头, 把他们当做不可见的handler, 可以在各个函数之间传递, 并需要在不用时释放掉他们.
@@ -122,9 +133,7 @@ Question:
     vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extCount, &extensions.front());
     ```
 * Device Queues
-    <figure class="image">
-        <img src="rc/vulkan_device_queue_family.png" width=600>
-    </figure>
+  ![[rc/vulkan_device_queue_family.png]]
 
     所有的操作都需要通过队列提交给硬件, 然后才能被执行.
     >A queue is the abstracted mechanism used to submit commands to the hardware.
@@ -243,9 +252,6 @@ typedef struct VkMemoryBarrier {
     VkAccessFlags dstAccessMask;
 } VkMemoryBarrier;
 ```
-
-
-
 
 
 ## Project
