@@ -17,6 +17,11 @@ refer to: https://web.engr.oregonstate.edu/~mjb/cs557/Handouts/VulkanGLSL.1pp.pd
 
 ![[rc/vulkan_pipeline_create.png]]
 
+参考: [一张图形象理解Vulkan DescriptorSet](https://zhuanlan.zhihu.com/p/450434645)
+DescriptorSetLayout、PipeLineLayout
+
+![[rc/vulkan_descriptor.png]]
+
 ### Overview
 
 首先理清vulkan的那些对象的作用以及各自的关联性.  在Vulkan中, 每个object以Vk开头, 把他们当做不可见的handler, 可以在各个函数之间传递, 并需要在不用时释放掉他们.
