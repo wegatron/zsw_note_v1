@@ -72,6 +72,8 @@ f 1/1 2/2 3/3
 
 ### graphics api coordinate
 
+refer to: https://github.com/gpuweb/gpuweb/issues/416
+
 |    | NDC | Frame Buffer  | Texture Sampling | Texture Upload |
 |  ----  | ----  | ---- | ---- | ---- |
 | OpenGL  | +Y Up <br>bottom left=(-1,-1) <br>near2far=(-1, 1) | +Y Up <br>bottom left=(0,0) | +Y Up <br>bottom left=(0,0) | +Y Up <br>bottom left=(0,0) |
@@ -81,3 +83,4 @@ f 1/1 2/2 3/3
 __上传(Texture)和下载(从Frame Buffer)的第一个像素均为(0,0)坐标的像素点.__
 
 texture memory:
+opengl 
