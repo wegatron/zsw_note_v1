@@ -15,6 +15,7 @@ view Frustum裁剪 ^dUgMyajs
 待图元被装配完毕后, 其顶点就会被送入顶点着色器阶段(Vertex Shader Stage), 顶点着色器对数据的处理是逐顶点的, 在这一阶段我们要完成顶点的坐标变换和数据传递, 使所有顶点处于齐次裁剪空间中, 由硬件完成透视除法(齐次除法)后, 所有的顶点都位于规范化设备坐标(Normalized Device Coordinates, NDC)空间中. 
 
 曲面细分阶段(Tessellation Stage, 可选阶段)是利用镶嵌化处理技术对网格中的三角形进行细分(subdivide), 以此来增加物体表面上的三角形面数量. 再将这些新增的三角形偏移到适当的位置, 使网格表现出更加细腻的细节. 
+
 几何着色器阶段(Geometry Shader, 可选阶段)对数据的处理是逐图元的, 处理类型由图元拓扑而定, 可以根据自己的需求创建和销毁几何体之后将数据输出. 
 
 裁剪阶段, 为了优化, 在这个阶段中所有位于视锥体(Viewing Frustum)外的几何体和几何体部分将会被裁剪(clip)和丢弃. 
@@ -35,8 +36,8 @@ alpha test ^H0hZ3wuH
 
 
 # Embedded files
-ef0d69d76a169f0bdaf0023a551060eafb2460e1: [[rc/render_pipeline_detail.png]]
-54b05288950c5d3ba66548a426dc441864988990: [[rc/coordinate_transform.png]]
+ef0d69d76a169f0bdaf0023a551060eafb2460e1: [[render_pipeline_detail.png]]
+54b05288950c5d3ba66548a426dc441864988990: [[coordinate_transform.png]]
 
 %%
 # Drawing
@@ -145,8 +146,8 @@ ef0d69d76a169f0bdaf0023a551060eafb2460e1: [[rc/render_pipeline_detail.png]]
 		},
 		{
 			"type": "text",
-			"version": 437,
-			"versionNonce": 1988408172,
+			"version": 438,
+			"versionNonce": 423516850,
 			"isDeleted": false,
 			"id": "dUgMyajs",
 			"fillStyle": "hachure",
@@ -165,7 +166,7 @@ ef0d69d76a169f0bdaf0023a551060eafb2460e1: [[rc/render_pipeline_detail.png]]
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1685496752481,
+			"updated": 1686043401280,
 			"link": null,
 			"locked": false,
 			"fontSize": 16,
@@ -213,8 +214,8 @@ ef0d69d76a169f0bdaf0023a551060eafb2460e1: [[rc/render_pipeline_detail.png]]
 		},
 		{
 			"type": "text",
-			"version": 745,
-			"versionNonce": 669223252,
+			"version": 748,
+			"versionNonce": 2022916082,
 			"isDeleted": false,
 			"id": "n14VrVMb",
 			"fillStyle": "hachure",
@@ -224,27 +225,27 @@ ef0d69d76a169f0bdaf0023a551060eafb2460e1: [[rc/render_pipeline_detail.png]]
 			"opacity": 100,
 			"angle": 0,
 			"x": -337.25,
-			"y": -376.4453125,
+			"y": -386.4453125,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
 			"width": 806,
-			"height": 600,
+			"height": 620,
 			"seed": 88869520,
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1685496752485,
+			"updated": 1686043890805,
 			"link": null,
 			"locked": false,
 			"fontSize": 16,
 			"fontFamily": 1,
-			"text": "输入装配器(Input Assembler, IA)阶段会从显卡存储中读取几何数据(顶点和索引), \n再将它们依据图元拓扑(Primitive Topology)装配为几何图元(Geometric Primitive), 送入后续的阶段.\n\n待图元被装配完毕后, 其顶点就会被送入顶点着色器阶段(Vertex Shader Stage), \n顶点着色器对数据的处理是逐顶点的, 在这一阶段我们要完成顶点的坐标变换和数据传递, \n使所有顶点处于齐次裁剪空间中, 由硬件完成透视除法(齐次除法)后, \n所有的顶点都位于规范化设备坐标(Normalized Device Coordinates, NDC)空间中. \n\n曲面细分阶段(Tessellation Stage, 可选阶段)是利用镶嵌化处理技术对网格中的三角形进行细分(subdivide), \n以此来增加物体表面上的三角形面数量. 再将这些新增的三角形偏移到适当的位置, 使网格表现出更加细腻的细节. \n几何着色器阶段(Geometry Shader, 可选阶段)对数据的处理是逐图元的, 处理类型由图元拓扑而定, \n可以根据自己的需求创建和销毁几何体之后将数据输出. \n\n裁剪阶段, 为了优化, 在这个阶段中所有位于视锥体(Viewing \nFrustum)外的几何体和几何体部分将会被裁剪(clip)和丢弃. \n\nRasterization Stage, 对几何着色器的输出进行光栅化, 转化为像素数据, 交给像素着色器去计算颜色. \n内容包括: 视口变换(同时执行透视除法), 背面剔除(依据三角形的绕序对背面三角形进行剔除, \n使需要处理的三角形数量减少为原来的一半), 顶点属性插值, \n透视校正插值(根据三角形顶点的属性值计算出其内部像素的属性值, 透视校正插值确保了这个属性是线性的). \n\n像素着色器阶段(Pixel Shader Stage, 或者按Khronos的说法叫片元着色器, Fragment \nShader)对数据的处理是逐像素的, 它会针对每一个像素片元(pixel fragment)进行处理, 计算出对应的像素颜色. \n在此阶段实现光照, 反射, 阴影等复杂效果. \n\n在最后的输出合并阶段(Output Merger Stage, OM), \n一些像素片元可能会被丢失(例如未通过深度测试或者模板测试), 然后, 剩下的像素片元会被写入后台缓冲区中, \n颜色混合(blend)操作就是在这阶段实现的, 可用于实现透明效果. \n\nrerer to: https://zhuanlan.zhihu.com/p/536049700",
-			"rawText": "输入装配器(Input Assembler, IA)阶段会从显卡存储中读取几何数据(顶点和索引), 再将它们依据图元拓扑(Primitive Topology)装配为几何图元(Geometric Primitive), 送入后续的阶段.\n\n待图元被装配完毕后, 其顶点就会被送入顶点着色器阶段(Vertex Shader Stage), 顶点着色器对数据的处理是逐顶点的, 在这一阶段我们要完成顶点的坐标变换和数据传递, 使所有顶点处于齐次裁剪空间中, 由硬件完成透视除法(齐次除法)后, 所有的顶点都位于规范化设备坐标(Normalized Device Coordinates, NDC)空间中. \n\n曲面细分阶段(Tessellation Stage, 可选阶段)是利用镶嵌化处理技术对网格中的三角形进行细分(subdivide), 以此来增加物体表面上的三角形面数量. 再将这些新增的三角形偏移到适当的位置, 使网格表现出更加细腻的细节. \n几何着色器阶段(Geometry Shader, 可选阶段)对数据的处理是逐图元的, 处理类型由图元拓扑而定, 可以根据自己的需求创建和销毁几何体之后将数据输出. \n\n裁剪阶段, 为了优化, 在这个阶段中所有位于视锥体(Viewing Frustum)外的几何体和几何体部分将会被裁剪(clip)和丢弃. \n\nRasterization Stage, 对几何着色器的输出进行光栅化, 转化为像素数据, 交给像素着色器去计算颜色. 内容包括: 视口变换(同时执行透视除法), 背面剔除(依据三角形的绕序对背面三角形进行剔除, 使需要处理的三角形数量减少为原来的一半), 顶点属性插值, 透视校正插值(根据三角形顶点的属性值计算出其内部像素的属性值, 透视校正插值确保了这个属性是线性的). \n\n像素着色器阶段(Pixel Shader Stage, 或者按Khronos的说法叫片元着色器, Fragment Shader)对数据的处理是逐像素的, 它会针对每一个像素片元(pixel fragment)进行处理, 计算出对应的像素颜色. 在此阶段实现光照, 反射, 阴影等复杂效果. \n\n在最后的输出合并阶段(Output Merger Stage, OM), 一些像素片元可能会被丢失(例如未通过深度测试或者模板测试), 然后, 剩下的像素片元会被写入后台缓冲区中, 颜色混合(blend)操作就是在这阶段实现的, 可用于实现透明效果. \n\nrerer to: https://zhuanlan.zhihu.com/p/536049700",
-			"baseline": 594,
+			"text": "输入装配器(Input Assembler, IA)阶段会从显卡存储中读取几何数据(顶点和索引), \n再将它们依据图元拓扑(Primitive Topology)装配为几何图元(Geometric Primitive), 送入后续的阶段.\n\n待图元被装配完毕后, 其顶点就会被送入顶点着色器阶段(Vertex Shader Stage), \n顶点着色器对数据的处理是逐顶点的, 在这一阶段我们要完成顶点的坐标变换和数据传递, \n使所有顶点处于齐次裁剪空间中, 由硬件完成透视除法(齐次除法)后, \n所有的顶点都位于规范化设备坐标(Normalized Device Coordinates, NDC)空间中. \n\n曲面细分阶段(Tessellation Stage, 可选阶段)是利用镶嵌化处理技术对网格中的三角形进行细分(subdivide), \n以此来增加物体表面上的三角形面数量. 再将这些新增的三角形偏移到适当的位置, 使网格表现出更加细腻的细节. \n\n几何着色器阶段(Geometry Shader, 可选阶段)对数据的处理是逐图元的, 处理类型由图元拓扑而定, \n可以根据自己的需求创建和销毁几何体之后将数据输出. \n\n裁剪阶段, 为了优化, 在这个阶段中所有位于视锥体(Viewing \nFrustum)外的几何体和几何体部分将会被裁剪(clip)和丢弃. \n\nRasterization Stage, 对几何着色器的输出进行光栅化, 转化为像素数据, 交给像素着色器去计算颜色. \n内容包括: 视口变换(同时执行透视除法), 背面剔除(依据三角形的绕序对背面三角形进行剔除, \n使需要处理的三角形数量减少为原来的一半), 顶点属性插值, \n透视校正插值(根据三角形顶点的属性值计算出其内部像素的属性值, 透视校正插值确保了这个属性是线性的). \n\n像素着色器阶段(Pixel Shader Stage, 或者按Khronos的说法叫片元着色器, Fragment \nShader)对数据的处理是逐像素的, 它会针对每一个像素片元(pixel fragment)进行处理, 计算出对应的像素颜色. \n在此阶段实现光照, 反射, 阴影等复杂效果. \n\n在最后的输出合并阶段(Output Merger Stage, OM), \n一些像素片元可能会被丢失(例如未通过深度测试或者模板测试), 然后, 剩下的像素片元会被写入后台缓冲区中, \n颜色混合(blend)操作就是在这阶段实现的, 可用于实现透明效果. \n\nrerer to: https://zhuanlan.zhihu.com/p/536049700",
+			"rawText": "输入装配器(Input Assembler, IA)阶段会从显卡存储中读取几何数据(顶点和索引), 再将它们依据图元拓扑(Primitive Topology)装配为几何图元(Geometric Primitive), 送入后续的阶段.\n\n待图元被装配完毕后, 其顶点就会被送入顶点着色器阶段(Vertex Shader Stage), 顶点着色器对数据的处理是逐顶点的, 在这一阶段我们要完成顶点的坐标变换和数据传递, 使所有顶点处于齐次裁剪空间中, 由硬件完成透视除法(齐次除法)后, 所有的顶点都位于规范化设备坐标(Normalized Device Coordinates, NDC)空间中. \n\n曲面细分阶段(Tessellation Stage, 可选阶段)是利用镶嵌化处理技术对网格中的三角形进行细分(subdivide), 以此来增加物体表面上的三角形面数量. 再将这些新增的三角形偏移到适当的位置, 使网格表现出更加细腻的细节. \n\n几何着色器阶段(Geometry Shader, 可选阶段)对数据的处理是逐图元的, 处理类型由图元拓扑而定, 可以根据自己的需求创建和销毁几何体之后将数据输出. \n\n裁剪阶段, 为了优化, 在这个阶段中所有位于视锥体(Viewing Frustum)外的几何体和几何体部分将会被裁剪(clip)和丢弃. \n\nRasterization Stage, 对几何着色器的输出进行光栅化, 转化为像素数据, 交给像素着色器去计算颜色. 内容包括: 视口变换(同时执行透视除法), 背面剔除(依据三角形的绕序对背面三角形进行剔除, 使需要处理的三角形数量减少为原来的一半), 顶点属性插值, 透视校正插值(根据三角形顶点的属性值计算出其内部像素的属性值, 透视校正插值确保了这个属性是线性的). \n\n像素着色器阶段(Pixel Shader Stage, 或者按Khronos的说法叫片元着色器, Fragment Shader)对数据的处理是逐像素的, 它会针对每一个像素片元(pixel fragment)进行处理, 计算出对应的像素颜色. 在此阶段实现光照, 反射, 阴影等复杂效果. \n\n在最后的输出合并阶段(Output Merger Stage, OM), 一些像素片元可能会被丢失(例如未通过深度测试或者模板测试), 然后, 剩下的像素片元会被写入后台缓冲区中, 颜色混合(blend)操作就是在这阶段实现的, 可用于实现透明效果. \n\nrerer to: https://zhuanlan.zhihu.com/p/536049700",
+			"baseline": 614,
 			"textAlign": "left",
 			"verticalAlign": "middle",
 			"containerId": "DR6mjzwd4gLEWcM8MA9-t",
-			"originalText": "输入装配器(Input Assembler, IA)阶段会从显卡存储中读取几何数据(顶点和索引), 再将它们依据图元拓扑(Primitive Topology)装配为几何图元(Geometric Primitive), 送入后续的阶段.\n\n待图元被装配完毕后, 其顶点就会被送入顶点着色器阶段(Vertex Shader Stage), 顶点着色器对数据的处理是逐顶点的, 在这一阶段我们要完成顶点的坐标变换和数据传递, 使所有顶点处于齐次裁剪空间中, 由硬件完成透视除法(齐次除法)后, 所有的顶点都位于规范化设备坐标(Normalized Device Coordinates, NDC)空间中. \n\n曲面细分阶段(Tessellation Stage, 可选阶段)是利用镶嵌化处理技术对网格中的三角形进行细分(subdivide), 以此来增加物体表面上的三角形面数量. 再将这些新增的三角形偏移到适当的位置, 使网格表现出更加细腻的细节. \n几何着色器阶段(Geometry Shader, 可选阶段)对数据的处理是逐图元的, 处理类型由图元拓扑而定, 可以根据自己的需求创建和销毁几何体之后将数据输出. \n\n裁剪阶段, 为了优化, 在这个阶段中所有位于视锥体(Viewing Frustum)外的几何体和几何体部分将会被裁剪(clip)和丢弃. \n\nRasterization Stage, 对几何着色器的输出进行光栅化, 转化为像素数据, 交给像素着色器去计算颜色. 内容包括: 视口变换(同时执行透视除法), 背面剔除(依据三角形的绕序对背面三角形进行剔除, 使需要处理的三角形数量减少为原来的一半), 顶点属性插值, 透视校正插值(根据三角形顶点的属性值计算出其内部像素的属性值, 透视校正插值确保了这个属性是线性的). \n\n像素着色器阶段(Pixel Shader Stage, 或者按Khronos的说法叫片元着色器, Fragment Shader)对数据的处理是逐像素的, 它会针对每一个像素片元(pixel fragment)进行处理, 计算出对应的像素颜色. 在此阶段实现光照, 反射, 阴影等复杂效果. \n\n在最后的输出合并阶段(Output Merger Stage, OM), 一些像素片元可能会被丢失(例如未通过深度测试或者模板测试), 然后, 剩下的像素片元会被写入后台缓冲区中, 颜色混合(blend)操作就是在这阶段实现的, 可用于实现透明效果. \n\nrerer to: https://zhuanlan.zhihu.com/p/536049700"
+			"originalText": "输入装配器(Input Assembler, IA)阶段会从显卡存储中读取几何数据(顶点和索引), 再将它们依据图元拓扑(Primitive Topology)装配为几何图元(Geometric Primitive), 送入后续的阶段.\n\n待图元被装配完毕后, 其顶点就会被送入顶点着色器阶段(Vertex Shader Stage), 顶点着色器对数据的处理是逐顶点的, 在这一阶段我们要完成顶点的坐标变换和数据传递, 使所有顶点处于齐次裁剪空间中, 由硬件完成透视除法(齐次除法)后, 所有的顶点都位于规范化设备坐标(Normalized Device Coordinates, NDC)空间中. \n\n曲面细分阶段(Tessellation Stage, 可选阶段)是利用镶嵌化处理技术对网格中的三角形进行细分(subdivide), 以此来增加物体表面上的三角形面数量. 再将这些新增的三角形偏移到适当的位置, 使网格表现出更加细腻的细节. \n\n几何着色器阶段(Geometry Shader, 可选阶段)对数据的处理是逐图元的, 处理类型由图元拓扑而定, 可以根据自己的需求创建和销毁几何体之后将数据输出. \n\n裁剪阶段, 为了优化, 在这个阶段中所有位于视锥体(Viewing Frustum)外的几何体和几何体部分将会被裁剪(clip)和丢弃. \n\nRasterization Stage, 对几何着色器的输出进行光栅化, 转化为像素数据, 交给像素着色器去计算颜色. 内容包括: 视口变换(同时执行透视除法), 背面剔除(依据三角形的绕序对背面三角形进行剔除, 使需要处理的三角形数量减少为原来的一半), 顶点属性插值, 透视校正插值(根据三角形顶点的属性值计算出其内部像素的属性值, 透视校正插值确保了这个属性是线性的). \n\n像素着色器阶段(Pixel Shader Stage, 或者按Khronos的说法叫片元着色器, Fragment Shader)对数据的处理是逐像素的, 它会针对每一个像素片元(pixel fragment)进行处理, 计算出对应的像素颜色. 在此阶段实现光照, 反射, 阴影等复杂效果. \n\n在最后的输出合并阶段(Output Merger Stage, OM), 一些像素片元可能会被丢失(例如未通过深度测试或者模板测试), 然后, 剩下的像素片元会被写入后台缓冲区中, 颜色混合(blend)操作就是在这阶段实现的, 可用于实现透明效果. \n\nrerer to: https://zhuanlan.zhihu.com/p/536049700"
 		},
 		{
 			"type": "text",
@@ -348,41 +349,6 @@ ef0d69d76a169f0bdaf0023a551060eafb2460e1: [[rc/render_pipeline_detail.png]]
 			"verticalAlign": "middle",
 			"containerId": "DGmgn5lrpanVkW4MhHn2m",
 			"originalText": "Alpha Test\ndepth test\nalpha test"
-		},
-		{
-			"id": "foCyTiGs",
-			"type": "text",
-			"x": -530.7513852952172,
-			"y": 84.29369112088,
-			"width": 10,
-			"height": 20,
-			"angle": 0,
-			"strokeColor": "#000000",
-			"backgroundColor": "transparent",
-			"fillStyle": "hachure",
-			"strokeWidth": 1,
-			"strokeStyle": "solid",
-			"roughness": 1,
-			"opacity": 100,
-			"groupIds": [],
-			"roundness": null,
-			"seed": 162022484,
-			"version": 3,
-			"versionNonce": 1178900948,
-			"isDeleted": true,
-			"boundElements": null,
-			"updated": 1685498765659,
-			"link": null,
-			"locked": false,
-			"text": "",
-			"rawText": "",
-			"fontSize": 16,
-			"fontFamily": 1,
-			"textAlign": "left",
-			"verticalAlign": "top",
-			"baseline": 14,
-			"containerId": null,
-			"originalText": ""
 		}
 	],
 	"appState": {
@@ -400,8 +366,8 @@ ef0d69d76a169f0bdaf0023a551060eafb2460e1: [[rc/render_pipeline_detail.png]]
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 1086.9418614856934,
-		"scrollY": 823.096189831501,
+		"scrollX": 1068.1323376761698,
+		"scrollY": 570.7152374505486,
 		"zoom": {
 			"value": 1.05
 		},

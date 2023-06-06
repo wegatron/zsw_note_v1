@@ -77,6 +77,25 @@ if obj.mode == 'EDIT':
 else:
     print("Object is not in edit mode.")
 ```
+所有选中的face
+```python
+import bpy
+import bmesh
+import numpy as np
+
+f_ids = []
+obj=bpy.context.object
+if obj.mode == 'EDIT':
+    bm=bmesh.from_edit_mesh(obj.data)
+    for f in bm.faces:
+	    if f.select:
+		    f_ids.append(f.index)
+	f_ids_n = np.array(f_ids, dtype=int)
+    np.save('removed_face_ids.npy', f_ids_n)
+else:
+    print("Object is not in edit mode.")
+```
+
 ### python editor
 相同的地方, 选择`Text Editor`, 可以进行python脚本编辑.
 
