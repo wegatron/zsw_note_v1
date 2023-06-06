@@ -14,6 +14,14 @@ tag: tools
 * `CRTL` + `G` group
 * `F3` search command
 
+
+## Camera
+
+refer to: https://docs.blender.org/manual/en/latest/render/cameras.html
+
+默认近平面宽度: 18mm.
+可以通过Focal Length/Field of View来调整相机透视投影.
+
 ## render output
 
 blender 渲染相关设置
@@ -55,13 +63,17 @@ bmesh.update_edit_mesh(me)
 ```python
 import bpy
 import bmesh
+import numpy as np
 
+ids = []
 obj=bpy.context.object
 if obj.mode == 'EDIT':
     bm=bmesh.from_edit_mesh(obj.data)
     for v in bm.verts:
         if v.select:
-            print(v.co)
+            ids.append(v.index)
+    ids_n = np.array(ids, dtype=int)
+    np.save('right_eye_mask_ids.npy', ids_n)
 else:
     print("Object is not in edit mode.")
 ```

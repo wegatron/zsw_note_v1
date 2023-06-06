@@ -1,3 +1,4 @@
+## Coordinate
 ### 3d render basic
 1. 坐标空间变换
 	![[coordinate_transform.png]]
@@ -29,15 +30,14 @@
  ③ 第三行, 通过两个点[0,0, -f, 1], [0,0,-n,1]进行求取
  
  orthogonal projection:
-		$$
+$$
 	\begin{bmatrix}
 \frac{2}{r-l} & 0 & 0& -\frac{r+l}{r-l}  \\
 0 & \frac{2}{t-b} & 0 & -\frac{t+b}{t-b}  \\
 0 & 0 & -\frac{2}{f-n} & -\frac{f+n}{f-n} \\
 0 & 0 & 0 & 1\end{bmatrix}
 	$$
- for vulkan depth [0, 1] :
-	 		$$
+ for vulkan depth [0, 1] :	 		$$
 	\begin{bmatrix}
 \frac{2}{r-l} & 0 & 0& -\frac{r+l}{r-l}  \\
 0 & \frac{2}{t-b} & 0 & -\frac{t+b}{t-b}  \\
@@ -45,6 +45,57 @@
 0 & 0 & 0 & 1\end{bmatrix}
 	$$
  x,y, z值, 直接归一化: 减去中心点, 除以range
+
+
+Pin hole camera, 参考: [The Pinhole Camera Matrix](https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/CV/PinholeCamera/PinholeCamera.html)
+![[rc/pin_hole_camera_proj.png]]
+
+$$
+\begin{bmatrix}
+x\\
+y\\
+1\\
+\end{bmatrix} \sim
+\begin{bmatrix}
+f & 0 & 0 & 0\\
+0 & f & 0 & 0\\
+0 & 0 & 1 & 0
+\end{bmatrix} \cdot \begin{bmatrix}
+X\\
+Y\\
+Z\\
+1\\
+\end{bmatrix}
+$$
+
+转换到像素坐标系下: $f_x = s_x f, f_y = s_y f$
+$$
+\begin{bmatrix}
+x\\
+y\\
+1\\
+\end{bmatrix} \sim
+\begin{bmatrix}
+f_x & 0 & c_x & 0\\
+0 & f_y & c_y & 0\\
+0 & 0 & 1 & 0
+\end{bmatrix} \cdot \begin{bmatrix}
+X\\
+Y\\
+Z\\
+1\\
+\end{bmatrix}
+$$
+
+针孔相机投影矩阵与perspective matrix for graphics原理是一样的. 针孔相机投影, 齐次坐标归一化后得到的是像素坐标, 而graphics api投影后得到的是clip坐标系下坐标, 归一化后得到的是NDC坐标.
+
+给定针孔相机投影矩阵+照片height、width, 设计view port transform:
+① 第一行除以width 乘以 2 - 1
+② 第二行除以height 乘以 2 - 1
+③ 第三行变第四行, 定义near far增加第三行
+
+这里y向下, metal、opengl默认y向上需要flip. vulkan默认y向下.
+
 
  2. [graphics pipeline detail](Excalidraw/pipeline_overview)
 
