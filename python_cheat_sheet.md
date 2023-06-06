@@ -37,7 +37,7 @@ tensor to image
 torchvision.utils.save_image(uv_pverts_zsw, '/home/wegatron/tmp/tmpz.jpg')
 ```
 
-## Numpy
+## Numpy & Pytorch
 
 numpy write to csv
 
@@ -112,6 +112,57 @@ y = x.permute(2,0,1)
 ```
 
 
+## pytorch3d
+
+load & save obj:
+```python
+from pytorch3d.io import (
+    load_obj,
+    load_ply,
+    load_objs_as_meshes,
+    save_obj,
+    save_ply
+)
+
+# only support one material
+verts, faces, aux = load_obj('output/ffhq-uv/st/front.obj', load_textures=True, device='cuda')
+# verts: nx3 tensor
+# faces
+#            - verts_idx: LongTensor of vertex indices, shape (F, 3).
+#            - normals_idx: (optional) LongTensor of normal indices, shape (F, 3).
+#            - textures_idx: (optional) LongTensor of texture indices, shape (F, 3).
+# aux:
+#            - texture_images dict['name', image tensor]
+#            - verts_uvs
+# list(aux.texture_images.values())[0].shape
+
+save_obj('debug_output/dbg.obj', verts, faces.verts_idx, verts_uvs=aux.verts_uvs, faces_uvs=faces.textures_idx, texture_map=list(aux.texture_images.values())[0])
+
+# '''
+# save_obj(
+# f: PathOrStr,
+#     verts,
+#     faces,
+#     decimal_places: Optional[int] = None,
+#     path_manager: Optional[PathManager] = None,
+#     *,
+#     normals: Optional[torch.Tensor] = None,
+#     faces_normals_idx: Optional[torch.Tensor] = None,
+#     verts_uvs: Optional[torch.Tensor] = None,
+#     faces_uvs: Optional[torch.Tensor] = None,
+#     texture_map: Optional[torch.Tensor] = None,)
+#         normals: FloatTensor of shape (V, 3) giving normals for faces_normals_idx
+#             to index into.
+#         faces_normals_idx: LongTensor of shape (F, 3) giving the index into
+#             normals for each vertex in the face.
+#         verts_uvs: FloatTensor of shape (V, 2) giving the uv coordinate per vertex.
+#         faces_uvs: LongTensor of shape (F, 3) giving the index into verts_uvs for
+#             each vertex in the face.
+#         texture_map: FloatTensor of shape (H, W, 3) representing the texture map
+#             for the mesh which will be saved as an image. The values are expected
+#             to be in the range [0, 1],
+# '''
+```
 ## Open3d
 
 point cloud to pcd
