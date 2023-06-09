@@ -35,6 +35,7 @@ blender 渲染相关设置
 ### python console
 ![[blender_python_console.png]]
 
+## Template Code
 根据id选择顶点:
 ```python
 import bpy
@@ -95,6 +96,17 @@ if obj.mode == 'EDIT':
 else:
     print("Object is not in edit mode.")
 ```
+
+材质的link修改:
+```python
+mat_node_trees = bpy.data.meshes['bk_mesh'].materials['blinn1SG.001'].node_tree
+
+mat_node_trees.links.new(mat_node_trees.node[''].outputs[0], mat_node_trees.node[].inputs[0])
+```
+
+## vscode blender plugin
+
+`Ctrl` + `Shift` + `P`, `blender start` 而后可以用 `blender run script`执行一个脚本文件.
 
 ### python editor
 相同的地方, 选择`Text Editor`, 可以进行python脚本编辑.

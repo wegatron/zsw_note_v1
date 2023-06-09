@@ -146,6 +146,15 @@ windows上配置调试
     ]
 ```
 
+## clang-format
+
+* `Ctrl` + `Shift` + `P`  -> User Settings -> 搜索 `clang`, Formatting -> clang fallback style(后备style文件, 若style文件找不到则使用该文件) LLVM, style(优先使用) LLVM
+
+使用clang-format command line format 文件:
+```
+clang-format -i --style=LLVM *.h
+```
+
 ## 搜索消失
 
 若搜索栏与`explore`显示在一起, 进入`Explore`, 在搜索区域上右键, `reset search...`.

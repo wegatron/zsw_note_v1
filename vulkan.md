@@ -19,39 +19,18 @@ refer to: https://web.engr.oregonstate.edu/~mjb/cs557/Handouts/VulkanGLSL.1pp.pd
 
 ### DescriptorSetLayout、PipeLineLayout
 
+refer to: https://vkguide.dev/docs/chapter-4/descriptors/
+为了更高效的进行资源的绑定, vulkan要求将资源组织成set进行绑定. 可同时绑定的set有数量的限制, 在有的GPU上可能只允许同时绑定4个set.
+
+![[rc/vk_descriptor.png]]
+
+set-0 用作 engine-global resource, set-1 用作 per pass resource, set-2 用作 material resource, set-3 用作 per-object resource.
+
 参考: [一张图形象理解Vulkan DescriptorSet](https://zhuanlan.zhihu.com/p/450434645)
 
 ![[rc/vulkan_descriptor.png]]
 
-DescriptorSetLayoutBindings（图中第0步），这个部分由多个DescriptorSetLayoutBinding组成，描述了一个Set的数据组织。比如图中：
 
-- DescriptorSetLayoutBinding0 描述Binding=0中有三个Descriptor，他们以Array的形式存在，在glsl shader中会这样描述：
-
-```glsl
-layout(set = 0, binding = 0) uniform MyBuffer 
-{    
-    mat4 model;
-    mat4 view;
-    mat4 proj; 
-} ubo[]; // <- 一个bind point上可以存在一个descriptor array
-```
-
-- DescriptorSetLayoutBinding1 描述在Binding=3处有两个Descriptor，他们以Array的形式存在，在后文中DescriptorSetLayoutBinding1将不会展开说明。
-
-他们共同构成了一个DescriptorSetLayout的描述。
-
-建立对应的Descriptor Pool后，我们需要依据DescriptorSetLayout从中分配（Allocate）一些Descriptors。正如图中所示，红色的“Allocate”引用了DescriptorSetLayout。
-
-用直白的语言描述就是：在DescriptorSetLayout的指导下，利用Descriptor Pool提供的Descriptors，组装成一个符合DescriptorSetLayout的Set（即图中红色的DescriptorSet A）。
-
-此时，DescriptorSet A中不包含任何的数据，只是一个空框架。接下来，我们根据WriteDescriptorSet来写入信息。其中：
-
-- binding和DescriptorSetLayoutBinding0.binding相对应
-- 0 <= ArrayElement < DescriptorSetLayoutBinding0.Count，表示写入Array中的第几个对象，这里我们只想写入index=1位置（对应DescriptorSetA.Bind0.DescriptorArray[1]），图中只写入了一个，理论上可以写入连续的多个Descriptor。
-
-完成此五步，DescriptorSet的建立便完成了。
-
-接下来需要做的就只有在运行时绑定DescriptorSet了。这里对应的Command就是vkCmdBindDescriptorSets。至于为什么是BindDescriptorSets而不是BindDescriptorSet，显然，在图中也有所体现，Pipeline Layout的Set不止一个，允许一次绑定多个也是合情合理。
 
 ### Overview
 

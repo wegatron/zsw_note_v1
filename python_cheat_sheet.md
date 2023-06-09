@@ -98,17 +98,23 @@ x = np.random.rand(10, 10)
 y = np.expand_dims(x, axis=0)
 ```
 
-numpy switch channels
+numpy switch matrix
 
 ```
 np.random.rand(2,3,5)
 np.transpose(2,0,1)
 ```
 
-pytorch switch channels:
+pytorch switch matrix:
 ```python
 x = torch.randn(2, 3, 5) 
 y = x.permute(2,0,1)
+```
+
+numpy bgr to rgb
+
+```python
+img_rgb = img_bgr[:, :, ::-1]
 ```
 
 
