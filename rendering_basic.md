@@ -46,8 +46,9 @@ $$
 	$$
  x,y, z值, 直接归一化: 减去中心点, 除以range
 
-
-Pin hole camera, 参考: [The Pinhole Camera Matrix](https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/CV/PinholeCamera/PinholeCamera.html)
+Pin hole camera
+![[pin_hole_camera.png]]
+参考: [The Pinhole Camera Matrix](https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/CV/PinholeCamera/PinholeCamera.html)
 ![[rc/pin_hole_camera_proj.png]]
 
 $$
@@ -95,7 +96,6 @@ $$
 ③ 第三行变第四行, 定义near far增加第三行
 
 这里y向下, metal、opengl默认y向上需要flip. vulkan默认y向下.
-
 
  2. [graphics pipeline detail](Excalidraw/pipeline_overview)
 
