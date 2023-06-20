@@ -1,9 +1,14 @@
 ---
 tag: programming_language/octave_matlab
 ---
-[TOC]
 
 # Octave Tutorial
+
+包管理:
+```
+pkg install -forge package_name
+pkg load package_name
+```
 
 ## 一般命令
 

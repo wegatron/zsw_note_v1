@@ -61,7 +61,7 @@ $$
 &=\dot{p}^T Q^TQ \dot{q} = (\dot{q}\cdot\dot{q})(\dot{p}\cdot\dot{r})
 \end{aligned}
 $$
-
+ >>单位四元素保点积
 2. 
 $$
     (\dot{p} \dot{q}) \cdot \dot{r} = \dot{p} \cdot{\dot{r} \dot{q}^*}
@@ -112,6 +112,10 @@ $$
 ### 四元素插值
 
 ![[rc/quaternion_inter.JPG]]
+
+![[Pasted image 20230619162253.png]]
+
+$q_1 \cdot q_2 = \cos \theta$
 
 ### IMU Gyro读数与四元素
 陀螺仪的输出为x,y,z轴此刻的角速度读数$\vec{\omega}$, 经过$\Delta t$后三轴的旋转为欧拉角$\vec{\theta}$:

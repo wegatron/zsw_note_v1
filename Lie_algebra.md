@@ -95,10 +95,7 @@ J = \frac{\sin \theta}{\theta}I + (1 - \frac{\sin \theta}{\theta})aa^T+\frac{1-\
 $$
 同理, 我们可以根据变换矩阵中的$R$, $t$反求其李代数: 可通过$R$计算旋转向量, 从而得到$\phi$和$J$, 而$t$满足$t=J\rho$, 从而计算出$\rho$.
 对应关系图:
-<div style="text-align:center">
-<img src="rc/so_se_relation_ship.JPG" width="100%" height="100%">
-</div>
-
+![[rc/so_se_relation_ship.JPG]] 
 ## 李代数求导
 使用李代数的一大动机是为了优化求导, 研究李代数指数映射的乘积形式:
 $$
@@ -256,10 +253,6 @@ $$
 
 ## 李代数的性质总结
 
-<div style="text-align:center">
-<img src="rc/li_algebra_property_0.png" width="120%" height="120%">
-</div>
+![[rc/li_algebra_property_0.png]]
 
-<div style="text-align:center">
-<img src="rc/li_algebra_property_1.png" width="120%" height="120%">
-</div>
+![[rc/li_algebra_property_1.png]]

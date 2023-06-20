@@ -1,7 +1,6 @@
 ---
 tag: programming_language/octave_matlab
 ---
-[TOC]
 
 # 控制语句
 

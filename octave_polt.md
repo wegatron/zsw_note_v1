@@ -2,7 +2,6 @@
 tag: programming_language/octave_matlab
 ---
 # Plotting data
-    [TOC]
 
     plot操作会替换掉当前plot的内容
     使用 hold on命名保持当前plot的内容，避免被后续plot替换掉

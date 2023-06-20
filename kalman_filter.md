@@ -1,7 +1,6 @@
 ---
 tag: summary/slam
 ---
-[TOC]
 ## Kalman 滤波用来解决什么样的问题
 解决多传感器融合问题的最优解. 使用kalman滤波来融合多种机器人位置的预测(多传感器数据), 以期更加精准(鲁棒)地估计机器人的位置.
 
@@ -75,13 +74,13 @@ P_k = F_k P_{k-1} F_k^T + Q_k
 \end{array}
 $$
 
-<img src="rc/ext_uncer2.png" alt="state transform" width="400" height="400"/> <img src="rc/ext_uncer3.png" alt="drawing" width="400" height="400"/>
+![[rc/ext_uncer2.png]] 
+
+![[rc/ext_uncer3.png]]
 
 ### 通过测量优化估计
 
-<div style="text-align:center">
-<img src="rc/fusion.png" width="50%" height="50%">
-</div>
+![[rc/fusion.png]]
 
 在上述预测的基础上, 我们还可以获得一些传感器的数据(满足高斯分布), 利用这些数据来优化我们的估计. 
 >We can figure out the distribution of sensor readings we’d expect to see in the usual way:
@@ -101,8 +100,6 @@ K = \Sigma_0(\Sigma_0+\Sigma_1)^{-1}\\
 \Sigma' = \Sigma_0 - K \Sigma_0
 \end{aligned}
 $$
-
-
 
 >We have two distributions: The predicted measurement with $(\mu_0, \Sigma_0)=(\hat{H}_k\hat{x}_k, H_kP_kH_k^T)$, and the observed measurment with$(\mu_1, \Sigma_1)=(\overrightarrow{z_k}, R_k)$.
 
@@ -163,9 +160,7 @@ K_t &= \bar{\Sigma}_t C_t^T(C_t \bar{\Sigma}_tC_t^T + Q_t)^{-1}\\
 $$
 
 伪代码：
-<div style="text-align:center">
-<img src="rc/kalman_filter_alg.png" width="80%" height="80%">
-</div>
+![[rc/kalman_filter_alg.png]]
 
 ### EKF
 对于非线性的状态转移函数或测量函数, 可以对其进行一阶泰勒展开, 再使用Kalman滤波:
@@ -184,9 +179,7 @@ h(x_t) &\approx h(\bar{\mu}_t) + H_t(x_t - \bar{\mu}_t)
 $$
 
 伪代码:
-<div style="text-align:center">
-<img src="rc/ext_kalman_filter_alg.png">
-</div>
+![[rc/ext_kalman_filter_alg.png]]
 
 ## Example 根据重力加速度计算Pitch, Roll
 3个欧拉角的不同排序, 可以得到不同的旋转矩阵, 这里我们使用的排序为'x-y-z'. 更多排列组合见[Tilt Sensing Using Linear Accelerometers](https://cache.freescale.com/files/sensors/doc/app_note/AN3461.pdf)
