@@ -148,3 +148,10 @@ mat_node_trees.links.new(mat_node_trees.node[''].outputs[0], mat_node_trees.node
 ## Blender install plugin
 `Edit` -> `Preference` -> `Add ons`
 
+Blender python install package
+```python
+import pip
+pip.main(['install', 'tqdm', '--user'])
+```
+```
+

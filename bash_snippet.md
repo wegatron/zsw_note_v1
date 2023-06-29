@@ -16,6 +16,15 @@ ffmpeg -i input.mp4 -vf fps=1 out%03d.png
 ffmpeg -framerate 30 -pattern_type glob -i '*.png' -c:v libx264 -pix_fmt yuv420p out.mp4
 ```
 
+ffmpeg 横向拼接视频:
+```bash
+ffmpeg \
+    -i out1.mp4 \
+    -i out2.mp4 \
+    -filter_complex "[0:v]pad=iw*2:ih*1[a];[a][1:v]overlay=w" \
+    out.mp4
+```
+
 列出大文件
 ```bash
 find . -type f -size +100M

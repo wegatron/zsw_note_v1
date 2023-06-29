@@ -10,6 +10,12 @@ a = 10
 str(a).zfill(5)
 ```
 
+for tqdm
+```python
+for i in tqdm(range(10)):
+	print(i)
+```
+
 ## 图像视频
 
 ```python
@@ -115,6 +121,38 @@ numpy bgr to rgb
 
 ```python
 img_rgb = img_bgr[:, :, ::-1]
+```
+
+## matplotlib
+
+```python
+def plot_values(values, title, save_path):
+    fig = plt.figure()
+    ax = fig.add_subplot()
+    ax.plot(values)
+    ax.set_title(title)
+    plt.savefig(save_path, dpi=300)
+    plt.close()
+
+
+def visualize_points(fp, img, in_points_np):
+    '''
+        inpoints has shape of 'N*3',
+        where N is the points number
+    '''
+    fig = plt.figure()
+    ax = fig.add_subplot()
+    img = img[:,:,::-1]
+    #ax.imshow(img/255)
+    ax.scatter(in_points_np[:, 0], img.shape[1] - in_points_np[:, 1])
+    for i in range(in_points_np.shape[0]):
+        ax.text(in_points_np[i,0], img.shape[1] - in_points_np[i,1], str(i), color='red')
+	plt.xlim([0, width])
+	plt.ylim([height 0]) # flip y axis
+	ax = plt.gca()
+	ax.set_aspect('equal', adjustable='box')
+    #plt.savefig(fp)
+    plt.close()
 ```
 
 
