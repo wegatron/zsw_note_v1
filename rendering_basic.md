@@ -1,13 +1,13 @@
 ## Coordinate
 ### 3d render basic
-1. 坐标空间变换
+#### 坐标空间变换
 	![[coordinate_transform.png]]
 	(Vertex Shader) => Clip Space => (透视除法) => NDC => (视口变换>>是指将内容映射到窗口的哪个位置) => Window Space => (Fragment Shader)
 	[opengl projection deduce](http://www.songho.ca/opengl/gl_projectionmatrix.html)
 	right hand coordinate system(opengl)
 	![[right_hand_coordinate.png]]
 	 perspective projection:
-	 ![[projection_matrix.png]]
+	 ![[rc/projection_matrix.png]]
 	glm perspective matrix for opengl depth[-1,1], $n, f$ 正数, $r,l,t,d$ 中包含负数. 一般r+l=0, t+d=0.
 	注意glm中矩阵按列存储, 赋值时有点不直观.
 	$$
@@ -25,8 +25,8 @@
 0 & 0 & -\frac{f}{f-n} & -\frac{fn}{f-n} \\
 0 & 0 & -1 & 0\end{bmatrix}
 	$$
- ① 这里 $\frac{2n}{r-l}$, 是相机张角的tan值, 即斜率k. 在透视投影时, 在近平面上的投影只与斜率相关.
- ② 在view 坐标系下z是负数, 因此第四行设置为[0, 0, -1, 0]
+ ① 这里 $\frac{2n}{r-l}$, 是相机张角的tan值, 即斜率k. __在透视投影时, 在近平面上的投影值只与斜率相关__.
+ ② 在view坐标系下z是负数, 因此第四行设置为[0, 0, -1, 0]
  ③ 第三行, 通过两个点[0,0, -f, 1], [0,0,-n,1]进行求取
  
  orthogonal projection:
@@ -46,7 +46,7 @@ $$
 	$$
  x,y, z值, 直接归一化: 减去中心点, 除以range
 
-Pin hole camera
+#### Pin hole camera
 ![[pin_hole_camera.png]]
 参考: [The Pinhole Camera Matrix](https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/CV/PinholeCamera/PinholeCamera.html)
 ![[rc/pin_hole_camera_proj.png]]
@@ -90,14 +90,35 @@ $$
 
 针孔相机投影矩阵与perspective matrix for graphics原理是一样的. 针孔相机投影, 齐次坐标归一化后得到的是像素坐标, 而graphics api投影后得到的是clip坐标系下坐标, 归一化后得到的是NDC坐标.
 
-给定针孔相机投影矩阵+照片height、width, 设计view port transform:
-① 第一行除以width 乘以 2 - 1
-② 第二行除以height 乘以 2 - 1
-③ 第三行变第四行, 定义near far增加第三行
+__cv中的相机, 与Graphics API中的相机都是右手坐标系
+但是, y,z轴朝向相反(像素坐标系y朝下, 而view/NDC坐标系y朝上).__
+vulkan默认y向下, 但一般会对齐进行flip. 通过设置view port, y值为负值的方式.
 
-这里y向下, metal、opengl默认y向上需要flip. vulkan默认y向下.
+给定针孔相机投影矩阵+照片w,h, 对应的graphics api中, 投影和view transform:
+首先, graphics api的相机与针孔相机对齐, 而后再沿着自己的x轴旋转180度(此时graphics api相机与cv相机视角一致). 原投影矩阵变为:
+$$
+\begin{bmatrix}
+f_x & 0 & -c_x\\
+0 & -f_y & -c_y\\
+0 & 0 & -1
+\end{bmatrix} \cdot \begin{bmatrix}
+X\\
+-Y\\
+-Z\\
+\end{bmatrix}
+$$
+将x从[0, w]变换到[-1, 1], 将y从[0, h]变换为[1, -1].
+cv相机在原点, z向前, y朝下<-->graphics api相机在原点, y朝上, z朝向后.
+$$
+\begin{bmatrix}
+\frac{2f_x}{w} & 0 & -\frac{2c_x}{w} - 1 & 0\\
+0 & \frac{2f_y}{h} & \frac{2c_y}{h} + 1 & 0\\
+0 & 0 & A & B\\
+0 & 0 & -1 & 0
+\end{bmatrix}
+$$
 
- 2. [graphics pipeline detail](Excalidraw/pipeline_overview)
+#### [graphics pipeline detail](Excalidraw/pipeline_overview)
 
 ### Coordinate of different graphics API
 

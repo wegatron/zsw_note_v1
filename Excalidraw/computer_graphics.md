@@ -153,7 +153,7 @@ human body ^0w82GoQG
 
 Deep3D Microsoft ^xlSIJPyl
 
-3DDFA ^Vu2oMTkO
+3DDFA_V2 ^Vu2oMTkO
 
 保持精度下, 速度快 ^bVZ55T1b
 
@@ -6751,8 +6751,8 @@ Deep3D Microsoft ^xlSIJPyl
 		},
 		{
 			"type": "rectangle",
-			"version": 180,
-			"versionNonce": 159255694,
+			"version": 257,
+			"versionNonce": 1331431070,
 			"isDeleted": false,
 			"id": "ufxRx_U9A3_dGO49-stXE",
 			"fillStyle": "cross-hatch",
@@ -6761,8 +6761,8 @@ Deep3D Microsoft ^xlSIJPyl
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 776.1056525326321,
-			"y": 1174.5377135727222,
+			"x": 859.9451969146344,
+			"y": 1180.7810838990415,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "transparent",
 			"width": 55,
@@ -6778,14 +6778,14 @@ Deep3D Microsoft ^xlSIJPyl
 					"type": "text"
 				}
 			],
-			"updated": 1688032987384,
+			"updated": 1688453824564,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 186,
-			"versionNonce": 1587628882,
+			"version": 263,
+			"versionNonce": 1766046274,
 			"isDeleted": false,
 			"id": "cirsaZMX",
 			"fillStyle": "cross-hatch",
@@ -6794,8 +6794,8 @@ Deep3D Microsoft ^xlSIJPyl
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 781.5736090756009,
-			"y": 1179.5377135727222,
+			"x": 865.4131534576031,
+			"y": 1185.7810838990415,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "transparent",
 			"width": 44.0640869140625,
@@ -6804,7 +6804,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1688032987384,
+			"updated": 1688453824564,
 			"link": null,
 			"locked": false,
 			"fontSize": 16,
@@ -6892,8 +6892,8 @@ Deep3D Microsoft ^xlSIJPyl
 		},
 		{
 			"type": "rectangle",
-			"version": 1,
-			"versionNonce": 0,
+			"version": 141,
+			"versionNonce": 724137474,
 			"isDeleted": false,
 			"id": "5a-jgXgwbPAylEWL16lC4",
 			"fillStyle": "cross-hatch",
@@ -6902,11 +6902,11 @@ Deep3D Microsoft ^xlSIJPyl
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 854.6102730735472,
-			"y": 1018.9135678507982,
+			"x": 858.1779132600154,
+			"y": 1023.3731180838838,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "transparent",
-			"width": 66,
+			"width": 116,
 			"height": 30,
 			"seed": 591172306,
 			"groupIds": [],
@@ -6919,14 +6919,14 @@ Deep3D Microsoft ^xlSIJPyl
 					"type": "text"
 				}
 			],
-			"updated": 1688032946638,
+			"updated": 1688453791115,
 			"link": null,
 			"locked": false
 		},
 		{
 			"type": "text",
-			"version": 111,
-			"versionNonce": 1602644114,
+			"version": 305,
+			"versionNonce": 248668958,
 			"isDeleted": false,
 			"id": "Vu2oMTkO",
 			"fillStyle": "cross-hatch",
@@ -6935,27 +6935,27 @@ Deep3D Microsoft ^xlSIJPyl
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 859.8422142966917,
-			"y": 1023.9135678507982,
+			"x": 871.969813894781,
+			"y": 1028.3731180838838,
 			"strokeColor": "#2f9e44",
 			"backgroundColor": "transparent",
-			"width": 55.53611755371094,
+			"width": 88.41619873046875,
 			"height": 20,
 			"seed": 8944850,
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1688032946639,
+			"updated": 1688453791115,
 			"link": null,
 			"locked": false,
 			"fontSize": 16,
 			"fontFamily": 1,
-			"text": "3DDFA",
-			"rawText": "3DDFA",
+			"text": "3DDFA_V2",
+			"rawText": "3DDFA_V2",
 			"textAlign": "center",
 			"verticalAlign": "middle",
 			"containerId": "5a-jgXgwbPAylEWL16lC4",
-			"originalText": "3DDFA",
+			"originalText": "3DDFA_V2",
 			"lineHeight": 1.25,
 			"baseline": 14
 		},
@@ -7043,10 +7043,10 @@ Deep3D Microsoft ^xlSIJPyl
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 107.5628670918083,
-		"scrollY": -1295.0458170549173,
+		"scrollX": 128.12901537476984,
+		"scrollY": -553.323896377678,
 		"zoom": {
-			"value": 0.9843474711091885
+			"value": 1.121189299069939
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,

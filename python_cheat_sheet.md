@@ -153,6 +153,9 @@ def visualize_points(fp, img, in_points_np):
 	ax.set_aspect('equal', adjustable='box')
     #plt.savefig(fp)
     plt.close()
+
+def vis_3dpoints(points, color):
+	
 ```
 
 
@@ -207,6 +210,17 @@ save_obj('debug_output/dbg.obj', verts, faces.verts_idx, verts_uvs=aux.verts_uvs
 #             to be in the range [0, 1],
 # '''
 ```
+
+```python
+# s[i] X[i] R[i] + T[i] = Y[i]
+Rt_3ddfa2hifi3d = corresponding_points_alignment(torch.from_numpy(pts_3ddfa), torch.from_numpy(pts_hifi3d), estimate_scale=True)
+
+#debug
+Rts_3ddfa2hifi3d_pth = Transform3d().scale(Rts_3ddfa2hifi3d.s).rotate(Rts_3ddfa2hifi3d.R).translate(Rts_3ddfa2hifi3d.T)
+dbg_pts = Rts_3ddfa2hifi3d_pth.transform_points(torch.from_numpy(pts_3ddfa)[None, :])
+np.savetxt('aligned_pts.txt', dbg_pts[0].numpy())
+```
+
 ## Open3d
 
 point cloud to pcd

@@ -42,16 +42,6 @@ $$
 $$
 
 可以通过Focal Length/Field of View来调整相机透视投影相互之间的关系: $\tan(0.5fov) =\frac{0.5sensor\_size}{foca\_length}$
-
-对应的投影矩阵:
-$$
-\begin{bmatrix}
-\frac{f \cdot res_x}{9} & 0 & 0 & 0\\
-0 & \frac{f \cdot res_y}{9} & 0 & 0\\
-0 & 0 & -\frac{far}{far-near} & -\frac{far \cdot near}{far - near}\\
-0 & 0 & -1 & 0\\
-\end{bmatrix}
-$$
 ## render output
 
 blender 渲染相关设置
