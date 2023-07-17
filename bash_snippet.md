@@ -4,6 +4,10 @@ tag: tools
 
 ## ffmpeg decode video:
 
+截取视频的前250帧输出视频:
+```bash
+ffmpeg -i input.mp4 -frames:v 250 output.mp4
+```
 每隔1秒, 将视频转化为图片:
 
 ```bash
