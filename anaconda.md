@@ -133,3 +133,9 @@ conda install -y -c conda-forge tensorboardx protobuf fire
 
 ## cuda安装
 ubuntu 18.04 使用源中的驱动即可, 然后根据官网的安装教程, 使用network deb的方式安装即可.
+
+## 将其他路径添加到env路径
+
+```bash
+conda config --add envs_dirs /big_partition/users/user/.conda/envs
+```

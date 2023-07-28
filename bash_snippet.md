@@ -78,3 +78,16 @@ sed -i 'M,Nd' file
 # 字符串替换
 sed -i 'M,Ns/old/new/g' file
 ```
+
+scp拷贝文件
+
+```bash
+scp /path/to/file username@a:/path/to/destination
+```
+
+查询磁盘空间:
+
+```bash
+df -h
+du -sh [dir] #查询目录空间占用
+```

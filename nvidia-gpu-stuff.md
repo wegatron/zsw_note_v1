@@ -50,3 +50,5 @@ Ada Lovelace: GTX40x0系列
 * CUDA Compatibility: 
 	[官方英文版](https://docs.nvidia.com/deploy/cuda-compatibility/index.html)
 	[知乎中文版](https://zhuanlan.zhihu.com/p/459431437)
+
+* [显卡算力]([https://developer.nvidia.com/zh-cn/cuda-gpus#compute](https://links.jianshu.com/go?to=https%3A%2F%2Fdeveloper.nvidia.com%2Fzh-cn%2Fcuda-gpus%23compute))
