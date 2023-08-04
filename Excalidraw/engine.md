@@ -1,0 +1,198 @@
+---
+
+excalidraw-plugin: parsed
+tags: [excalidraw]
+
+---
+==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
+
+
+# Text Elements
+ECS ^aemlwLa8
+
+Job System ^0X6qjcum
+
+Frame Graph ^fIQDKoCr
+
+%%
+# Drawing
+```json
+{
+	"type": "excalidraw",
+	"version": 2,
+	"source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/1.9.3",
+	"elements": [
+		{
+			"id": "aemlwLa8",
+			"type": "text",
+			"x": -197,
+			"y": -297.4453125,
+			"width": 38.51995849609375,
+			"height": 25,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 1,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"roundness": null,
+			"seed": 2115847715,
+			"version": 35,
+			"versionNonce": 1329341635,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1690940994055,
+			"link": null,
+			"locked": false,
+			"text": "ECS",
+			"rawText": "ECS",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 18,
+			"containerId": null,
+			"originalText": "ECS",
+			"lineHeight": 1.25
+		},
+		{
+			"id": "0X6qjcum",
+			"type": "text",
+			"x": -205,
+			"y": -188.4453125,
+			"width": 111.21987915039062,
+			"height": 25,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 1,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"roundness": null,
+			"seed": 1052823725,
+			"version": 37,
+			"versionNonce": 1050913741,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1690940995507,
+			"link": null,
+			"locked": false,
+			"text": "Job System",
+			"rawText": "Job System",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 18,
+			"containerId": null,
+			"originalText": "Job System",
+			"lineHeight": 1.25
+		},
+		{
+			"id": "fIQDKoCr",
+			"type": "text",
+			"x": -215,
+			"y": -398.4453125,
+			"width": 124.4798583984375,
+			"height": 25,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 1,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"roundness": null,
+			"seed": 1119864141,
+			"version": 59,
+			"versionNonce": 702107789,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1690939264488,
+			"link": null,
+			"locked": false,
+			"text": "Frame Graph",
+			"rawText": "Frame Graph",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 18,
+			"containerId": null,
+			"originalText": "Frame Graph",
+			"lineHeight": 1.25
+		},
+		{
+			"id": "bveVZXau",
+			"type": "text",
+			"x": -261,
+			"y": -372.4453125,
+			"width": 9.999984741210938,
+			"height": 25,
+			"angle": 0,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 1,
+			"strokeStyle": "solid",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"roundness": null,
+			"seed": 1223378541,
+			"version": 2,
+			"versionNonce": 52716259,
+			"isDeleted": true,
+			"boundElements": null,
+			"updated": 1690939243451,
+			"link": null,
+			"locked": false,
+			"text": "",
+			"rawText": "",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 18,
+			"containerId": null,
+			"originalText": "",
+			"lineHeight": 1.25
+		}
+	],
+	"appState": {
+		"theme": "light",
+		"viewBackgroundColor": "#ffffff",
+		"currentItemStrokeColor": "#1e1e1e",
+		"currentItemBackgroundColor": "transparent",
+		"currentItemFillStyle": "hachure",
+		"currentItemStrokeWidth": 1,
+		"currentItemStrokeStyle": "solid",
+		"currentItemRoughness": 1,
+		"currentItemOpacity": 100,
+		"currentItemFontFamily": 1,
+		"currentItemFontSize": 20,
+		"currentItemTextAlign": "left",
+		"currentItemStartArrowhead": null,
+		"currentItemEndArrowhead": "arrow",
+		"scrollX": 477.5,
+		"scrollY": 872.5546875,
+		"zoom": {
+			"value": 1
+		},
+		"currentItemRoundness": "round",
+		"gridSize": null,
+		"currentStrokeOptions": null,
+		"previousGridSize": null
+	},
+	"files": {}
+}
+```
+%%

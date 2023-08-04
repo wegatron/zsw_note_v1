@@ -5,10 +5,8 @@ tag: summary/code_note
 
 ### 编译
 编译前需要安装 libc++, libc++abi
-
-```
-CC=/usr/bin/clang CXX=/usr/bin/clang++ ./build.sh -p android release
-
+Android
+```bash
 cmake ../../ -DCMAKE_TOOLCHAIN_FILE=/home/wegatron/opt/android_sdk/ndk/21.4.7075529/build/cmake/android.toolchain.cmake -DANDROID_PLATFORM=android-30 -DANDROID_NDK=/home/wegatron/opt/android_sdk/ndk/21.4.7075529 -DCMAKE_BUILD_TYPE=Release -DANDROID_ABI="arm64-v8a" -DCMAKE_INSTALL_PREFIX="/home/wegatron/win-data/usr/android"
 ```
 
@@ -20,18 +18,23 @@ if (EGL OR ANDROID)
 endif()
 ```
 
-## filament android使用
+Linux:
+```bash
+cmake -S . -B build_linux -DCMAKE_C_COMPILER=clang-12 -DCMAKE_CXX_COMPILER=clang-12
+```
+修改CMakeLists.txt, 添加:
+```cmake
+add_link_options(-stdlib=libc++)
+add_link_options(-lm)
+add_compile_options(-stdlib=libc++)
+```
+### filament android使用
 demo: https://github.com/k-konovalov/Android-Filament-C-Example/blob/main/app_filament_980/src/main/cpp/hello_filament.cpp
 
 ### filament overview
 
 filament整体架构:
-<figure class="image">
-<center>
-<img src="rc/filament_structure.svg" width=700>
-</center>
-<center><em>filament主要结构</em></center>
-</figure>
+![[rc/filament_structure.svg]]
 
 第一层 [工具、example、App]
 * Tools主要是材质或模型的处理优化工具. 比如: 材质编译工具`matc`, 材质编辑器`tungsten`(未有成熟的Release).
@@ -53,17 +56,231 @@ filament整体架构:
 
 除了此部分之外, 对于Android, 还有特定的JNI导出`android/filament-android`.
 
+### ECS 系统
+参考: [Filament解析4·ECS](https://zhuanlan.zhihu.com/p/144543664)
+#### 构建模式——规约
+对外可见的类(接口)不包含真正实现, 由F开头的同名类进行实现.
+接口、实现分离, 隐藏了细节. 很好地支持动态链接, 后续的改动不需要重新编译链接.
+```c++
+class XXX : public FailamentAPI
+{
+public:
+	// builder 用来记录创建XXX对象所需的配置参数
+	// 配置参数保存在struct BuilderDetails中
+	// BuilderBase中包含BuilderDetails的属性
+	// BuilderDetails在FXXX的cpp中定义, 外部不可见
+	class Builder : public BuilderBase<BuilderDetails>
+	{
+		// 各种设置参数的函数
+		Builder &YYY();
+		...
+		
+		// 根据Builder中设置的配置参数, 构建XXX对象
+		// 由引擎去调用XXXManager的create函数
+		// 最终会调用FXXX的create函数
+		Result build(Engine& engine, utils::Entity entity);
+	};
+
+};
+
+class FXXX : public XXX
+{
+public:
+	// 真正创建 Entity (ECS模式)
+	void create(
+        const XXX::Builder& UTILS_RESTRICT builder,
+        Entity entity);
+};
+```
+#### ECS entity的创建
+```c++
+// 由EntityManager负责Entity的创建和销毁
+// Entity只是一个全局唯一的id
+class EntityManager
+{
+public:
+	void create(size_t n, Entity* entities);
+	void destroy(size_t n, Entity* entities);
+};
+
+// 在filament中有四种entity, 对应于engine中的四个Manager
+class FEngine : public Engine
+{
+public:
+	...
+private:
+	FRenderableManager mRenderableManager;
+    FTransformManager mTransformManager;
+    FLightManager mLightManager;
+    FCameraManager mCameraManager;
+};
+
+// 以FRenderableManager为例
+class FRenderableManager
+{
+public:
+
+	// free-up all resources
+	void terminate() noexcept;
+
+	// 由engine调用, 垃圾回收
+	// 删除死亡的entity, 所拥有的component
+	void gc(utils::EntityManager& em) noexcept;
+
+	// 删除entity拥有的component
+	void destroy(utils::Entity e) noexcept;
+
+	void create(const RenderableManager::Builder& builder, 
+				utils::Entity entity);
+	
+	bool hasComponent(utils::Entity e) const noexcept {
+		return mManager.hasComponent(e);
+	}
+
+	// 在manager的map中查询是否存在该entity, 若存在, 返回index
+	// 不存在返回0
+	Instance getInstance(utils::Entity e) const noexcept {
+		return mManager.getInstance(e);
+	}
+};
+```
+FRenderableManager创建entity
+```c++
+void FRenderableManager::create(
+    const RenderableManager::Builder& UTILS_RESTRICT builder,
+    Entity entity) {
+    ...
+	// 添加一个新的entity
+    Instance ci = manager.addComponent(entity);
+
+	// 添加components
+	setPrimitives(ci, { rp, size_type(entryCount) });
+	...
+}
+```
+在FRenderableManager中, Sim类定义了该类entity所能够拥有的component类型:
+```c++
+using Base = utils::SingleInstanceComponentManager<
+    Box,                             // AABB
+    uint8_t,                         // LAYERS
+    MorphWeights,                    // MORPH_WEIGHTS
+    uint8_t,                         // CHANNELS
+    uint16_t,                        // INSTANCE_COUNT
+    Visibility,                      // VISIBILITY
+    utils::Slice<FRenderPrimitive>,  // PRIMITIVES
+    Bones,                           // BONES
+    utils::Slice<MorphTargets>       // MORPH_TARGETS
+>;
+
+struct Sim : public Base {
+    using Base::gc;
+    using Base::swap;
+    ...
+};
+```
+
+#### ECS 系统的更新
+将entity加入到场景中
+```c++
+void FScene::addEntity(Entity entity) {
+    mEntities.insert(entity);
+}
+```
+
+当renderJob运行时会进入到FScene::prepare. 
+遍历场景中所有alive的entity, 并将数据更新到mRenderableData(SOA数据结构)中.
+```c++
+void FScene::prepare(const mat4& worldOriginTransform, bool shadowReceiversAreCasters) noexcept {
+// TODO: can we skip this in most cases? Since we rely on indices staying the same,
+//       we could only skip, if nothing changed in the RCM.
+FEngine& engine = mEngine;
+EntityManager& em = engine.getEntityManager();
+FRenderableManager& rcm = engine.getRenderableManager();
+FTransformManager& tcm = engine.getTransformManager();
+FLightManager& lcm = engine.getLightManager();
+// go through the list of entities, and gather the data of those that are renderables
+auto& sceneData = mRenderableData;
+auto& lightData = mLightData;
+auto const& entities = mEntities;
+
+...
+
+for (Entity e : entities) {
+    if (!em.isAlive(e)) {
+        continue;
+    }
+    // we know there is enough space in the array
+    sceneData.push_back_unsafe(
+        ri,                             // RENDERABLE_INSTANCE
+        worldTransform,                 // WORLD_TRANSFORM
+        visibility,                     // VISIBILITY_STATE
+        rcm.getSkinningBufferInfo(ri),  // SKINNING_BUFFER
+        rcm.getMorphingBufferInfo(ri),  // MORPHING_BUFFER
+        worldAABB.center,               // WORLD_AABB_CENTER
+        0,                              // VISIBLE_MASK
+        rcm.getChannels(ri),            // CHANNELS
+        rcm.getInstanceCount(ri),       // INSTANCE_COUNT
+        rcm.getLayerMask(ri),           // LAYERS
+        worldAABB.halfExtent,           // WORLD_AABB_EXTENT
+        {},                             // PRIMITIVES
+        0,                              // SUMMED_PRIMITIVE_COUNT
+        {},                             // UBO
+        scale                           // USER_DATA
+    );        
+}    
+}
+```
+
+这里sceneData是一个SOA数据结构
+```c++
+using RenderableSoa = utils::StructureOfArrays<
+  utils::EntityInstance<RenderableManager>,   // RENDERABLE_INSTANCE
+  math::mat4f,                                // WORLD_TRANSFORM
+  FRenderableManager::Visibility,             // VISIBILITY_STATE
+  FRenderableManager::SkinningBindingInfo,    // SKINNING_BUFFER
+  FRenderableManager::MorphingBindingInfo,    // MORPHING_BUFFER
+  math::float3,                               // WORLD_AABB_CENTER
+  VisibleMaskType,                            // VISIBLE_MASK
+  uint8_t,                                    // CHANNELS
+  uint16_t,                                   // INSTANCE_COUNT
+  uint8_t,                                    // LAYERS
+  math::float3,                               // WORLD_AABB_EXTENT
+  utils::Slice<FRenderPrimitive>,             // PRIMITIVES
+  uint32_t,                                   // SUMMED_PRIMITIVE_COUNT
+  PerRenderableData,                          // UBO
+  // FIXME: We need a better way to handle this
+  float                                       // USER_DATA
+  >;
+```
+
+[filament SOA的数据结构](https://blog.csdn.net/qq_16555407/article/details/123619365)(代码较为复杂, 简单的可以是一个struct有数量相同的各种类型的array). 为了支持多种类型的数据渲染, 可以包含不同类型的RenderableSoa.
+
+
+
+### 🍉 FrameGraph
+
+#### 渲染循环
+
+有app::run调用渲染主循环. 首先进行渲染准备.包括:
+1. 遍历entity, 抽取渲染数据 renderableSOA
+2. 对renderable进行可见性剔除.
+3. 关照数据准备(包括更新光照的uniform, IBL设置等)
+![[Pasted image 20230804181856.png]]
+
+
+```c++
+void FRenderer::renderJob(ArenaScope& arena, FView& view) {
+    ...
+    // 
+    view.prepare(engine, driver, arena, svp, cameraInfo, getShaderUserTime(), needsAlphaChannel);  
+}
+```
+
 ### 主体库 filament [第二层]
 
 不同层次渲染数据以及其管理的抽象. 
 
-<figure class="image">
-<center>
-<img src="rc/filament_source_structure.png" width=200>
-<img src="rc/filament_source_structure_src_detail.png" width=200>
-</center>
-<center><em>filament代码头文件(左), filament代码src/detail(右)</em></center>
-</figure>
+![[rc/filament_source_structure_src_detail.png]]
 
 #### 细说Material
 
@@ -140,13 +357,7 @@ backend包括两部分:
 * 平台窗口系统中间层抽象
     平台窗口系统中间抽象, 在各个platform*.*中定义和实现.    
 
-<figure class="image">
-<center>
-<img src="rc/filament_backend.png" width=300>
-<img src="rc/filament_backend_opengl.jpg" width=250>
-</center>
-<center><em>filament backend(left),  opengl(es) backend(right)</em></center>
-</figure>
+![[rc/filament_backend.png | 300]]![[rc/filament_backend_opengl.jpg|300]]
 
 #### 初始化
 
@@ -154,12 +365,7 @@ backend包括两部分:
 
 在platform中封装了各个平台+窗口系统下, 各个图形API Driver的创建和销毁. 其中, Opengl由于其设计思想比较古老, 还添加了swapchain以及makecurrent等函数.
 
-<figure class="image">
-<center>
-<img src="rc/filament_platform.svg" width=1000>
-</center>
-<center><em>platform 结构</em></center>
-</figure>
+![[rc/filament_platform.svg]]
 
 几个重要的platform:
 * PlatformWGL中, platform在创建的时候直接创建窗口, 并得到窗口的opengl context.
@@ -204,24 +410,14 @@ glMultiDrawArraysIndirectBindlessCountNV endp
 
 在创建了platform之后, 再使用OpenGLDriverFactory根据platform和context, 创建Driver. Driver图形API的真正抽象.
 
-<figure class="image">
-<center>
-<img src="rc/filament_rendering_resources_class.svg" width600>
-</center>
-<center><em>Driver结构</em></center>
-</figure>
+![[rc/filament_rendering_resources_class.svg]]
 
 
 #### 资源创建
 
 资源创建的过程:
 
-<figure class="image">
-<center>
-<img src="rc/filament_rendering_resource.svg" width=800>
-</center>
-<center><em>资源创建过程</em></center>
-</figure>
+![[rc/filament_rendering_resource.svg]]
 
 在引擎构建时, 创建一个driver线程, 在该线程内相关图形API命令(execute函数).
 
@@ -521,7 +717,6 @@ void* alloc(size_t size, size_t alignment = alignof(std::max_align_t), size_t ex
 }
 ```
 
-### 🍉 FrameGraph
 
 ### 其他
 

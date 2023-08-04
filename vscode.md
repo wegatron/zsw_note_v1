@@ -91,7 +91,7 @@ gitlen, gitkaren的插件
 使用Clang + lldb， linux安装`clang libc++ libc++abi`
 在使用cmake生成项目时:
 ```bash
-cmake .. `-DCMAKE_C_COMPILER=clang-10 -DCMAKE_CXX_COMPILER=clang-10'`
+cmake .. `-DCMAKE_C_COMPILER=clang-10 -DCMAKE_CXX_COMPILER=clang-10`
 ```
 一般在linux上, 由于很多第三方库编译时使用的是libstdc++(g++的库), 所以还是链接libstdc++.
 vscode安装codelldb插件.
