@@ -318,6 +318,12 @@ https://devashi-choudhary.medium.com/texture-synthesis-generating-arbitrarily-la
 blender hair:
 https://www.youtube.com/watch?v=_-d0HaT5f1g ^cJ42naKi
 
+[Unity Render output to image file](https://gist.github.com/krzys-h/76c518be0516fb1e94c7efbdcd028830) ^T8LPFxC7
+
+arkit to flame:
+①使用flame拟合arkit脸, 再进行形变. 
+②通过特征点进行对齐, 形变 ^9XyxiPaV
+
 
 # Embedded files
 a94e6b13e717897491707ac9d7132e2131ffe49f: $$\begin{aligned} u' = \frac{u-0.5 ts}{s}+t_0\\ v' = \frac{v-0.5 ts}{s}+t_1 \end{aligned}$$
@@ -570,8 +576,8 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 		},
 		{
 			"type": "arrow",
-			"version": 559,
-			"versionNonce": 843456226,
+			"version": 563,
+			"versionNonce": 1206764888,
 			"isDeleted": false,
 			"id": "uLN9Vn1LgGDqS5Wbb6cbb",
 			"fillStyle": "hachure",
@@ -595,7 +601,7 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 					"id": "1jb4sdwo"
 				}
 			],
-			"updated": 1691114520377,
+			"updated": 1691583129141,
 			"link": null,
 			"locked": false,
 			"customData": {
@@ -3777,8 +3783,8 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 		},
 		{
 			"type": "arrow",
-			"version": 1142,
-			"versionNonce": 1356673570,
+			"version": 1150,
+			"versionNonce": 339387480,
 			"isDeleted": false,
 			"id": "oT5YYTU3i1w_P2CyGORhA",
 			"fillStyle": "hachure",
@@ -3799,7 +3805,7 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1691114520381,
+			"updated": 1691583129144,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -3828,8 +3834,8 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 		},
 		{
 			"type": "arrow",
-			"version": 642,
-			"versionNonce": 1417059810,
+			"version": 650,
+			"versionNonce": 991189336,
 			"isDeleted": false,
 			"id": "0tpDBhTRdii1sk-4X0GSq",
 			"fillStyle": "hachure",
@@ -3850,7 +3856,7 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 				"type": 2
 			},
 			"boundElements": [],
-			"updated": 1691114520382,
+			"updated": 1691583129145,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4943,8 +4949,8 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 		},
 		{
 			"type": "arrow",
-			"version": 527,
-			"versionNonce": 116366562,
+			"version": 535,
+			"versionNonce": 743501144,
 			"isDeleted": false,
 			"id": "dfZSJPAh3Ldd42J4_5td8",
 			"fillStyle": "hachure",
@@ -4963,7 +4969,7 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1691114520389,
+			"updated": 1691583129152,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -4992,8 +4998,8 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 		},
 		{
 			"type": "arrow",
-			"version": 522,
-			"versionNonce": 1517138082,
+			"version": 530,
+			"versionNonce": 1803125336,
 			"isDeleted": false,
 			"id": "dyILk286Dp-EutZIwyxvZ",
 			"fillStyle": "hachure",
@@ -5012,7 +5018,7 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1691114520390,
+			"updated": 1691583129152,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5041,8 +5047,8 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 		},
 		{
 			"type": "arrow",
-			"version": 523,
-			"versionNonce": 74665058,
+			"version": 531,
+			"versionNonce": 1120368472,
 			"isDeleted": false,
 			"id": "8_agNCiFm13h23EI7zQSy",
 			"fillStyle": "hachure",
@@ -5061,7 +5067,7 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1691114520390,
+			"updated": 1691583129152,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5090,8 +5096,8 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 		},
 		{
 			"type": "arrow",
-			"version": 356,
-			"versionNonce": 679453374,
+			"version": 358,
+			"versionNonce": 1225804328,
 			"isDeleted": false,
 			"id": "LSdw4jACm6wviXRY2I0wD",
 			"fillStyle": "hachure",
@@ -5110,7 +5116,7 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1691114520391,
+			"updated": 1691583129154,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5307,8 +5313,8 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 		},
 		{
 			"type": "arrow",
-			"version": 1243,
-			"versionNonce": 1051233086,
+			"version": 1251,
+			"versionNonce": 240246824,
 			"isDeleted": false,
 			"id": "Sg3rf6RRpMe_a5oxMOzpz",
 			"fillStyle": "hachure",
@@ -5334,7 +5340,7 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 					"id": "VfEinSVJ"
 				}
 			],
-			"updated": 1691114520394,
+			"updated": 1691583129156,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -6689,8 +6695,8 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 		},
 		{
 			"type": "arrow",
-			"version": 3134,
-			"versionNonce": 1964069822,
+			"version": 3142,
+			"versionNonce": 346420776,
 			"isDeleted": false,
 			"id": "cdH_GNj08BCjbpEn-r3I_",
 			"fillStyle": "hachure",
@@ -6717,7 +6723,7 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 					"id": "RsOFWp9z"
 				}
 			],
-			"updated": 1691114520397,
+			"updated": 1691583129159,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -33843,12 +33849,84 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 			"baseline": 68
 		},
 		{
-			"id": "cJ42naKi",
 			"type": "text",
-			"x": -162.30544862540205,
-			"y": 5442.15945645805,
+			"version": 50,
+			"versionNonce": 1986326312,
+			"isDeleted": false,
+			"id": "cJ42naKi",
+			"fillStyle": "hachure",
+			"strokeWidth": 1,
+			"strokeStyle": "dashed",
+			"roughness": 0,
+			"opacity": 100,
+			"angle": 0,
+			"x": -165.16259148254483,
+			"y": 5333.588027886622,
+			"strokeColor": "#e03131",
+			"backgroundColor": "transparent",
 			"width": 461.5995788574219,
 			"height": 50,
+			"seed": 1698823230,
+			"groupIds": [],
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1691570965454,
+			"link": null,
+			"locked": false,
+			"fontSize": 20,
+			"fontFamily": 1,
+			"text": "blender hair:\nhttps://www.youtube.com/watch?v=_-d0HaT5f1g",
+			"rawText": "blender hair:\nhttps://www.youtube.com/watch?v=_-d0HaT5f1g",
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "blender hair:\nhttps://www.youtube.com/watch?v=_-d0HaT5f1g",
+			"lineHeight": 1.25,
+			"baseline": 43
+		},
+		{
+			"type": "text",
+			"version": 139,
+			"versionNonce": 1962442328,
+			"isDeleted": false,
+			"id": "T8LPFxC7",
+			"fillStyle": "hachure",
+			"strokeWidth": 1,
+			"strokeStyle": "dashed",
+			"roughness": 0,
+			"opacity": 100,
+			"angle": 0,
+			"x": -162.51107633102896,
+			"y": 5450.042573341169,
+			"strokeColor": "#e03131",
+			"backgroundColor": "transparent",
+			"width": 399.42401123046875,
+			"height": 25,
+			"seed": 1350649128,
+			"groupIds": [],
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1691571029467,
+			"link": "https://gist.github.com/krzys-h/76c518be0516fb1e94c7efbdcd028830",
+			"locked": false,
+			"fontSize": 20,
+			"fontFamily": 1,
+			"text": "🌐[[Unity Render output to image file]]",
+			"rawText": "[Unity Render output to image file](https://gist.github.com/krzys-h/76c518be0516fb1e94c7efbdcd028830)",
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "🌐[[Unity Render output to image file]]",
+			"lineHeight": 1.25,
+			"baseline": 18
+		},
+		{
+			"id": "9XyxiPaV",
+			"type": "text",
+			"x": -1257.2038130743517,
+			"y": 5823.307232606382,
+			"width": 349.89984130859375,
+			"height": 75,
 			"angle": 0,
 			"strokeColor": "#e03131",
 			"backgroundColor": "transparent",
@@ -33859,23 +33937,59 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 			"opacity": 100,
 			"groupIds": [],
 			"roundness": null,
-			"seed": 1698823230,
-			"version": 16,
-			"versionNonce": 430386338,
+			"seed": 33923624,
+			"version": 132,
+			"versionNonce": 1059315496,
 			"isDeleted": false,
 			"boundElements": null,
-			"updated": 1691114546827,
+			"updated": 1691583303191,
 			"link": null,
 			"locked": false,
-			"text": "blender hair:\nhttps://www.youtube.com/watch?v=_-d0HaT5f1g",
-			"rawText": "blender hair:\nhttps://www.youtube.com/watch?v=_-d0HaT5f1g",
+			"text": "arkit to flame:\n①使用flame拟合arkit脸, 再进行形变. \n②通过特征点进行对齐, 形变",
+			"rawText": "arkit to flame:\n①使用flame拟合arkit脸, 再进行形变. \n②通过特征点进行对齐, 形变",
 			"fontSize": 20,
 			"fontFamily": 1,
 			"textAlign": "left",
 			"verticalAlign": "top",
-			"baseline": 43,
+			"baseline": 68,
 			"containerId": null,
-			"originalText": "blender hair:\nhttps://www.youtube.com/watch?v=_-d0HaT5f1g",
+			"originalText": "arkit to flame:\n①使用flame拟合arkit脸, 再进行形变. \n②通过特征点进行对齐, 形变",
+			"lineHeight": 1.25
+		},
+		{
+			"id": "DQsPD7KH",
+			"type": "text",
+			"x": -1108.242678062631,
+			"y": 6083.968980267573,
+			"width": 9.999984741210938,
+			"height": 25,
+			"angle": 0,
+			"strokeColor": "#e03131",
+			"backgroundColor": "transparent",
+			"fillStyle": "hachure",
+			"strokeWidth": 1,
+			"strokeStyle": "dashed",
+			"roughness": 0,
+			"opacity": 100,
+			"groupIds": [],
+			"roundness": null,
+			"seed": 487331160,
+			"version": 2,
+			"versionNonce": 426544168,
+			"isDeleted": true,
+			"boundElements": null,
+			"updated": 1691583142211,
+			"link": null,
+			"locked": false,
+			"text": "",
+			"rawText": "",
+			"fontSize": 20,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 18,
+			"containerId": null,
+			"originalText": "",
 			"lineHeight": 1.25
 		}
 	],
@@ -33894,10 +34008,10 @@ c9bc65e64c41fe323d111f091aadeb0962ba1798: https://i.ytimg.com/vi/qM9amZJUIok/max
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 1312.305448625402,
-		"scrollY": -4225.310498124717,
+		"scrollX": 1396.9231182856256,
+		"scrollY": -5447.054816224181,
 		"zoom": {
-			"value": 0.6
+			"value": 1.1085259636765294
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,

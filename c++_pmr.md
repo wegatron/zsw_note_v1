@@ -168,7 +168,7 @@ namespace std::pmr{
 ```
 
 提供了一些常用的memory resource类:
-
+	
 * `new_delete_resource`: 默认的分配器
 
 * `null_memory_resource`: 不进行分配的分配器, 用于失败分配.

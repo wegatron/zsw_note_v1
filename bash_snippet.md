@@ -29,6 +29,10 @@ ffmpeg \
     out.mp4
 ```
 
+ffmpeg 将mp4转化为gov
+```
+ffmpeg -i input.mp4 -c:v libtheora -q:v 7 -c:a libvorbis -q:a 4 output.ogv
+```
 列出大文件
 ```bash
 find . -type f -size +100M

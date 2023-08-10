@@ -192,7 +192,7 @@ void FScene::addEntity(Entity entity) {
 ```c++
 void FScene::prepare(const mat4& worldOriginTransform, bool shadowReceiversAreCasters) noexcept {
 // TODO: can we skip this in most cases? Since we rely on indices staying the same,
-//       we could only skip, if nothing changed in the RCM.
+// we could only skip, if nothing changed in the RCM.
 FEngine& engine = mEngine;
 EntityManager& em = engine.getEntityManager();
 FRenderableManager& rcm = engine.getRenderableManager();

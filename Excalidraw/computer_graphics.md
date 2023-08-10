@@ -157,6 +157,12 @@ Deep3D Microsoft ^xlSIJPyl
 
 保持精度下, 速度快 ^bVZ55T1b
 
+[unity独立游戏0到1](https://learn.u3d.cn/tutorial/indie-game-0-1) ^mGTnnpfg
+
+[unity+vscode](https://code.visualstudio.com/docs/other/unity) ^KgX9AjXX
+
+[unity manual](https://docs.unity3d.com/Manual) ^93atBOOP
+
 
 # Embedded files
 3f60cf02bcf5e33911e7f84b8b72235952d71ae0: $$S = \bar{S} + A_{id}\alpha_{id} + A_{exp}\alpha_{exp}$$
@@ -1088,7 +1094,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": -431.57540099211246,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 117.27304077148438,
+			"width": 118.38436889648438,
 			"height": 25,
 			"seed": 89819218,
 			"groupIds": [],
@@ -1792,8 +1798,8 @@ Deep3D Microsoft ^xlSIJPyl
 		},
 		{
 			"type": "text",
-			"version": 701,
-			"versionNonce": 1279411090,
+			"version": 705,
+			"versionNonce": 1933134888,
 			"isDeleted": false,
 			"id": "ViqbC7fY",
 			"fillStyle": "hachure",
@@ -1803,16 +1809,16 @@ Deep3D Microsoft ^xlSIJPyl
 			"opacity": 100,
 			"angle": 0,
 			"x": 226.85618838976455,
-			"y": 1731.125479636043,
+			"y": 1732.6632862641723,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 180.55714416503906,
+			"width": 167.83338928222656,
 			"height": 36.426582949251404,
 			"seed": 1072579044,
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1688033622387,
+			"updated": 1691571541970,
 			"link": "[[vulkan_mind_map.md]]",
 			"locked": false,
 			"fontSize": 29.141266359401122,
@@ -2022,7 +2028,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": -160.82376269718554,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 154.70828247070312,
+			"width": 144.4049835205078,
 			"height": 29.493051835392123,
 			"seed": 1112538084,
 			"groupIds": [],
@@ -4087,8 +4093,8 @@ Deep3D Microsoft ^xlSIJPyl
 		},
 		{
 			"type": "text",
-			"version": 1189,
-			"versionNonce": 573544721,
+			"version": 1191,
+			"versionNonce": 167019560,
 			"isDeleted": false,
 			"id": "hUYi6iLC",
 			"fillStyle": "solid",
@@ -4101,13 +4107,13 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 134.51680071495105,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 249.89285278320312,
+			"width": 241.17019653320312,
 			"height": 25,
 			"seed": 1583462527,
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1683965250420,
+			"updated": 1691571243296,
 			"link": "[[unreal.md]]",
 			"locked": false,
 			"fontSize": 20,
@@ -4123,8 +4129,8 @@ Deep3D Microsoft ^xlSIJPyl
 		},
 		{
 			"type": "text",
-			"version": 1096,
-			"versionNonce": 218037375,
+			"version": 1097,
+			"versionNonce": 2062522920,
 			"isDeleted": false,
 			"id": "X69shV2S",
 			"fillStyle": "solid",
@@ -4134,16 +4140,16 @@ Deep3D Microsoft ^xlSIJPyl
 			"opacity": 100,
 			"angle": 0,
 			"x": 1370.7907438935356,
-			"y": 181.65965785780804,
+			"y": 182.8361284460433,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 238.2528839111328,
+			"width": 229.5302276611328,
 			"height": 25,
 			"seed": 1212488657,
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1683965250420,
+			"updated": 1691571247368,
 			"link": "[[unreal_metahuman.md]]",
 			"locked": false,
 			"fontSize": 20,
@@ -4173,7 +4179,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 233.08822928637983,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 337.41278076171875,
+			"width": 328.69012451171875,
 			"height": 25,
 			"seed": 541266673,
 			"groupIds": [],
@@ -4356,7 +4362,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 364.5836505449527,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 123.2130126953125,
+			"width": 124.3243408203125,
 			"height": 25,
 			"seed": 1856801181,
 			"groupIds": [],
@@ -4392,7 +4398,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": -333.6471186858166,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 186.4129638671875,
+			"width": 187.5242919921875,
 			"height": 25,
 			"seed": 1982013459,
 			"groupIds": [],
@@ -4500,7 +4506,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 2005.1287730901124,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 436.8930358886719,
+			"width": 438.0043640136719,
 			"height": 25,
 			"seed": 1287830667,
 			"groupIds": [],
@@ -4536,7 +4542,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 2098.416426624824,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 345.91278076171875,
+			"width": 347.02410888671875,
 			"height": 25,
 			"seed": 68988523,
 			"groupIds": [],
@@ -4572,7 +4578,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 2145.9642434529137,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 351.9527587890625,
+			"width": 353.0640869140625,
 			"height": 25,
 			"seed": 1140478653,
 			"groupIds": [],
@@ -4608,7 +4614,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 2207.8141393780174,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 142.55299377441406,
+			"width": 143.66432189941406,
 			"height": 25,
 			"seed": 684549117,
 			"groupIds": [],
@@ -5075,7 +5081,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 1838.7010341773725,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 226.67298889160156,
+			"width": 227.78431701660156,
 			"height": 25,
 			"seed": 229842555,
 			"groupIds": [],
@@ -5111,7 +5117,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 1901.884498838498,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 155.01296997070312,
+			"width": 156.12429809570312,
 			"height": 25,
 			"seed": 1404832053,
 			"groupIds": [],
@@ -5198,7 +5204,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 2256.4914540713216,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 182.49293518066406,
+			"width": 183.60426330566406,
 			"height": 25,
 			"seed": 1419577117,
 			"groupIds": [],
@@ -5306,7 +5312,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 2519.518341203717,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 282.93292236328125,
+			"width": 284.04425048828125,
 			"height": 25,
 			"seed": 130927685,
 			"groupIds": [],
@@ -5342,7 +5348,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 443.3683865207541,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 573.4029541015625,
+			"width": 574.5679931640625,
 			"height": 26.456146431636576,
 			"seed": 1057107271,
 			"groupIds": [],
@@ -5378,7 +5384,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 501.0103483595152,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 469.3526611328125,
+			"width": 470.4639892578125,
 			"height": 25,
 			"seed": 1266118313,
 			"groupIds": [],
@@ -5414,7 +5420,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 557.1961637666398,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 541.8125610351562,
+			"width": 542.9238891601562,
 			"height": 25,
 			"seed": 1559948391,
 			"groupIds": [],
@@ -6241,7 +6247,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 36.34067315130028,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 135.37298583984375,
+			"width": 136.48431396484375,
 			"height": 25,
 			"seed": 654839135,
 			"groupIds": [],
@@ -6277,7 +6283,7 @@ Deep3D Microsoft ^xlSIJPyl
 			"y": 89.28184962188857,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 329.9128723144531,
+			"width": 331.0242004394531,
 			"height": 25,
 			"seed": 840341777,
 			"groupIds": [],
@@ -6401,8 +6407,8 @@ Deep3D Microsoft ^xlSIJPyl
 		},
 		{
 			"type": "text",
-			"version": 428,
-			"versionNonce": 811361554,
+			"version": 430,
+			"versionNonce": 875822424,
 			"isDeleted": false,
 			"id": "AKUZXohP",
 			"fillStyle": "cross-hatch",
@@ -6411,17 +6417,17 @@ Deep3D Microsoft ^xlSIJPyl
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": 559.2326220123172,
+			"x": 558.6769579498172,
 			"y": 1189.4907556985636,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 129.97303771972656,
+			"width": 131.08436584472656,
 			"height": 25,
 			"seed": 102994258,
 			"groupIds": [],
 			"roundness": null,
 			"boundElements": [],
-			"updated": 1688032358185,
+			"updated": 1691571176901,
 			"link": "https://flame.is.tue.mpg.de/",
 			"locked": false,
 			"fontSize": 20,
@@ -7026,6 +7032,352 @@ Deep3D Microsoft ^xlSIJPyl
 			"originalText": "保持精度下, 速度快",
 			"lineHeight": 1.25,
 			"baseline": 14
+		},
+		{
+			"id": "mGTnnpfg",
+			"type": "text",
+			"x": 1616.2133360073042,
+			"y": -167.31278643306928,
+			"width": 184.5157470703125,
+			"height": 20,
+			"angle": 0,
+			"strokeColor": "#2f9e44",
+			"backgroundColor": "transparent",
+			"fillStyle": "cross-hatch",
+			"strokeWidth": 1,
+			"strokeStyle": "dashed",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"roundness": null,
+			"seed": 401226280,
+			"version": 46,
+			"versionNonce": 275485528,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1691571238231,
+			"link": "https://learn.u3d.cn/tutorial/indie-game-0-1",
+			"locked": false,
+			"text": "🌐[[unity独立游戏0到1]]",
+			"rawText": "[unity独立游戏0到1](https://learn.u3d.cn/tutorial/indie-game-0-1)",
+			"fontSize": 16,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 14,
+			"containerId": null,
+			"originalText": "🌐[[unity独立游戏0到1]]",
+			"lineHeight": 1.25
+		},
+		{
+			"id": "oHD-Y-rB2ymU_6rICzRc3",
+			"type": "freedraw",
+			"x": 1472.279015223019,
+			"y": -58.40322463264107,
+			"width": 137.89473684210498,
+			"height": 97.8947368421052,
+			"angle": 0,
+			"strokeColor": "#2f9e44",
+			"backgroundColor": "transparent",
+			"fillStyle": "cross-hatch",
+			"strokeWidth": 1,
+			"strokeStyle": "dashed",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"roundness": null,
+			"seed": 558503208,
+			"version": 43,
+			"versionNonce": 977177640,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1691571268244,
+			"link": null,
+			"locked": false,
+			"points": [
+				[
+					0,
+					0
+				],
+				[
+					1.0526315789470573,
+					0
+				],
+				[
+					5.263157894736651,
+					-2.10526315789474
+				],
+				[
+					11.578947368420813,
+					-6.315789473684163
+				],
+				[
+					21.052631578947057,
+					-12.631578947368382
+				],
+				[
+					32.631578947368325,
+					-18.9473684210526
+				],
+				[
+					38.94736842105249,
+					-24.210526315789423
+				],
+				[
+					45.26315789473665,
+					-28.421052631578902
+				],
+				[
+					52.631578947368325,
+					-33.68421052631578
+				],
+				[
+					56.84210526315769,
+					-38.9473684210526
+				],
+				[
+					61.05263157894706,
+					-43.15789473684208
+				],
+				[
+					65.26315789473665,
+					-47.36842105263156
+				],
+				[
+					68.42105263157873,
+					-50.52631578947364
+				],
+				[
+					70.52631578947353,
+					-52.63157894736838
+				],
+				[
+					73.68421052631561,
+					-54.73684210526312
+				],
+				[
+					75.7894736842104,
+					-56.84210526315786
+				],
+				[
+					76.84210526315769,
+					-57.8947368421052
+				],
+				[
+					79.99999999999977,
+					-59.99999999999994
+				],
+				[
+					83.15789473684185,
+					-61.05263157894734
+				],
+				[
+					85.26315789473665,
+					-63.15789473684208
+				],
+				[
+					88.42105263157873,
+					-65.26315789473676
+				],
+				[
+					91.57894736842081,
+					-67.3684210526315
+				],
+				[
+					97.89473684210498,
+					-73.68421052631572
+				],
+				[
+					101.05263157894706,
+					-76.84210526315786
+				],
+				[
+					104.21052631578937,
+					-79.99999999999994
+				],
+				[
+					106.31578947368394,
+					-82.10526315789468
+				],
+				[
+					108.42105263157873,
+					-83.15789473684202
+				],
+				[
+					109.47368421052602,
+					-84.21052631578942
+				],
+				[
+					111.57894736842081,
+					-85.26315789473676
+				],
+				[
+					114.7368421052629,
+					-86.31578947368416
+				],
+				[
+					115.7894736842104,
+					-88.4210526315789
+				],
+				[
+					117.89473684210498,
+					-89.47368421052624
+				],
+				[
+					119.99999999999977,
+					-89.47368421052624
+				],
+				[
+					121.05263157894706,
+					-90.52631578947364
+				],
+				[
+					123.15789473684185,
+					-91.57894736842098
+				],
+				[
+					126.31578947368394,
+					-93.68421052631572
+				],
+				[
+					127.36842105263145,
+					-94.73684210526312
+				],
+				[
+					128.42105263157873,
+					-94.73684210526312
+				],
+				[
+					133.6842105263156,
+					-95.78947368421046
+				],
+				[
+					135.7894736842104,
+					-97.8947368421052
+				],
+				[
+					137.89473684210498,
+					-97.8947368421052
+				],
+				[
+					137.89473684210498,
+					-97.8947368421052
+				]
+			],
+			"pressures": [],
+			"simulatePressure": true,
+			"lastCommittedPoint": [
+				137.89473684210498,
+				-97.8947368421052
+			]
+		},
+		{
+			"id": "KgX9AjXX",
+			"type": "text",
+			"x": 1614.3298776732618,
+			"y": -205.44341088257914,
+			"width": 150.9798126220703,
+			"height": 20,
+			"angle": 0,
+			"strokeColor": "#2f9e44",
+			"backgroundColor": "transparent",
+			"fillStyle": "cross-hatch",
+			"strokeWidth": 1,
+			"strokeStyle": "dashed",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"roundness": null,
+			"seed": 6725464,
+			"version": 64,
+			"versionNonce": 566034984,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1691571319228,
+			"link": "https://code.visualstudio.com/docs/other/unity",
+			"locked": false,
+			"text": "🌐[[unity+vscode]]",
+			"rawText": "[unity+vscode](https://code.visualstudio.com/docs/other/unity)",
+			"fontSize": 16,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 14,
+			"containerId": null,
+			"originalText": "🌐[[unity+vscode]]",
+			"lineHeight": 1.25
+		},
+		{
+			"id": "93atBOOP",
+			"type": "text",
+			"x": 1615.282258625643,
+			"y": -124.49102993019824,
+			"width": 149.41183471679688,
+			"height": 20,
+			"angle": 0,
+			"strokeColor": "#2f9e44",
+			"backgroundColor": "transparent",
+			"fillStyle": "cross-hatch",
+			"strokeWidth": 1,
+			"strokeStyle": "dashed",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"roundness": null,
+			"seed": 1026594856,
+			"version": 44,
+			"versionNonce": 1079563864,
+			"isDeleted": false,
+			"boundElements": null,
+			"updated": 1691571424012,
+			"link": "https://docs.unity3d.com/Manual",
+			"locked": false,
+			"text": "🌐[[unity manual]]",
+			"rawText": "[unity manual](https://docs.unity3d.com/Manual)",
+			"fontSize": 16,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 14,
+			"containerId": null,
+			"originalText": "🌐[[unity manual]]",
+			"lineHeight": 1.25
+		},
+		{
+			"id": "mPoP4vVd",
+			"type": "text",
+			"x": 1731.507453654363,
+			"y": -215.54808055071635,
+			"width": 8.000015258789062,
+			"height": 20,
+			"angle": 0,
+			"strokeColor": "#2f9e44",
+			"backgroundColor": "transparent",
+			"fillStyle": "cross-hatch",
+			"strokeWidth": 1,
+			"strokeStyle": "dashed",
+			"roughness": 1,
+			"opacity": 100,
+			"groupIds": [],
+			"roundness": null,
+			"seed": 1676644904,
+			"version": 2,
+			"versionNonce": 1109918808,
+			"isDeleted": true,
+			"boundElements": null,
+			"updated": 1691571233613,
+			"link": null,
+			"locked": false,
+			"text": "",
+			"rawText": "",
+			"fontSize": 16,
+			"fontFamily": 1,
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"baseline": 14,
+			"containerId": null,
+			"originalText": "",
+			"lineHeight": 1.25
 		}
 	],
 	"appState": {
@@ -7043,10 +7395,10 @@ Deep3D Microsoft ^xlSIJPyl
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 394.2464549347064,
-		"scrollY": 358.4609752389796,
+		"scrollX": 186.7943344743478,
+		"scrollY": -1373.1460272650493,
 		"zoom": {
-			"value": 1.1121003966450627
+			"value": 1.3005536349083933
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,
