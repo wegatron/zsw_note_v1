@@ -14,7 +14,7 @@
 * 自动weight: `Object mode` -> 选中mesh, shift, 选中bone -> `ctrl + P` -> `With Automatic weight`
 
 * weight paint
-	先在`pose mode`中选中骨骼 -> `Object mode`中选中mesh -> `weight paint mode`
+	在`Object mode`中选中骨骼 + mesh -> `weight paint mode`
 	若要继续切换bone, 可以 `ctrl` + 鼠标左键选取其他的 bone
 	
 	在`edit mode`下可以查看每个顶点与其相连的bone的weight

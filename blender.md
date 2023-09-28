@@ -14,6 +14,8 @@ tag: tools
 * `CRTL` + `G` group
 * `F3` search command
 * z 切换 renderd, wireframe, material view
+* g move
+* s scale
 
 
 ## Camera
@@ -143,5 +145,3 @@ Blender python install package
 import pip
 pip.main(['install', 'tqdm', '--user'])
 ```
-```
-
