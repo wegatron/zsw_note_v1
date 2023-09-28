@@ -12,6 +12,7 @@ tag: programming_language/c++
 * [C++ Insight](https://github.com/andreasfertig/cppinsights)
 	online: https://cppinsights.io/
     一个允许我们查看C++编译器如何将C++代码转换的中间文件，尤其是模版的展开的情况，非常insightful
-    
+
+* c++ features: https://github.com/AnthonyCalandra/modern-cpp-features
 ## reference
 [C++在线工具分享](https://zhuanlan.zhihu.com/p/607467580)

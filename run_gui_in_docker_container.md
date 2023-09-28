@@ -17,7 +17,8 @@ RUN apt update \
 FROM archlinux:latest
 
 RUN pacman -Sy \
-    && pacman -Sy --noconfirm libxext libsm libxrender fontconfig gnu-free-fonts
+    && pacman -Sy --noconfirm libxext libsm libxrender fontconfig gnu-free-fonts glu core/libxcrypt-compat gdk-pixbuf2 pixman libthai glibc
+```
 ```
 
 ```bash
@@ -27,6 +28,19 @@ docker build . -t arch_gtk:zsw
 运行命令
 ```bash
 docker run -it --rm -e DISPLAY="host.docker.internal:0.0" -v e:/data/volumes:/var/lib/data a773e0dcb44d /var/lib/data/eureqa/eureqa.sh
+```
+
+for linux
+在宿主机器上允许本地用户访问
+```bash
+xhost +local:
+```
+用完后可以去除:
+```bash
+xhost -local:
+```
+```bash
+sudo docker run -it --rm -e --net=host --env="DISPLAY" -v /home/wegatron/opt/Faceform_Wrap_2023.6.4_Linux:/wrap -v /tmp/.X11-unix:/tmp/.X11-unix 19d365edb7b6 /bin/bash
 ```
 
 

@@ -119,7 +119,7 @@ memory break point
 clang 使用`libc++`:
 ```cmake
 if (NOT APPLE AND ${CMAKE_CXX_COMPILER} MATCHES "(C|c?)lang")
-    add_link_options(-stdlib=libc++)
+    add_link_options(-lc++ -lc++abi)
     add_compile_options(-stdlib=libc++)
 endif()
 ```
