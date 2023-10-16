@@ -250,5 +250,37 @@ fetch = +refs/heads/svn:refs/remotes/origin/svn
 
 do fetch again.
 
+
+## gitkaren
+
+[4.1 下载破解工具](https://github.com/wanZzz6/Modules-Learn/blob/master/%E6%8A%80%E6%9C%AF/Gitkraken%20%E6%9C%80%E6%96%B0%E7%89%88v9.x%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B.md#41-%E4%B8%8B%E8%BD%BD%E7%A0%B4%E8%A7%A3%E5%B7%A5%E5%85%B7)
+
+下载链接: [百度网盘](https://pan.baidu.com/s/1dFEWCdzVg1bibn3GSYjuTw?pwd=6666)
+
+此破解工具之前发布于github上的源码已被和谐，此次用到的破解工具来源于同一作者，程序开源，**切勿用于商业用途**。
+
+（原地址：[https://github.com/PMExtra/GitCracken.git）](https://github.com/PMExtra/GitCracken.git%EF%BC%89)
+
+[4.2 环境准备](https://github.com/wanZzz6/Modules-Learn/blob/master/%E6%8A%80%E6%9C%AF/Gitkraken%20%E6%9C%80%E6%96%B0%E7%89%88v9.x%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B.md#42-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87)
+
+- 安装 [Node.js](https://nodejs.org/zh-cn) >=12
+    
+- 安装yarn包管理工具
+    
+    ```shell
+     npm install --global yarn
+    ```    
+
+[4.3 开始破解](https://github.com/wanZzz6/Modules-Learn/blob/master/%E6%8A%80%E6%9C%AF/Gitkraken%20%E6%9C%80%E6%96%B0%E7%89%88v9.x%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B.md#43-%E5%BC%80%E5%A7%8B%E7%A0%B4%E8%A7%A3)
+
+**⚠再次提醒：破解之前先关闭 Gitkraken 软件，Mac平台确保在底部Dock栏中也彻底关闭该软件**
+
+解压破解工具，进入 GitCracken 目录，然后在此目录打开命令行，依次执行以下3条命令：
+```shell
+yarn install
+yarn build
+node dist/bin/gitcracken.js patcher --asar C:/Users/{填上你的用户名}/AppData/Local/gitkraken/app-7.5.5/resources/app.asar
+```
+
 ## Reference
 [Git合并指定commit到当前分支](https://www.jianshu.com/p/3d3275e0035c)

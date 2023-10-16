@@ -122,8 +122,25 @@ else:
 材质的link修改:
 ```python
 mat_node_trees = bpy.data.meshes['bk_mesh'].materials['blinn1SG.001'].node_tree
-
 mat_node_trees.links.new(mat_node_trees.node[''].outputs[0], mat_node_trees.node[].inputs[0])
+```
+
+shapekey操作
+
+```python
+shape_keys = bpy.data.objects["CTRL_expressions_neutral"].data.shape_keys
+drivers = shape_keys.animation_data.drivers
+
+for dr in drivers:
+    drivers.remove(dr)
+
+blocks =  shape_keys.key_blocks
+for i in range(1, len(lines)):    
+    vals = [float(num_str) for num_str in lines[i][:-1].split(',')]
+    for v_ind in range(len(names)):
+        blocks[names[v_ind]].keyframe_delete(data_path="value", frame=i)
+        blocks[names[v_ind]].value= vals[v_ind]
+        blocks[names[v_ind]].keyframe_insert(data_path="value", frame=i)
 ```
 
 ## vscode blender plugin
