@@ -111,10 +111,10 @@ sed -i 'M,Ns/old/new/g' file
 # 将当前目录下, 除了.git中的所有文件中的 TARGET_OS_OSX修改为TARGET_OS_MACCATALYST
 # 这里g表示全部替换, 若是没有g, 则只替换一个/行
 grep -rl "TARGET_OS_OSX" ./ --exclude-dir=.git | \
-xargs sed -i "" 's/TARGET_OS_OSX/TARGET_OS_MACCATALYST/g'
+xargs sed -i 's/TARGET_OS_OSX/TARGET_OS_MACCATALYST/g'
 
 grep -rl "SDKROOT = macosx" ./ --exclude-dir=.git | \
-xargs sed -i "" 's/SDKROOT = macosx/SDKROOT = iphoneos/g'
+xargs sed -i 's/SDKROOT = macosx/SDKROOT = iphoneos/g'
 ```
 ## 不同文件多次执行
 ```bash
