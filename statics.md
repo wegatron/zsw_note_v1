@@ -1,5 +1,5 @@
 ---
-tag:summary/basic_theory
+tag: math
 ---
 ## 概率统计基础知识
 

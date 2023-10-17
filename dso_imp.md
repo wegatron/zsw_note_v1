@@ -1,5 +1,5 @@
 ---
-tag: summary/slam
+tag: algorithms/slam
 ---
 ## DSO Implementation
 ### DSO代码框架

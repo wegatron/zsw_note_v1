@@ -1,3 +1,6 @@
+---
+tag: cg/tools
+---
 ## mixamo to metahuman
 
 参考: [Tutorial: Mixamo animations to Metahuman in Unreal Engine 5](https://www.youtube.com/watch?v=SXDmX1ronGw&t=210s)

@@ -1,5 +1,5 @@
 ---
-tag: paper_note
+tag: algorithms/slam
 ---
 # VINS 视觉残差&先验残差
 ## 优化变量

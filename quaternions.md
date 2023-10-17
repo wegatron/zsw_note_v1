@@ -1,5 +1,5 @@
 ---
-tag:summary/basic_theory
+tag: math
 ---
 # 四元素小结
 ## 四元素基本概念

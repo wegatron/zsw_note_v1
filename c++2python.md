@@ -1,5 +1,5 @@
 ---
-tag: programming_language/c++
+tag: programming/cpp
 ---
 # C++  Interface to python by boost
 ## CMake 配置

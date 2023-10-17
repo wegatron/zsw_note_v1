@@ -1,3 +1,6 @@
+---
+tag: algorithms
+---
 ## MeInGame Summary
 
 ### MeInGame 原代码 Pipeline

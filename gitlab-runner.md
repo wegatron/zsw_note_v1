@@ -1,5 +1,5 @@
 ---
-tag: tools
+tag: programming/tools
 ---
 ## 安装&注册 gitlab runner
 参考: https://docs.gitlab.com/runner/install/osx.html

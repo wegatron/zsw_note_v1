@@ -1,5 +1,5 @@
 ---
-tag: paper_note
+tag: algorithms/slam
 ---
 # ORB-SLAM代码架构分析
 ## 代码概要

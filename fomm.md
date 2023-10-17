@@ -1,5 +1,5 @@
 ---
-tag: paper_note
+tag: algorithms
 ---
 
 # FOMM

@@ -1,5 +1,5 @@
 ---
-tag:summary/basic_theory
+tag: algorithms
 ---
 # Overview and Comparison of Features
 

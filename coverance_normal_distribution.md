@@ -1,5 +1,5 @@
 ---
-tag:summary/basic_theory
+tag:math
 ---
 # 协方差矩阵和多维正态分布
 ## 协方差矩阵

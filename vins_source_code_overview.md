@@ -1,5 +1,5 @@
 ---
-tag: paper_note
+tag: algorithms/slam
 ---
 # VINS Source Code Analysis
 ## 总体框架

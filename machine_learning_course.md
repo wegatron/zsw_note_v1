@@ -1,5 +1,5 @@
 ---
-tag: summary/course_note
+tag: ml/course_note
 ---
 # Machine Learning Course Note
 ## Linear Regression

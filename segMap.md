@@ -1,5 +1,5 @@
 ---
-tag: paper_note
+tag: algorithms
 ---
 ## SegMatch: Segment based loop-closure for 3D point clouds
 基于点云分割、 聚类, 特征计算, 识别的定位.

@@ -1,5 +1,5 @@
 ---
-tag: work_alg
+tag: projects
 ---
 # 需求目标
 每天5000m, 数据量小于400MB, 0.3m一帧, 共16667帧, 要求:24kb/fps;

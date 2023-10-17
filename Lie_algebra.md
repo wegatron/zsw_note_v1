@@ -1,5 +1,5 @@
 ---
-tag:summary/basic_theory
+tag: math
 ---
 # 李代数
 ## 为何要引入李代数

@@ -1,5 +1,5 @@
 ---
-tag: programming_language/c++
+tag: programming/libs
 ---
 ## msys2 编译 ffmpeg for win32 visual studio 2013
 所需工具

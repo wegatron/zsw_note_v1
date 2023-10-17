@@ -1,5 +1,5 @@
 ---
-tag: summary/slam
+tag: algorithms/slam
 ---
 ## DSO 滑窗优化
 在确定当前帧为关键帧, 并激活了其他帧中的`immaturePoints`之后, 滑窗优化在 __FullSystem::makeKeyFrame()__ 中被调用. 

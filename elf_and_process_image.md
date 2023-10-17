@@ -1,5 +1,5 @@
 ---
-tag: programming_language
+tag: programming/basic_theory
 ---
 ## ELF文件解析
 ### 目标文件和可执行文件

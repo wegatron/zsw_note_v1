@@ -1,5 +1,5 @@
 ---
-tag: summary/slam
+tag: algorithms/slam
 ---
 # 3D Lidar Slam Note
 ## 激光SLAM Overview

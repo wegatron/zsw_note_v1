@@ -1,5 +1,5 @@
 ---
-tag: programming_language/python
+tag: programming
 ---
 ## Cheat Sheet
 
@@ -227,4 +227,40 @@ point cloud to pcd
 
 ```python
 
+```
+
+## google drive download
+
+```bash
+pip install gdown
+```
+
+需要下载的链接: `https://drive.google.com/file/d/1jUB5yD7DP97-EqqU2A9mmr61JpNwZBVK/view`, 这里标志符为:`1jUB5yD7DP97-EqqU2A9mmr61JpNwZBVK`.
+
+```bash
+gdown https://drive.google.com/uc?id=标识符
+```
+
+
+对于大文件可能会出错, 使用如下方式下载:
+```python
+gdown.download(
+    "https://drive.google.com/uc?export=download&confirm=pbef&id=1ghvzYXdmiCuX5I757id73jWuRLMCzXAX",
+    "ckpt/00000189-checkpoint.pth.tar"
+)
+```
+
+对于带有`confirm=t`的文件, 可以使用(curl支持断点续传):
+```bash
+curl -L -o data/my-file.h5 'https://drive.google.com/uc?id=my-file-id-here&confirm=t
+```
+
+## colab debug
+
+```python
+!pip install ipdb
+
+# in python file
+## refere to https://xmfbit.github.io/2017/08/21/debugging-with-ipdb/
+ipdb.set_trace()
 ```

@@ -1,5 +1,5 @@
 ---
-tag: summary/course_note
+tag: ml/basic_theory
 ---
 ## ML Basic Concept
 * `train`, `valid`, `test` data set & split stragety

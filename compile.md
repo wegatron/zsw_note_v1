@@ -1,6 +1,7 @@
 ---
-tag: tools
+tag: programming/basic_theory
 ---
+
 ## Clang
 编译器粗略分为
 前端: 词法分析、语法分析、类型检查、中间代码生成. 

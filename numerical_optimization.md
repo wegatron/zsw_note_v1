@@ -1,5 +1,5 @@
 ---
-tag: summary/course_note
+tag: math
 ---
 # Numerical Optimization
 ## 线搜索方法基本概念

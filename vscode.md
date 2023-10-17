@@ -1,5 +1,5 @@
 ---
-tag: tools
+tag: programming/tools
 ---
 ## git
 gitlen, gitkaren的插件

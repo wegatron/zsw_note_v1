@@ -1,5 +1,5 @@
 ---
-tag: programming_language
+tag: programming/tools
 ---
 # Maxima使用小结
 ## 基本语法

@@ -1,5 +1,5 @@
 ---
-tag: tools
+tag: programming/tools
 ---
 
 ## ffmpeg decode video:
@@ -18,6 +18,7 @@ ffmpeg -i input.mp4 -vf fps=1 out%03d.png
 
 ```bash
 ffmpeg -framerate 30 -pattern_type glob -i '*.png' -c:v libx264 -pix_fmt yuv420p out.mp4
+ffmpeg -framerate 30 -pattern_type sequence -start_number 108699 -i MySlate_15_iPhone_cal.%6d.jpeg -c:v libx264 -pix_fmt yuv420p out.mp4
 ```
 
 ffmpeg 横向拼接视频:

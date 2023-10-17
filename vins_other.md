@@ -1,5 +1,5 @@
 ---
-tag: paper_note
+tag: algorithms/slam
 ---
 ## 初始化
 Vision only SFM, five point algorithm做单目相机初始化, 然后使用EPnP算法(此时已经有3D坐标)计算相机的Transfom, 最后使用Bundle Adjustment做最终的优化. 具体流程如下:

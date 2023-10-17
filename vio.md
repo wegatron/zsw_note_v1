@@ -1,5 +1,5 @@
 ---
-tag: summary/slam
+tag: algorithms/slam
 ---
 # VO相关知识小记
 ## 关于坐标系转换

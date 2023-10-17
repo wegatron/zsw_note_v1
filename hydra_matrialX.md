@@ -1,5 +1,5 @@
 ---
-tags: rendering, GameEngine
+tags: engine_framework
 ---
 
 ![[scene_render_overview.excalidraw|700]]

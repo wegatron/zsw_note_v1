@@ -1,5 +1,5 @@
 ---
-tag: work_alg
+tag: algorithms
 ---
 参考: https://colab.research.google.com/drive/1YOLXsb4JUOD1wt5TXB2ln78koocm-bu8?usp=sharing#scrollTo=088kv4mN3Fz8
 

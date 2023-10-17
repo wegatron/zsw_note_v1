@@ -1,6 +1,7 @@
 ---
 tags:
-- GameEngine
+- cg/tools
+- digital_human
 ---
 
 ## Linux install Quixel Bridge

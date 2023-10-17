@@ -1,5 +1,5 @@
 ---
-tag: summary/slam
+tag: algorithms/slam
 ---
 # SLAM十四讲/VSLAM Course 笔记
 ## Abatract

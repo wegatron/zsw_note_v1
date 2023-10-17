@@ -1,7 +1,6 @@
 ---
 tags:
- - programming_language/python
- - tools
+ - programming/tools
 ---
 ## colab environment setup
 

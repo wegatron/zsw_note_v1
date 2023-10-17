@@ -1,5 +1,5 @@
 ---
-tag:summary/basic_theory
+tag: algorithms
 ---
 # 光流跟踪Note
 ## 基本原理

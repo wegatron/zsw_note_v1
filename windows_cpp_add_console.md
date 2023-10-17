@@ -1,5 +1,5 @@
 ---
-tag: programming_language/c++
+tag: programming/cpp
 ---
 Visual studio
 

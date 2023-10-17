@@ -1,5 +1,5 @@
 ---
-tag:summary/basic_theory
+tag: math
 ---
 ## SVD分解
 ### 基本原理

@@ -1,5 +1,5 @@
 ---
-tag: programming_language/rendering
+tag: graphics_api
 ---
 OpenGL and OpenGL ES 基本知识
 

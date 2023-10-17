@@ -1,5 +1,5 @@
 ---
-tag: tools
+tag: programming/tools
 ---
 # Android Develop
 ## Android构建工具

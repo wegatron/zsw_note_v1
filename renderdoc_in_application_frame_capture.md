@@ -1,4 +1,8 @@
-RenderDoc In-Application Frame Capture
+---
+tag: graphics_api
+---
+
+# RenderDoc In-Application Frame Capture
 
 ## Motivation
 

@@ -1,5 +1,5 @@
 ---
-tag: summary/basic_theory
+tag: math
 ---
 ## 噪音函数(Procedural Noise Functions)
 类别:

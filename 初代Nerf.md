@@ -1,5 +1,5 @@
 ---
-tag: paper_note/nerf
+tag: algorithms
 ---
 ## 基本原理
 

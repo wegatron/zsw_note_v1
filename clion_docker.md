@@ -1,5 +1,5 @@
 ---
-tag: tools
+tag: programming/tools
 ---
 ## 使用CLion调试Docker中的程序
 ### Docker file配置

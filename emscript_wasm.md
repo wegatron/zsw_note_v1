@@ -1,3 +1,7 @@
+---
+tag: programming/wasm
+---
+
 环境安装, 参考: https://emscripten.org/docs/getting_started/downloads.html
 
 ```bash

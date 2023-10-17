@@ -1,5 +1,5 @@
 ---
-tag: tools
+tag: programming/tools
 ---
 ## 在Docker容器中运行GUI程序
 Windows需要安装[VcXsrv](https://sourceforge.net/projects/vcxsrv/)

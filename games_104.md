@@ -1,5 +1,5 @@
 ---
-tag: summary/course_note
+tag: cg/course_note
 ---
 # GAMES 104
 

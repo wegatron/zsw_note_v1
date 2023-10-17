@@ -1,5 +1,5 @@
 ---
-tag: work_alg
+tag: projects
 ---
 ## 深度图优化目标
 ### 闪烁处理

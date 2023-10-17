@@ -1,5 +1,5 @@
 ---
-tag: paper_note
+tag: algorithms/slam
 ---
 # VINS IMU预积分&IMU残差
 [TOC]

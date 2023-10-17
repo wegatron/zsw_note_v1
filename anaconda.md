@@ -1,5 +1,5 @@
 ---
-tag: programming_language/python
+tag: programming/tools
 ---
 # Python版本管理
 ## Anaconda和conda

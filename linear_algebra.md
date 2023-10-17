@@ -1,5 +1,5 @@
 ---
-tag: summary/basic_theory
+tag: math
 ---
 ## 一些数学定义
 共轭: 实数部分相等, 复数部分相反.

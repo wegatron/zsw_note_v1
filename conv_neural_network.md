@@ -1,5 +1,5 @@
 ---
-tag:summary/basic_theory
+tag:ml/basic_theory
 ---
 ## 卷积神经网络层次结构
 * Conv Layer(Convolutional Layer, 卷积层)
@@ -97,6 +97,15 @@ C' &= \\
 Y' &= C'X'
 \end{aligned}
 $$
+
+## CS231
+1x1 conv 128 表示kernel size为1x1xn, 这里n是输入的depth, 输出depth128
+
+BN 表示Batch Normalization Layer
+
+/2 表示stride为2, 理论上stride=k, 分辨率W/H缩小k倍.
+
+x2 表示通过插值, W/H先放大2倍
 
 ## Reference
 [CS231-convolution-networks](http://cs231n.github.io/convolutional-networks/)

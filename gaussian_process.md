@@ -1,5 +1,5 @@
 ---
-tag:summary/basic_theory
+tag:math
 ---
 # 高斯过程
 ## 高斯过程的理解

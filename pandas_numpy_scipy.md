@@ -1,5 +1,5 @@
 ---
-tag: programming_language/python
+tag: programming/libs
 ---
 # Numpy Pandas Scipy
 数据分析绝对绕不过的三个包是numpy、scipy和pandas。numpy是Python的数值计算扩展，专门用来处理矩阵，它的运算效率比列表更高效。scipy是基于numpy的科学计算包，包括统计、线性代数等工具。pandas是基于numpy的数据分析工具，能更方便的操作大型数据集。

@@ -1,6 +1,6 @@
 ---
 tags:
- - work_alg
+ - algorithms
  - digital_human
 ---
 
@@ -38,7 +38,7 @@ tags:
 
 
 ## 关键点驱动网格运动算法:
-* [Landmark-guided deformation transfer of template facial expressions for automatic generation of avatar](https://github.com/diegothomas/Avatar-generation-3DRW2019-) blendshapes
+* [Landmark-guided deformation transfer of template facial expressions for automatic generation of avatar](https://github.com/diegothomas/Avatar-generation-3DRW2019-)
 * [Deformation transfer for triangle meshes](https://github.com/mickare/Deformation-Transfer-for-Triangle-Meshes)
 
 ## 参考

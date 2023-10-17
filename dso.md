@@ -1,5 +1,5 @@
 ---
-tag: summary/slam
+tag: algorithms/slam
 ---
 # DSO
 ## 裁切缩缩放, 新内参矩阵K

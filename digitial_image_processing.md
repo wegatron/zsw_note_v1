@@ -1,5 +1,5 @@
 ---
-tag: summary/course_note
+tag: others
 ---
 # Digitical Image Processing
 ## Book Overview(鸟瞰)

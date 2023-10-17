@@ -1,5 +1,5 @@
 ---
-tag: programming_language/rendering
+tag: graphics_api
 ---
 
 ## Metal中的同步

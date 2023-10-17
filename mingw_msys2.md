@@ -1,5 +1,5 @@
 ---
-tag: tools
+tag: programming/tools
 ---
 # mingw + msys windows 配置
 ## 环境配置流程

@@ -1,5 +1,5 @@
 ---
-tag: tools
+tag: programming/tools
 ---
 # emacs 配置
 尽量适应其原配置, 提高应对环境变化的能力.

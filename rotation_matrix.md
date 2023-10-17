@@ -1,5 +1,5 @@
 ---
-tag: summary/basic_theory
+tag: math
 ---
 ## Rotation Matrix
 ### Basic Rotation Matrix

@@ -1,5 +1,5 @@
 ---
-tag:summary/basic_theory
+tag: algorithms
 ---
 ## 3D激光雷达SLAM点云采样
 算法目标: 通过对点云约束的分析, ①来判断ICP配准是否稳定(无法确定唯一解/coveriance matrix不满秩/有的约束分量上约束不足), ②对原始点云数据进行鲁棒采样, 加速ICP过程, 提高ICP精度.

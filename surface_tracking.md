@@ -1,5 +1,5 @@
 ---
-tag: work_alg
+tag: projects
 ---
 # Deformable Surface Tracking
 

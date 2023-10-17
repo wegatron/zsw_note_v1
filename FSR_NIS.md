@@ -1,5 +1,5 @@
 ---
-tag: rendering
+tag: graphics_api
 ---
 ## Reference
 

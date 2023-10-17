@@ -1,5 +1,5 @@
 ---
-tag: tools
+tag: cg/tools
 ---
 ## 视角切换
 

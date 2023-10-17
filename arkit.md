@@ -1,5 +1,5 @@
 ---
-tag: work_alg
+tag: programming/tools
 ---
 ## Target
 1. 抠像, occlusion

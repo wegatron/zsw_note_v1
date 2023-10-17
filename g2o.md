@@ -1,5 +1,5 @@
 ---
-tag: summary/slam
+tag: algorithms/slam
 ---
 # 图优化和g2o的简单介绍
 ## 图优化的直观理解的例子

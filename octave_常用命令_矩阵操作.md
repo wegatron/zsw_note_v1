@@ -1,5 +1,5 @@
 ---
-tag: programming_language/octave_matlab
+tag: programming/octave_matlab
 ---
 
 # Octave Tutorial

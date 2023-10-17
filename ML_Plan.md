@@ -1,5 +1,5 @@
 ---
-tag: summary/basic_theory
+tag: ml
 ---
 ## 经验
 [深度学习项目各阶段经验总结](https://zhuanlan.zhihu.com/p/68045564)

@@ -1,5 +1,5 @@
 ---
-tag: programming_language/c++
+tag: programming/cpp
 ---
 ## c++ 静态库和动态库
 

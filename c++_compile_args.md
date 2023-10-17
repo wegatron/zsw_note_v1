@@ -1,5 +1,5 @@
 ---
-tag: programming_language/c++
+tag: programming/cpp
 ---
 # G++常用编译链接选项小记
 G++编译选项可以在CMakeLists.txt中设置, 例如:

@@ -1,5 +1,5 @@
 ---
-tag: programming_language/c++
+tag: programming/cpp
 ---
 ## ubuntu g++多版本安装和切换
 多版本g++安装

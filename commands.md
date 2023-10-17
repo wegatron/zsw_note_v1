@@ -1,5 +1,5 @@
 ---
-tag: tools
+tag: programming/tools
 ---
 ## sed 命令
 sed 是一种在线编辑器，它一次处理一行内容.
