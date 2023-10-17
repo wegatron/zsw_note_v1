@@ -166,7 +166,7 @@ Deep3D Microsoft ^xlSIJPyl
 
 # Embedded files
 3f60cf02bcf5e33911e7f84b8b72235952d71ae0: $$S = \bar{S} + A_{id}\alpha_{id} + A_{exp}\alpha_{exp}$$
-5229db7b645726a259ff3ae214d3c3a125af7ce7: [[Pasted Image 20230629174016_117.png]]
+5229db7b645726a259ff3ae214d3c3a125af7ce7: [[rc/Pasted Image 20230629174016_117.png]]
 
 %%
 # Drawing

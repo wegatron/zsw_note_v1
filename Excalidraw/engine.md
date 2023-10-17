@@ -98,7 +98,7 @@ assimp
 
 
 # Embedded files
-2f4019311d325714a77e2978072fa603d7b99307: [[Pasted Image 20230829173016_781.png]]
+2f4019311d325714a77e2978072fa603d7b99307: [[rc/Pasted Image 20230829173016_781.png]]
 
 %%
 # Drawing
