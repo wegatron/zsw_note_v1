@@ -15,7 +15,7 @@ tags:
 ![[rc/ue_mesh2metahuman.png]]
 
 安装完成后, 需要在unreal editor->plugin启用该插件
-![[rc/ue_enable_plugin.png]]
+![[rc/ue_enable_plugin.png|500]]
 
 ## 参考
 [Unreal MetaHuman Documentation](https://docs.metahuman.unrealengine.com/en-US/)
