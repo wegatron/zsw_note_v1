@@ -1,5 +1,5 @@
 ---
-tag: graphics_api
+tag: cg/graphics_api
 ---
 ## SPIR-V
 一种中间二进制码, 可以通过高层语言如glsl, hlsl生成.

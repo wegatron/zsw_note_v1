@@ -1,5 +1,5 @@
 ---
-tag: graphics_api
+tags: []
 ---
 
 ## Uniform Buffer

@@ -1,5 +1,5 @@
 ---
-tag: graphics_api
+tag: cg/graphics_api
 ---
 
 ## Metal中的同步

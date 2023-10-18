@@ -1,5 +1,5 @@
 ---
-tags: engine_framework
+tags: cg/engine_framework
 ---
 
 ![[scene_render_overview.excalidraw|700]]
