@@ -58,10 +58,11 @@ $$
 $$
 \begin{aligned}
 &(\dot{q}\dot{p}) \cdot(\dot{q}\dot{r}) = (Q\dot{p})\cdot(Q\dot{r}) = (Q\dot{p})^T(Q\dot{r}) \\
-&=\dot{p}^T Q^TQ \dot{q} = (\dot{q}\cdot\dot{q})(\dot{p}\cdot\dot{r})
+&=\dot{p}^T Q^TQ \dot{r} = (\dot{q}\cdot\dot{q})(\dot{p}\cdot\dot{r})
 \end{aligned}
 $$
- >>单位四元素保点积
+
+>单位四元素保点积
 2. 
 $$
     (\dot{p} \dot{q}) \cdot \dot{r} = \dot{p} \cdot{\dot{r} \dot{q}^*}
@@ -106,16 +107,10 @@ $$
 $$
 从而有$R(\dot{p}\dot{q}) = R(\dot{p})R(\dot{q})$ 
 经过推导可以知道, $\dot{q}$也可以表示为: $\dot{q} = \cos \frac{\theta}{2} + \sin \frac{\theta}{2}(i\omega_x + j \omega_y + k \omega_z)$.
-
-
 ## Application
 ### 四元素插值
 
 ![[rc/quaternion_inter.JPG]]
-
-![[Pasted image 20230619162253.png]]
-
-$q_1 \cdot q_2 = \cos \theta$
 
 ### IMU Gyro读数与四元素
 陀螺仪的输出为x,y,z轴此刻的角速度读数$\vec{\omega}$, 经过$\Delta t$后三轴的旋转为欧拉角$\vec{\theta}$:
@@ -149,7 +144,11 @@ $$
 \end{matrix}\right]
 $$
 
+### 左手转右手
+通过Angle Axis进行考虑. $(x,y,z) \to (x,-y,z)$, 所以有: $(q_0, qx, qy, qz) \to (q0, qx, -qy, qz)$.
+
 ## Reference
 Computer Vision: Algorithms and Applications
 Closed-form solution of absolute orientation using unit quaternions
 http://www.fenngming.xyz/imu_gry/
+[convert quaternion from right hand to left hand](https://gamedev.stackexchange.com/questions/157946/converting-a-quaternion-in-a-right-to-left-handed-coordinate-system)

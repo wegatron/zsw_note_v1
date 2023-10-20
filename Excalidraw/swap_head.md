@@ -1,7 +1,9 @@
 ---
 
 excalidraw-plugin: parsed
-tag: digital_human
+tags:
+ - digital_human
+ - projects
 
 ---
 ==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠==
