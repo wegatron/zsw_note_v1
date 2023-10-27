@@ -1,3 +1,7 @@
+---
+tags:
+  - cg/shading
+---
 ## 数学符号定义
 * $\mathbf{n}$ surface normal
 * $\mathbf{v}$ view direction
@@ -7,6 +11,7 @@
 * $\alpha$ roughness
 * $\rho$ diffuse reflectance
 * $\chi^{+}(a)$ Heaviside function: 1 if a > 0 and 0 if a <= 0
+* $\langle\omega_1, \omega_2\rangle$ clamped dot product: 0 if $\omega_1 \cdot \omega_2 < 0$
 
 ## 经典光照模型
 color = diffuse + ambient + specular
@@ -39,24 +44,27 @@ $$
 $$
 
 render equation in micro surface:
-
 $$
     f_{d/r}(\mathbf{v})={\frac{1}{|\mathbf{n}\cdot\mathbf{v}||\mathbf{n}\cdot\mathbf{l}|}}\int_{\Omega}f_{m}(\mathbf{v},\mathbf{l},\mathbf{m})\;G(\mathbf{v},\mathbf{l},\mathbf{m})\;D(\mathbf{v},\mathbf{m})\,\langle\mathbf{v}\cdot\mathbf{m}\rangle\langle\mathbf{l}\cdot\mathbf{m}\rangle\,\mathrm{d}\mathbf{m}
 $$
-
 对于镜面发射$f_m$ 是Fresnel, 积分后为:
-
 $$
-    f_{r}(\mathbf{v})=\frac{F(\mathbf{v},\mathbf{h},f_{0},f_{90})\;G(\mathbf{v},\mathbf{l},\mathbf{h})\;L\!\!\!\!D(\mathbf{h},\alpha)}{4\langle\mathbf{n}\cdot\mathbf{v}\rangle\langle\mathbf{n}\cdot\mathbf{l}\rangle}
+    f_{r}(\mathbf{v})=\frac{F(\mathbf{v},\mathbf{h},f_{0},f_{90})\;G(\mathbf{v},\mathbf{l},\mathbf{\alpha})\;L\!\!\!\!D(\mathbf{h},\alpha)}{4\langle\mathbf{n}\cdot\mathbf{v}\rangle\langle\mathbf{n}\cdot\mathbf{l}\rangle}
 $$
-
+因为
+$$
+V(v,l,\alpha) = \frac{G(v, l, \alpha)}{4\langle\mathbf{n}\cdot\mathbf{v}\rangle\langle\mathbf{n}\cdot\mathbf{l}\rangle} = V_1(l,\alpha) V_1(v,\alpha)
+$$
+因此, 又可表示为:
+$$
+f_r(v)=F(\mathbf{v},\mathbf{h},f_{0},f_{90})\;V(\mathbf{v},\mathbf{l},\mathbf{\alpha})\;L\!\!\!\!D(\mathbf{h},\alpha)
+$$
 对于漫反射, 使用Lambertian模型, $f_m$是一个常量:
-
 $$
 f_{d}({\bf v})=\frac{\rho}{\pi}\frac{1}{|{\bf n}\cdot{\bf v}||{\bf n}\cdot{\bf l}|}\int_{\Omega}G({\bf v},{\bf l},{\bf m})~D({\bf m},\alpha)~\langle{\bf v}\cdot{\bf m}\rangle\langle{\bf l}\cdot{\bf m}\rangle\ \mathrm{d}{\bf m}
 $$
 
-上述积分没有解析解, 只能进行近似. 也可以采用简单的经验模型进行替代:
+这里$\rho$是漫反射的颜色, 上述积分没有解析解, 只能进行近似. 也可以采用简单的经验模型进行替代:
 
 $$
 f_{d}=\frac{\rho}{\pi}(1+F_{D90}(1-\langle{\bf n\cdot1}\rangle)^{5})(1+F_{D90}(1-\langle{\bf n\cdot v}\rangle)^{5})\mathrm{~where~}{F}_{D90}=0.5+\cos(\theta_{d})^{2}\alpha
@@ -78,8 +86,11 @@ Geometry Function, Smith visibility function能够精确地表示. 采用height-
 $$
 G(\mathbf{v}, \mathbf{h}, \alpha)=\frac{\chi^{+}({\bf v},{\bf h})\chi^{+}({\bf h})}{1+\Lambda({\bf v})+\Lambda({\bf h})}\ \mathrm{with}\ \Lambda({\bf m})=\frac{-1+\sqrt{1+\alpha^2\tan^2(\theta_m)}}{2}
 $$
-
-### 实现
+Fresnel using Schlick's approximation:
+$$
+	F = F_0 + (F_{90} - F_0)*(1 - (\vec n \cdot \vec v))^5
+$$
+### BRDF实现
 
 1. diffuse
     为了保证能量守恒, 对diffuse进行修正.
@@ -148,12 +159,62 @@ float NdotL = saturate ( dot (N, L));
 float3 F = F_Schlick (f0 , f90 , LdotH );
 float Vis = V_SmithGGXCorrelated (NdotV , NdotL , roughness );
 float D = D_GGX (NdotH , roughness );
-float Fr = D * F * Vis / PI;
+float Fr = D * F * Vis;
 
 // Diffuse BRDF
 float Fd = Fr_DisneyDiffuse (NdotV , NdotL , LdotH , linearRoughness ) / PI;
 ```
 
+## Basic Material System
+### SG(Specular Glossiness)
+* Diffuse 漫反射光 RGB
+* Specular 用来描述菲涅尔项 RGB, 当表达黄金这样的金属, 对于不同的色彩效果不一样
+* Glossiness 光滑程度
+
+缺点: Specular项不是很好设置, 设置不好会导致结果非常假. 代码参考上面shader code.
+
+### Metallic Roughness
+使用金属度 (metalic) 来关联diffuse和菲尼尔部分, 这样就避免了两个参数冲突问题. 本质上MR材质还是使用SG材质.
+* base_color
+* roughness
+* metallic
+metalic的意义: 如果一个物体的金属度非常低，则代表为非金属, 那么此时的base_color __无法用在diffuse和specular中进行计算__. 而如果金属度十分高, 则代表这个物体是金属, 那么你的base_color会被大量抽走并用在diffuse和specular的计算中.
+
+```c++
+SpecularGlossiness ConvertMetallicRoughnessToSpecularGlossiness(
+	MetallicRoughness metallic_roughness)
+{
+    float3 base_color = metallic_roughness.base_color;
+    float roughness = metallic_roughness.roughness;
+    float metallic = metallic_roughness.metallic;
+
+    float3 specular = lerp(dielectric_specular, base_color, metallic);
+    float3 diffuse = base_color * (1.0f - metallic);
+
+    SpecularGlossiness specular_glossiness;
+    specular_glossiness.specular = specular;
+    specular_glossiness.diffuse = diffuse;
+    specular_glossiness.glossiness = 1.0f - roughness;
+
+    return specular_glossiness;
+}
+```
+
+### standard imp
+在现在的引擎中, 基本上都用到以下标准材质(filament/UE):
+
+|Parameter|Type and range|
+|---|---|
+|**BaseColor**|Linear RGB [0..1]|
+|**Metallic**|Scalar [0..1]|
+|**Roughness**|Scalar [0..1]|
+|**Reflectance**|Scalar [0..1]|
+|**Emissive**|Linear RGB [0..1] + exposure compensation|
+|**Ambient occlusion**|Scalar [0..1]|
 
 
+## Light
 ## 参考
+* Moving Frostbite to Physically Based Rendering 3.0
+* [Games-104 Game Engine 05:渲染光和材质的数学魔法](https://zhuanlan.zhihu.com/p/512998645)
+* [【基于物理的渲染（PBR）白皮书】（五）几何函数相关总结](https://zhuanlan.zhihu.com/p/81708753)

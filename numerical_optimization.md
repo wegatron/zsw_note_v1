@@ -211,7 +211,6 @@ $$
 
 ### Levenberg-Marquadt Method
 
-
 #### Question
 * $p_k^N = -\nabla^2 f_k^{-1} \nabla f_k$是怎么来的(N表示Newton).
 对于纯的牛顿迭代: $x_{k+1} = x_k + p_k^N$, 则$\nabla f(x_{k+1}) = \nabla f(x_k - \nabla^2 f_k^{-1} \nabla f_k) \approx \nabla f_k - \nabla^2 f(\nabla^2 f_k^{-1} \nabla f_k) = 0$

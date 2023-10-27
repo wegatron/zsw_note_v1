@@ -138,9 +138,17 @@ blocks =  shape_keys.key_blocks
 for i in range(1, len(lines)):    
     vals = [float(num_str) for num_str in lines[i][:-1].split(',')]
     for v_ind in range(len(names)):
-        blocks[names[v_ind]].keyframe_delete(data_path="value", frame=i)
+
+#清除某一帧 
+blocks[names[v_ind]].keyframe_delete(data_path="value", frame=i)
         blocks[names[v_ind]].value= vals[v_ind]
-        blocks[names[v_ind]].keyframe_insert(data_path="value", frame=i)
+# add key frame
+blocks[names[v_ind]].keyframe_insert(data_path="value", frame=i)
+
+# 清除所有
+obj = bpy.data.objects["CTRL_expressions_neutral"]
+obj.animation_data_clear()
+obj.data.shape_keys.animation_data_clear() 
 ```
 
 ## vscode blender plugin

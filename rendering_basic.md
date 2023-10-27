@@ -124,9 +124,6 @@ $$
 
 #### [graphics pipeline detail](Excalidraw/pipeline_overview)
 
-### Coordinate of different graphics API
-
-
 ### obj file uv coordinate
 
 uv (0,0) is in the left bottom.
