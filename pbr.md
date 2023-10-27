@@ -92,20 +92,17 @@ $$
 $$
 ### BRDF实现
 
-1. diffuse
-    为了保证能量守恒, 对diffuse进行修正.
+为了保证能量守恒, 对diffuse进行修正.
     $$
     \int_\Omega (f_r(\mathbf{v}, \mathbf{l}) + f_d(\mathbf{v}, \mathbf{l})) \langle{} \mathbf{n} \cdot \mathbf{l} \rangle d\mathbf{l} \le 1
     $$
 
-    ?? 新的diffuse怎么计算:
-    $$
+新的diffuse计算:  
+$$
     {F}_{D90}=0.5\alpha+\cos(\theta_{d})^{2}\alpha
-    $$
+$$
 
-
-
-代码:
+代码(Moving Frostbite to Physically Based Rendering 3.0):
 ```hlsl
 float Fr_DisneyDiffuse(float NdotV, float NdotL, float LdotH, float linearRoughness)
 {
