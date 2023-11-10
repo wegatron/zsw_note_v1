@@ -21,6 +21,41 @@ tag: cg/tools
 
 资源的修改与blender中类似.
 
+
+## Sequence
+
+python script to query or add key frames:
+```python
+def get_by_name(objs, name):
+    for o in objs:
+        if o.get_display_name() == name:
+            return o
+    return None
+
+sequence = unreal.LevelSequenceEditorBlueprintLibrary.get_current_level_sequence()
+face_binding = get_by_name(sequence.get_bindings(), 'Face')
+board_track = get_by_name(face_binding.get_tracks(), 'Face_ControlBoard_CtrlRig')
+section = board_track.get_sections()[0]
+channels = section.get_all_channels()
+
+# add key frames
+for ind in range(len(gen_names)):
+    gn = gen_names[ind]
+    dn = driver_names[ind]
+    tname = driver_keys_type[ind]
+    flag = False
+    for c in channels:        
+        if c.channel_name == dn or c.channel_name == dn+tname:
+            flag = True
+            c.add_key(time=unreal.FrameNumber(ind*2), new_value=0.0)
+            c.add_key(time=unreal.FrameNumber(ind*2+1), new_value=1.0)
+        else:
+            c.add_key(time=unreal.FrameNumber(ind*2), new_value=0.0)
+            c.add_key(time=unreal.FrameNumber(ind*2+1), new_value=0.0)
+    if flag == False:
+        print(f'{gn} {flag}')
+```
+
 ## RDG Basic Concept
 RDG全称是Rendering Dependency Graph，意为渲染依赖性图表，渲染子系统，基于有向无环图(Directed Acyclic Graph，DAG)的调度系统，用于执行渲染管线的整帧优化。
 利用现代的图形API（DirectX 12、Vulkan和Metal 2），实现自动异步计算调度以及更高效的内存管理和屏障管理来提升性能.

@@ -69,9 +69,6 @@ driver->endCapture(); // 结束抓帧
 ```
 
 抓帧后文件存放在 `Android`-> `data`->`com.`**`.`** -> `files`-> `RenderDoc`目录下.
-
-![](https://quvideo.feishu.cn/space/api/box/stream/download/asynccode/?code=NTc3MzFkOGQxZWJjYWQ5YTU4NzliNjcwN2U5ZDNjYzhfNkRRVm1QOEFxdWgxS3czTHZUMTNaaHl0Rkg3TE9FYU9fVG9rZW46Ym94Y24zOHU0cnZkUmFYaWNjeHdPZEFmOXVjXzE2ODY1NjM2MDc6MTY4NjU2NzIwN19WNA)
-
 ## Linux
 
 _libVkLayer_GLES_RenderDoc.so 替换为 librenderdoc.so_

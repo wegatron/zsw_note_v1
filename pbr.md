@@ -92,7 +92,7 @@ $$
 $$
 ### BRDF实现
 
-为了保证能量守恒, 对diffuse进行修正.
+为了保证能量守恒, Frostbite对diffuse进行修正, 而[filament中则是对reflection进行修正](https://google.github.io/filament/Filament.md.html#materialsystem/improvingthebrdfs/energylossinspecularreflectance).
     $$
     \int_\Omega (f_r(\mathbf{v}, \mathbf{l}) + f_d(\mathbf{v}, \mathbf{l})) \langle{} \mathbf{n} \cdot \mathbf{l} \rangle d\mathbf{l} \le 1
     $$
@@ -200,18 +200,58 @@ SpecularGlossiness ConvertMetallicRoughnessToSpecularGlossiness(
 ### standard imp
 在现在的引擎中, 基本上都用到以下标准材质(filament/UE):
 
-|Parameter|Type and range|
-|---|---|
-|**BaseColor**|Linear RGB [0..1]|
-|**Metallic**|Scalar [0..1]|
-|**Roughness**|Scalar [0..1]|
-|**Reflectance**|Scalar [0..1]|
-|**Emissive**|Linear RGB [0..1] + exposure compensation|
-|**Ambient occlusion**|Scalar [0..1]|
+|Parameter|Definition| Type and range|
+|---|---|---|
+|**BaseColor**|Diffuse albedo for non-metallic surfaces, and specular color for metallic surfaces| Linear RGB [0..1] | 
+|**Metallic**|Whether a surface appears to be dielectric (0.0) or conductor (1.0). Often used as a binary value (0 or 1)| Scalar [0..1] | 
+|**Roughness**|Perceived smoothness (0.0) or roughness (1.0) of a surface. Smooth surfaces exhibit sharp reflections| Scalar [0..1] |
+|**Reflectance**|Fresnel reflectance at normal incidence for dielectric surfaces. This replaces an explicit index of refraction| Scalar [0..1] |
+|**Emissive**|Additional diffuse albedo to simulate emissive surfaces (such as neons, etc.) This parameter is mostly useful in an HDR pipeline with a bloom pass| Linear RGB [0..1] + exposure compensation |
+|**Ambient occlusion**|Defines how much of the ambient light is accessible to a surface point. It is a per-pixel shadowing factor between 0.0 and 1.0. This parameter will be discussed in more details in the [lighting](https://google.github.io/filament/Filament.md.html#lighting) section| Scalar [0..1] |
 
 
-## Light
+## Light 
+
+色温, 单位 Kelvin.
+
+### 度量
+* 辐射度量(Radiometry), 关注物理的电磁辐射量. 包含了非可见光(某些材质在紫外光下可能呈现出不同的颜色或外观).
+
+|Name | Symbol | Units | Description |
+|---|---|---|---|
+| radiant flux | $\Phi$ | watt(W) | 辐射通量是随时间流动的辐射能量，也就是功率，以瓦特（W）为单位测量. |
+| irradiance | E | $W/m^2$ | 辐射通量相对与面积的密度(单位面积上的辐射通量) |
+| radiant intensity | I | $W/sr$ | flux density with respect to direction—more precisely, solid angle $(d\Phi/d\omega)$. |
+| radiance | L | $W/(m^2sr)$ | a measure of electromagnetic radiation in a single ray, 在某一方向上, 单位面积上的辐射通量. 这也是眼睛/相机能够感受到的度量. |
+
+* 光度量(Photometry), 将测量结果根据人眼的敏感度(CIE photometric curve)进行加权.
+
+| Radiometric Quantity: Units | Photometric Quantity: Units |
+| --- | --- |
+| radient flux: watt (W) | luminous flux: lumen(lm) |
+| irradiance: $\mathrm{W/m^2}$ | illuminance: lux(lx) |
+| radiant intensity: $\mathrm{W/sr}$ | luminance intensity: candela (cd) |
+| radiance: $\mathrm{W/(m^2 sr)}$ | luminance: $cd/m^2$ = nit|
+
+### Punctual lights
+点光源或几乎是点光源的光源, 光源从一个非常小的局部区域发出光，类似于空间中的一个点.
+在给定距离上接收到的 radiance的计算(与距离的平方成反比):
+* point light
+
+$$
+L_{\text {out }}=f(\mathbf{v}, \mathbf{l}) E=f(\mathbf{v}, \mathbf{l}) L_{\text {in }}\langle\mathbf{n} \cdot \mathbf{l}\rangle=f(\mathbf{v}, \mathbf{l}) \frac{I}{\text { distance }^2}\langle\mathbf{n} \cdot \mathbf{l}\rangle=f(\mathbf{v}, \mathbf{l}) \frac{\phi}{4 \pi \text { distance }^2}\langle\mathbf{n} \cdot \mathbf{l}\rangle
+$$
+
+* spot light
+$$
+L_{\text {out }}=f(\mathbf{v}, \mathbf{l}) \frac{I}{\text { distance }^2}\langle\mathbf{n} \cdot \mathbf{l}\rangle=f(\mathbf{v}, \mathbf{l}) \frac{\phi}{\pi \text { distance }^2}\langle\mathbf{n} \cdot \mathbf{l}\rangle \; \mathrm{getAngleAttenuation}()
+$$
+
+## Camera
+
+曝光Exposure EV
 ## 参考
+* [由浅入深学习PBR的原理和实现-0向往0](https://www.cnblogs.com/timlly/p/10631718.html)
 * Moving Frostbite to Physically Based Rendering 3.0
 * [Games-104 Game Engine 05:渲染光和材质的数学魔法](https://zhuanlan.zhihu.com/p/512998645)
 * [【基于物理的渲染（PBR）白皮书】（五）几何函数相关总结](https://zhuanlan.zhihu.com/p/81708753)

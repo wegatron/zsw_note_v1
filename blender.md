@@ -126,7 +126,6 @@ mat_node_trees.links.new(mat_node_trees.node[''].outputs[0], mat_node_trees.node
 ```
 
 shapekey操作
-
 ```python
 shape_keys = bpy.data.objects["CTRL_expressions_neutral"].data.shape_keys
 drivers = shape_keys.animation_data.drivers
@@ -151,6 +150,15 @@ obj.animation_data_clear()
 obj.data.shape_keys.animation_data_clear() 
 ```
 
+add shape key
+```python
+
+```
+
+## 添加Shape Key
+选择mesh-data, add key, 转换到edit mode修改vertices position.
+![[Pasted image 20231030160958.png]]
+
 ## vscode blender plugin
 
 `Ctrl` + `Shift` + `P`, `blender start` 而后可以用 `blender run script`执行一个脚本文件.
@@ -169,4 +177,8 @@ Blender python install package
 ```python
 import pip
 pip.main(['install', 'tqdm', '--user'])
+```
+
+```bash
+[python_path] -m pip install [package-name]
 ```
