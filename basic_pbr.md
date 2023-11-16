@@ -29,23 +29,22 @@ $$
     $$
         spec = (\mathbf{n} \cdot \mathbf{h})^{shiness}
     $$
-## BSDF
-包含BRDF和BTDF
-
 ### BRDF
 * energy conservation
 * fresnel
 * micro surface
 
 general rendering equation:
-
 $$
     {\cal L}_{o}(p,\omega_{o})={\cal L}_{e}(p,\omega_{o})+\int_{\Omega^{+}}{\cal L}_{i}(p,\omega_{i})f_{r}(p,\omega_{i},\omega_{o})(n\cdot\omega_{i})\,\mathrm{d}\omega_{i}    
 $$
-
-render equation in micro surface:
+对于每一束光打在一个微表面区域上:
 $$
     f_{d/r}(\mathbf{v})={\frac{1}{|\mathbf{n}\cdot\mathbf{v}||\mathbf{n}\cdot\mathbf{l}|}}\int_{\Omega}f_{m}(\mathbf{v},\mathbf{l},\mathbf{m})\;G(\mathbf{v},\mathbf{l},\mathbf{m})\;D(\mathbf{v},\mathbf{m})\,\langle\mathbf{v}\cdot\mathbf{m}\rangle\langle\mathbf{l}\cdot\mathbf{m}\rangle\,\mathrm{d}\mathbf{m}
+$$
+cook-Torrance equation:
+$$
+\int_{\Omega^+}{\cal L}_{i}(p,\omega_{i})(k_d f_d+k_s f_r )(n\cdot\omega_{i})d\omega_i
 $$
 对于镜面发射$f_m$ 是Fresnel, 积分后为:
 $$
@@ -59,19 +58,7 @@ $$
 $$
 f_r(v)=F(\mathbf{v},\mathbf{h},f_{0},f_{90})\;V(\mathbf{v},\mathbf{l},\mathbf{\alpha})\;L\!\!\!\!D(\mathbf{h},\alpha)
 $$
-对于漫反射, 使用Lambertian模型, $f_m$是一个常量:
-$$
-f_{d}({\bf v})=\frac{\rho}{\pi}\frac{1}{|{\bf n}\cdot{\bf v}||{\bf n}\cdot{\bf l}|}\int_{\Omega}G({\bf v},{\bf l},{\bf m})~D({\bf m},\alpha)~\langle{\bf v}\cdot{\bf m}\rangle\langle{\bf l}\cdot{\bf m}\rangle\ \mathrm{d}{\bf m}
-$$
-
-这里$\rho$是漫反射的颜色, 上述积分没有解析解, 只能进行近似. 也可以采用简单的经验模型进行替代:
-
-$$
-f_{d}=\frac{\rho}{\pi}(1+F_{D90}(1-\langle{\bf n\cdot1}\rangle)^{5})(1+F_{D90}(1-\langle{\bf n\cdot v}\rangle)^{5})\mathrm{~where~}{F}_{D90}=0.5+\cos(\theta_{d})^{2}\alpha
-$$
-
 Normal Distrbution Function选择"long-tailed" GGX:
-
 $$
 \large
 D_{GGX} =
@@ -80,7 +67,6 @@ D_{GGX} =
 { \alpha^2 }
 { \pi \left((\vec n \cdot \vec h)^2 *(\alpha^2 - 1) + 1\right)^2}
 $$
-
 Geometry Function, Smith visibility function能够精确地表示. 采用height-corrleated Smith function近似表示会更好:
 
 $$
@@ -90,18 +76,28 @@ Fresnel using Schlick's approximation:
 $$
 	F = F_0 + (F_{90} - F_0)*(1 - (\vec n \cdot \vec v))^5
 $$
+由于$f_r$中Fresnel项代表了反射比例, 已经隐含了$k_s$, 因此可以去除$ks$.
+
+对于漫反射, 使用Lambertian模型, $f_m$是一个常量:
+$$
+f_{d}({\bf v})=\frac{\rho}{\pi}\frac{1}{|{\bf n}\cdot{\bf v}||{\bf n}\cdot{\bf l}|}\int_{\Omega}G({\bf v},{\bf l},{\bf m})~D({\bf m},\alpha)~\langle{\bf v}\cdot{\bf m}\rangle\langle{\bf l}\cdot{\bf m}\rangle\ \mathrm{d}{\bf m}
+$$
+
+这里$\rho$是漫反射的颜色, 上述积分没有解析解, 只能进行近似. 也可以采用简单的经验模型进行替代:
+$$
+f_{d}=\frac{\rho}{\pi}(1+F_{D90}(1-\langle{\bf n\cdot1}\rangle)^{5})(1+F_{D90}(1-\langle{\bf n\cdot v}\rangle)^{5})\mathrm{~where~}{F}_{D90}=0.5+\cos(\theta_{d})^{2}\alpha
+$$
+另外, $k_d = 1 - F$.
 ### BRDF实现
 
 为了保证能量守恒, Frostbite对diffuse进行修正, 而[filament中则是对reflection进行修正](https://google.github.io/filament/Filament.md.html#materialsystem/improvingthebrdfs/energylossinspecularreflectance).
-    $$
+$$
     \int_\Omega (f_r(\mathbf{v}, \mathbf{l}) + f_d(\mathbf{v}, \mathbf{l})) \langle{} \mathbf{n} \cdot \mathbf{l} \rangle d\mathbf{l} \le 1
-    $$
-
+$$
 新的diffuse计算:  
 $$
     {F}_{D90}=0.5\alpha+\cos(\theta_{d})^{2}\alpha
 $$
-
 代码(Moving Frostbite to Physically Based Rendering 3.0):
 ```hlsl
 float Fr_DisneyDiffuse(float NdotV, float NdotL, float LdotH, float linearRoughness)
@@ -160,8 +156,10 @@ float Fr = D * F * Vis;
 
 // Diffuse BRDF
 float Fd = Fr_DisneyDiffuse (NdotV , NdotL , LdotH , linearRoughness ) / PI;
-```
 
+// apply diffuse light, 这里1.0 - F是反射部分的光
+xx_light(i, N) * (diffuse_color * (vec3(1.0) - F) * Fd + Fr)
+```
 ## Basic Material System
 ### SG(Specular Glossiness)
 * Diffuse 漫反射光 RGB
@@ -175,28 +173,12 @@ float Fd = Fr_DisneyDiffuse (NdotV , NdotL , LdotH , linearRoughness ) / PI;
 * base_color
 * roughness
 * metallic
+* specular/reflectance 一般非金属都是0.5, 反射4%的光.
 metalic的意义: 如果一个物体的金属度非常低，则代表为非金属, 那么此时的base_color __无法用在diffuse和specular中进行计算__. 而如果金属度十分高, 则代表这个物体是金属, 那么你的base_color会被大量抽走并用在diffuse和specular的计算中.
-
 ```c++
-SpecularGlossiness ConvertMetallicRoughnessToSpecularGlossiness(
-	MetallicRoughness metallic_roughness)
-{
-    float3 base_color = metallic_roughness.base_color;
-    float roughness = metallic_roughness.roughness;
-    float metallic = metallic_roughness.metallic;
-
-    float3 specular = lerp(dielectric_specular, base_color, metallic);
-    float3 diffuse = base_color * (1.0f - metallic);
-
-    SpecularGlossiness specular_glossiness;
-    specular_glossiness.specular = specular;
-    specular_glossiness.diffuse = diffuse;
-    specular_glossiness.glossiness = 1.0f - roughness;
-
-    return specular_glossiness;
-}
+vec3 diffuseColor = (1.0 - metallic) * baseColor.rgb;
+vec3 f0 = 0.16 * reflectance * reflectance * (1.0 - metallic) + baseColor * metallic;
 ```
-
 ### standard imp
 在现在的引擎中, 基本上都用到以下标准材质(filament/UE):
 
@@ -209,9 +191,7 @@ SpecularGlossiness ConvertMetallicRoughnessToSpecularGlossiness(
 |**Emissive**|Additional diffuse albedo to simulate emissive surfaces (such as neons, etc.) This parameter is mostly useful in an HDR pipeline with a bloom pass| Linear RGB [0..1] + exposure compensation |
 |**Ambient occlusion**|Defines how much of the ambient light is accessible to a surface point. It is a per-pixel shadowing factor between 0.0 and 1.0. This parameter will be discussed in more details in the [lighting](https://google.github.io/filament/Filament.md.html#lighting) section| Scalar [0..1] |
 
-
 ## Light 
-
 色温, 单位 Kelvin.
 
 ### 度量
@@ -255,3 +235,6 @@ $$
 * Moving Frostbite to Physically Based Rendering 3.0
 * [Games-104 Game Engine 05:渲染光和材质的数学魔法](https://zhuanlan.zhihu.com/p/512998645)
 * [【基于物理的渲染（PBR）白皮书】（五）几何函数相关总结](https://zhuanlan.zhihu.com/p/81708753)
+* [Unreal Physically Based Materials](https://docs.unrealengine.com/5.3/en-US/physically-based-materials-in-unreal-engine/) 最基本的BRDF
+* [mastering materials in unreal engine](https://awesometuts.com/blog/materials-unreal-engine/)
+* [filament pbr](https://google.github.io/filament/Filament.md.html)

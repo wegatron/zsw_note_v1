@@ -185,6 +185,9 @@ verts, faces, aux = load_obj('output/ffhq-uv/st/front.obj', load_textures=True, 
 
 save_obj('debug_output/dbg.obj', verts, faces.verts_idx, verts_uvs=aux.verts_uvs, faces_uvs=faces.textures_idx, texture_map=list(aux.texture_images.values())[0])
 
+# texture map from file
+texture_map = torch.from_numpy(imageio.v3.imread(args.image).astype(np.float32)/255)
+
 # '''
 # save_obj(
 # f: PathOrStr,
