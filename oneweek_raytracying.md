@@ -111,6 +111,37 @@ uniform I=2.668667287011 err=-0.002000620344
 nonuniform I=2.667114339335 err=-0.000447672668
 ```
 
+总结:
+
+$$
+\int f(x) \approx \sum f(r)/p(r)
+$$
+
 Importance Sampling: 采样的样本越多, 越能够抵抗噪声的干扰. 因此, 我们希望在噪声比较大(敏感-对结果影响比较大)的区域, 采更多的样本(PDF大), 在噪声比较小(不敏感-对结果影响比较小)的区域少采一些样本(PDF小). 通过这种策略可以降低采样量并加速收敛.
 
 任意的PDF都能够最终收敛到正确结果, 但最准确的PDF收敛最快.
+
+## Light Scattering
+
+$$
+\operatorname{Color}_o(\mathbf{x}, \omega_o, \lambda) = \int_{\omega_i}
+        A(\mathbf{x}, \omega_i, \omega_o, \lambda) \cdot
+        \operatorname{pScatter}(\mathbf{x}, \omega_i, \omega_o, \lambda) \cdot
+        \operatorname{Color}_i(\mathbf{x}, \omega_i, \lambda)
+$$
+
+
+$$
+\operatorname{Color}_o(\mathbf{x}, \omega_o, \lambda) \approx \sum
+        \frac{A(\, \ldots \,) \cdot
+        \operatorname{pScatter}(\, \ldots \,) \cdot
+        \operatorname{Color}_i(\, \ldots \,)}
+        {p(\mathbf{x}, \omega_i, \omega_o, \lambda)}
+$$
+
+BRDF:
+
+$$
+BRDF(\omega_i, \omega_o, \lambda) = \frac{A(\mathbf{x}, \omega_i, \omega_o, \lambda) \cdot
+        \operatorname{pScatter}(\mathbf{x}, \omega_i, \omega_o, \lambda)}{\cos(\theta_o)}
+$$
