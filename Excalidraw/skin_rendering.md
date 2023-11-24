@@ -122,6 +122,8 @@ Pre-And Post-Scatter: Post-Scatter + Pre-Scatter(光照 * albedo之后, 应用di
 [Cook-Torrance BRDF](https://www.jianshu.com/p/d70ee9d4180e)
 [Physically Based Rendering in Filament](https://google.github.io/filament/Filament.html) ^fwVnFpdn
 
+https://docs.unrealengine.com/5.3/en-US/creating-human-skin-in-unreal-engine/ ^leVtqRJ9
+
 
 # Embedded files
 597d4e4965fcb42cdc70ca2a15d64e0983bfcef2: $$\begin{aligned} R(r) = \sum_{i=1}^k w_i G(v_i, r)\\ G(v, r) = \frac{1}{2 \pi v} e^{-r^2/2v} \end{aligned}$$
@@ -3084,8 +3086,8 @@ a409063a49a46ec3e384ddb52a4db4ea1b6dc74c: [[Pasted Image 20230705112340_769.png]
 		},
 		{
 			"type": "arrow",
-			"version": 314,
-			"versionNonce": 1463025910,
+			"version": 322,
+			"versionNonce": 561719602,
 			"isDeleted": false,
 			"id": "doqMqplreSn1QrUIjU8nN",
 			"fillStyle": "hachure",
@@ -3112,7 +3114,7 @@ a409063a49a46ec3e384ddb52a4db4ea1b6dc74c: [[Pasted Image 20230705112340_769.png]
 					"id": "LUSJ4jR3"
 				}
 			],
-			"updated": 1697681087022,
+			"updated": 1699931092975,
 			"link": null,
 			"locked": false,
 			"startBinding": {
@@ -5500,6 +5502,43 @@ a409063a49a46ec3e384ddb52a4db4ea1b6dc74c: [[Pasted Image 20230705112340_769.png]
 			"originalText": "🌐[[PBR White Paper]]\n[[Cook-Torrance BRDF]]\n[[Physically Based Rendering in Filament]]",
 			"lineHeight": 1.25,
 			"baseline": 54
+		},
+		{
+			"type": "text",
+			"version": 42,
+			"versionNonce": 1084318318,
+			"isDeleted": false,
+			"id": "leVtqRJ9",
+			"fillStyle": "hachure",
+			"strokeWidth": 1,
+			"strokeStyle": "solid",
+			"roughness": 0,
+			"opacity": 100,
+			"angle": 0,
+			"x": -1160.406710306814,
+			"y": 1372.7731955466188,
+			"strokeColor": "#1e1e1e",
+			"backgroundColor": "transparent",
+			"width": 615.9088745117188,
+			"height": 20,
+			"seed": 2127208178,
+			"groupIds": [],
+			"frameId": null,
+			"roundness": null,
+			"boundElements": [],
+			"updated": 1699931098597,
+			"link": null,
+			"locked": false,
+			"fontSize": 16,
+			"fontFamily": 1,
+			"text": "🌐https://docs.unrealengine.com/5.3/en-US/creating-human-skin-in-unreal-engine/",
+			"rawText": "https://docs.unrealengine.com/5.3/en-US/creating-human-skin-in-unreal-engine/",
+			"textAlign": "left",
+			"verticalAlign": "top",
+			"containerId": null,
+			"originalText": "🌐https://docs.unrealengine.com/5.3/en-US/creating-human-skin-in-unreal-engine/",
+			"lineHeight": 1.25,
+			"baseline": 14
 		}
 	],
 	"appState": {
@@ -5517,10 +5556,10 @@ a409063a49a46ec3e384ddb52a4db4ea1b6dc74c: [[Pasted Image 20230705112340_769.png]
 		"currentItemTextAlign": "left",
 		"currentItemStartArrowhead": null,
 		"currentItemEndArrowhead": "arrow",
-		"scrollX": 2383.52786692797,
-		"scrollY": 1095.2495711831784,
+		"scrollX": 3015.272094922199,
+		"scrollY": 989.3335752867147,
 		"zoom": {
-			"value": 0.7500000000000002
+			"value": 0.4
 		},
 		"currentItemRoundness": "round",
 		"gridSize": null,

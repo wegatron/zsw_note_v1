@@ -71,6 +71,8 @@ $$
 * [《计算机图形学：真实感图像合成》记录](https://www.zhihu.com/column/c_1420873093510721536)
 * [Note：UE5源码解析-数字人渲染篇](https://blog.csdn.net/weixin_44346103/article/details/129113466)
 * https://pbr-book.org/4ed/Reflection_Models/BSDF_Representation
+* [Rendering the Moana Island Scene](https://schuttejoe.github.io/post/disneybsdf/)
+* [UCSD CSE 272: Advanced Image Synthesis](https://cseweb.ucsd.edu/~tzli/cse272/wi2023/) 比较好的课程
 
 sss论文资料:
 * [Approximate Reflectance Profiles for Efficient Subsurface Scattering](https://graphics.pixar.com/library/ApproxBSSRDF/paper.pdf)
