@@ -1,3 +1,8 @@
+---
+tags:
+  - cg/shading
+  - cg/course_note
+---
 ## Camera
 
 ## Hittable
@@ -8,7 +13,6 @@
 
 通过采样的方式, 利用概率统计计算一些复杂函数的值. 例如求PI.
 ![[rc/montecarlo.jpg]]
-
 在求解函数时, 在分布空间中均匀采样时, 不可避免会有很多无效采样计算(ray tracying时最终无法到达光源, 或者反射的光特别弱). 通过修改采样分布, 来提高收敛速度.
 
 ### Probility Density Function
@@ -32,6 +36,17 @@ $$
 \end{aligned}
 $$
 
+Monte Carlo Basics:
+
+$$
+\begin{aligned}
+E_p[f(x)] &= \int_a^b f(x) p(x) dx\\
+E_p\left[\frac{f(x)}{p(x)}\right] &= \int_a^b \frac{f(x)}{p(x)}p(x)dx\\
+E_p\left[\frac{f(x)}{p(x)}\right] &\approx \frac{1}{N}\sum_{i=1}^{N} \frac{f(x_i)}{p(x_i)}\\
+\Rightarrow \int_a^b f(x)dx &\approx \frac{1}{N}\sum_{i=1}^{N} \frac{f(x_i)}{p(x_i)}
+\end{aligned}
+$$
+
 以计算积分$\int_{0}^{2} x^2 dx$为例(可以使用均匀采样, 也可以使用非均匀采样):
 
 $$
@@ -40,7 +55,6 @@ $$
 \lim_{N \to \infty}\frac{1}{N}\sum_{i=1}^{N} x_i^2\frac{1}{p(x)} \quad& \mathrm{nonuniform \; sampling \; x \; with \; PDF \;} p(x)
 \end{aligned}
 $$
-
 ```c++
 #include <iostream>
 #include <iomanip>
@@ -111,6 +125,37 @@ uniform I=2.668667287011 err=-0.002000620344
 nonuniform I=2.667114339335 err=-0.000447672668
 ```
 
-Importance Sampling: 采样的样本越多, 越能够抵抗噪声的干扰. 因此, 我们希望在噪声比较大(敏感-对结果影响比较大)的区域, 采更多的样本(PDF大), 在噪声比较小(不敏感-对结果影响比较小)的区域少采一些样本(PDF小). 通过这种策略可以降低采样量并加速收敛.
+Importance Sampling: 采样的样本越多, 越能够抵抗噪声的干扰. 因此, 我们希望在噪声比较大(敏感-值比较不一致)的区域, 采更多的样本(PDF大), 在噪声比较小(不敏感-值比较一致)的区域少采一些样本(PDF小). 通过这种策略可以降低采样量并加速收敛.
 
 任意的PDF都能够最终收敛到正确结果, 但最准确的PDF收敛最快.
+
+## Light Scattering
+
+一个表面的颜色可以通过以下积分公式进行计算:
+
+$$
+\operatorname{Color}_o(\mathbf{x}, \omega_o, \lambda) = \int_{\omega_i} A(\mathbf{x}, \omega_i, \omega_o, \lambda) \cdot \operatorname{pScatter}(\mathbf{x}, \omega_i, \omega_o, \lambda) \cdot \operatorname{Color}_i(\mathbf{x}, \omega_i, \lambda)
+$$
+
+这里, $\mathbf{x}=(x,y,z)$, $\omega_i$是入射光线方向, $\omega_o$是出射(视线)方向, $\lambda$是光的波长. 
+$A(\mathbf{x}, \omega_i, \omega_o, \lambda)$ 是物体的Albedo.
+$\mathrm{pScatter}(\mathbf{x}, \omega_i, \omega_o, \lambda)$是光线的概率密度函数, 该概率密度函数除了与出射方向相关外, 与入射方向(Fresnel效应), 与波长(三棱镜反射成彩虹), 反射位置相关.
+
+根据Monte Carlo Basic, 有:
+
+$$
+\operatorname{Color}_o(\mathbf{x}, \omega_o, \lambda) \approx \sum \frac{A(\mathbf{x}, \omega_i, \omega_o, \lambda) \cdot \operatorname{pScatter}(\mathbf{x}, \omega_i, \omega_o, \lambda) \cdot \operatorname{Color}_i(\mathbf{x}, \omega_i, \lambda)}{p(\mathbf{x}, \omega_i, \omega_o, \lambda)}
+$$
+这里, $p(\mathbf{x}, \omega_i, \omega_o, \lambda)$是我们随机生成的出射方向的概率密度函数(这里有两个概率密度函数$pScatter()$和$p()$, 将分子看做是一个函数$f(x)$进行采样计算).
+## Play with Importance Sampling
+
+random sphere sampling
+在单位球的极坐标上进行均匀采样, $\theta$表示纬度, $\phi$表示经度. 球面积为$4\pi$, 则有:
+$$
+\int \int  d\phi d\theta
+$$
+
+cosine sampling
+
+
+## 
