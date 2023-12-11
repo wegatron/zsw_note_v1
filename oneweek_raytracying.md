@@ -178,4 +178,3 @@ $$
 	d\omega = \frac{dA \cdot \cos(\theta)}{\operatorname{distance}^2(p,q)}
    $$
 	![[rc/shape-onto-pdf.jpg]]
-

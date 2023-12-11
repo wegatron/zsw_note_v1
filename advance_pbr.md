@@ -17,15 +17,15 @@ $$
 * $f_p \left( p,\,\omega_i \to \omega \right)$是相函数(phase function), 描述了$p$点处散射的空间分布. 表示$\omega_i$方向入射光线向某个方向的散射能量与所有方向$S^2$的比. 所有方向$S^2$对应一个单位球.
 
 ## 全光函数
-任一时刻, 三维空间中任一点向任一个方向传播的光信息, 可以用全光函数进行描述:
+在现实中, 光的散射与出射角度相关(Fresnel效应), 与波长相关(三棱镜将白光折射出彩虹), 与位置相关等. 任一时刻, 三维空间中任一点向任一个方向传播的光信息, 可以用全光函数进行描述:
 $$
-R\left(x,\,y,\,z,\,\theta,\,\phi,\,\lambda,\,t\right)
+R\left(x, \omega,\lambda,\,t\right)
 $$
-其中, $(x,y,z)$是位置, $\theta, \phi$是方向, $\lambda$是波长, $t$是时间. 两个全光函数组合可以描述任一时刻三维空间中任一点向另一点传播的光信息:
+其中, $x$是位置, $\omega$是方向, $\lambda$是波长, $t$是时间. 两个全光函数组合可以描述任一时刻三维空间中任一点向另一点传播的光信息:
 $$
-(x,y,z,t,\theta,\phi,\lambda)_{in} \to (x,y,z,t,\theta,\phi,\lambda)_{out}
+(x,t,\omega,\lambda)_{in} \to (x,t,\omega,\lambda)_{out}
 $$
-在实际应用中, 根据不同的场景, 可以做不同程度的简化.
+在应用中, 根据不同的场景, 可以做不同程度的简化.
 1. 光的波长与时间无关, 没有磷光 (phosphorescence), 省略时间维度
 2. 入射光和出射光的波长相同, 没有荧光 (fluorescence) 或 拉曼散射 (Raman scattering), 并且波长是离散的, 或者用RGB三个分量来表示, 省略波长维度
 * BSSRDF(bidirectional subsurface scattering reflection distribution function)
