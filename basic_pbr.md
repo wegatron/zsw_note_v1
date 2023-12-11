@@ -12,6 +12,8 @@ tags:
 * $\rho$ diffuse reflectance
 * $\chi^{+}(a)$ Heaviside function: 1 if a > 0 and 0 if a <= 0
 * $\langle\omega_1, \omega_2\rangle$ clamped dot product: 0 if $\omega_1 \cdot \omega_2 < 0$
+* F0 normal incidence $\theta = 0$
+* F90 normal incidence $\theta = 90$ 
 
 ## 经典光照模型
 color = diffuse + ambient + specular
@@ -192,7 +194,12 @@ vec3 f0 = 0.16 * reflectance * reflectance * (1.0 - metallic) + baseColor * meta
 |**Ambient occlusion**|Defines how much of the ambient light is accessible to a surface point. It is a per-pixel shadowing factor between 0.0 and 1.0. This parameter will be discussed in more details in the [lighting](https://google.github.io/filament/Filament.md.html#lighting) section| Scalar [0..1] |
 
 ## Light 
+在不同的工具/系统之间保持灯光度量的一致性, 从而数据可以兼容互通.
+
+Question: 在代码中如何体现?
+
 色温, 单位 Kelvin.
+![[light_tempture.png]]
 
 ### 度量
 * 辐射度量(Radiometry), 关注物理的电磁辐射量. 包含了非可见光(某些材质在紫外光下可能呈现出不同的颜色或外观).
@@ -209,10 +216,11 @@ vec3 f0 = 0.16 * reflectance * reflectance * (1.0 - metallic) + baseColor * meta
 | Radiometric Quantity: Units | Photometric Quantity: Units |
 | --- | --- |
 | radient flux: watt (W) | luminous flux: lumen(lm) |
-| irradiance: $\mathrm{W/m^2}$ | illuminance: lux(lx) |
+| irradiance: $\mathrm{W/m^2}$ | illuminance: lux(lx)|
 | radiant intensity: $\mathrm{W/sr}$ | luminance intensity: candela (cd) |
-| radiance: $\mathrm{W/(m^2 sr)}$ | luminance: $cd/m^2$ = nit|
+| radiance: $\mathrm{W/(m^2 sr)}$ | luminance: $cd/m^2$ = nit $\to$ 感知的亮度|
 
+在UE中使用lux来度量方向光, 用cd来度量point、spot、area light(随着面积扩大强度减弱).
 ### Punctual lights
 点光源或几乎是点光源的光源, 光源从一个非常小的局部区域发出光，类似于空间中的一个点.
 在给定距离上接收到的 radiance的计算(与距离的平方成反比):

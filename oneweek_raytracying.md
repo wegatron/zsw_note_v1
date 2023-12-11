@@ -149,13 +149,33 @@ $$
 这里, $p(\mathbf{x}, \omega_i, \omega_o, \lambda)$是我们随机生成的出射方向的概率密度函数(这里有两个概率密度函数$pScatter()$和$p()$, 将分子看做是一个函数$f(x)$进行采样计算).
 ## Play with Importance Sampling
 
-random sphere sampling
-在单位球的极坐标上进行均匀采样, $\theta$表示纬度, $\phi$表示经度. 球面积为$4\pi$, 则有:
-$$
-\int \int  d\phi d\theta
-$$
+* random sphere sampling
+	在单位球的极坐标上进行均匀采样, $\theta$表示纬度, $\phi$表示经度. 球面积为$4\pi$, 则有(曲面积分等于在曲线/圆环再进行积分):
+	$$
+	\int \int  r^2 \sin \theta d\phi d\theta
+	$$
+	经度$\phi$均匀分布, 维度$\theta$的分布与$\sin \theta$成正比例关系.
+	$$
+	\left.
+	\begin{aligned}
+	r_1 &= \int_0^\phi \frac{1}{2\pi} d\phi\\
+	r_2 &= \int_0^\theta 2\pi \sin(\theta) d\theta
+	\end{aligned}
+	\right\} \Rightarrow \left\{
+	\begin{aligned}
+	\phi &= 2 \pi r_1\\
+	cos(\theta) &= 1 - \frac{r_2}{2\pi}
+	\end{aligned}
+	\right.
+	$$
 
-cosine sampling
+* cosine sampling
+	光在打到物体表面后, 在各个方向上的散射率/Intensity与$\cos \theta$成正比例关系(红色箭头). 在观察时, 倾斜角度上面积被压缩(除以$\cos \theta$), 所以对于[lambert漫反射而言, 各个角度上看到的强度相同](https://en.wikipedia.org/wiki/Lambertian_reflectance).
+	![[Lambert6.gif]]
 
+* Projection of light shape onto PDF
+	$$
+	d\omega = \frac{dA \cdot \cos(\theta)}{\operatorname{distance}^2(p,q)}
+   $$
+	![[rc/shape-onto-pdf.jpg]]
 
-## 
