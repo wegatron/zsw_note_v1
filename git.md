@@ -58,11 +58,13 @@ chmod 400 ~/.ssh/id_rsa
 # 添加
 ssh-add
 ```
-
 ④. github测试
 ```bash
 ssh -T git@github.com
 ```
+⑤. 在windows上, 需要开启openssh服务.
+	安装: win -> 设置 -> 应用 -> 可选功能 -> openssh
+	启动服务: win-> 服务 -> openssh
 
 ## git submodule
 1. 添加submodule
