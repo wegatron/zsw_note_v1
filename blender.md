@@ -7,7 +7,6 @@ tag: cg/tools
 
 通过小键盘进行控制: 46, 82. 上下左右, ctrl按住为平移, + 缩放视角.
 
-
 ## 快捷键
 * `HOME` 将视角移动到场景中心
 * `CTRL` + `H` hook
@@ -16,7 +15,16 @@ tag: cg/tools
 * z 切换 renderd, wireframe, material view
 * g move
 * s scale
+* Render region: 在相机视角下 CTRL + B 选择绘制区域
+* clear render region: 在需要的视角下 CTRL + ALT + B. 或者在view->view region中进行clear
+* ALT + 鼠标中键 将中心定位到鼠标选择点
+* edit mode P 可以将选中的face移动到新的mesh中
 
+---
+
+sculpt
+* Brush Size F
+* Brush Strength Shift + F
 
 ## Camera
 
@@ -51,8 +59,6 @@ blender 渲染相关设置
 
 渲染输出的设置:
 ![](rc/blender_render_output.png)
-
-
 ## Blender python
 ### python console
 ![[blender_python_console.png]]
@@ -152,7 +158,44 @@ obj.data.shape_keys.animation_data_clear()
 
 add shape key
 ```python
+import bpy
+# remove shape key
+tgt_mesh = bpy.data.objects['SK_FL0.001']
+tgt_mesh.animation_data_clear()
+tgt_mesh.data.shape_keys.animation_data_clear()
 
+for blc in tgt_mesh.data.shape_keys.key_blocks:
+    blc.value = 0.0
+```
+
+load all from blend file:
+```python
+import bpy
+
+# Set the path to the blend file you want to import from
+source_blend_file = "/home/wegatron/win-data/tmp/realistic-rendering1.blend"
+
+# Append all data blocks from the source file
+with bpy.data.libraries.load(source_blend_file) as (data_from, data_to):
+    # Here, you can choose which types of data to import
+    # For example, to import all objects, materials, and textures:
+    data_to.objects = data_from.objects
+    data_to.materials = data_from.materials
+    data_to.textures = data_from.textures
+    data_to.worlds = data_from.worlds
+    # Add more lines as needed for other types of data
+
+# Link/Append the data blocks to the current scene
+for obj in data_to.objects:
+    if obj is not None:
+        bpy.context.collection.objects.link(obj)
+
+for world in data_to.worlds:
+    if world is not None:
+        bpy.context.scene.world = world
+
+# Optionally, update the scene to reflect the changes
+bpy.context.view_layer.update()
 ```
 
 ## 添加Shape Key
