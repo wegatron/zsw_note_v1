@@ -198,6 +198,45 @@ for world in data_to.worlds:
 bpy.context.view_layer.update()
 ```
 
+add mesh from data
+```python
+import bpy
+import numpy as np
+
+# Clear existing mesh objects in the scene
+#bpy.ops.object.select_all(action='DESELECT')
+
+# Create a new mesh data block
+mesh = bpy.data.meshes.new(name="CustomMesh")
+obj = bpy.data.objects.new("CustomObject", mesh)
+
+# Link the mesh data to the scene
+bpy.context.collection.objects.link(obj)
+bpy.context.view_layer.objects.active = obj
+obj.select_set(True)
+
+# Enter edit mode to define geometry
+bpy.ops.object.mode_set(mode='EDIT')
+
+
+mh_flame_base = np.load('/home/wegatron/opt/blender-4.0.2-linux-x64/4.0/scripts/addons/mh_anim/data/mh_flame_base.npy')
+mh_flame_base = mh_flame_base.reshape(-1, 192282, 3)
+
+vertices = mh_flame_base[0]
+faces = []
+for i in range(len(vertices) // 3):
+    face = [3 * i, 3 * i + 1, 3 * i + 2]
+    faces.append(face)
+
+# Exit edit mode
+bpy.ops.object.mode_set(mode='OBJECT')
+# Create the mesh with vertices and faces
+mesh.from_pydata(vertices, [], faces)
+
+# Update the mesh
+mesh.update()
+```
+
 ## 添加Shape Key
 选择mesh-data, add key, 转换到edit mode修改vertices position.
 ![[Pasted image 20231030160958.png]]
@@ -225,3 +264,9 @@ pip.main(['install', 'tqdm', '--user'])
 ```bash
 [python_path] -m pip install [package-name]
 ```
+
+[install packages need Python.h](https://blender.stackexchange.com/questions/81740/python-h-missing-in-blender-python)
+
+download python source from: https://www.python.org/downloads/source/
+tar -xzf Python-3.X.X.tgz
+cp Python-3.X.X/Include/* /path/to/blender-*/*/python/include/python3.*/
