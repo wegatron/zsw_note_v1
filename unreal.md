@@ -79,8 +79,9 @@ Shader Parameter和过程分离
 * 如何计算资源的生命周期, 怎么区分临时资源非临时资源
 * 资源之间的相互依赖关系
 
+## Material Graph
 
-
+break the node link: alt + left click
 
 ## Reference
 * [【翻译】UE4 RDG系统速成课](https://zhuanlan.zhihu.com/p/374224919)

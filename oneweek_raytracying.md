@@ -171,10 +171,23 @@ $$
 
 * cosine sampling
 	光在打到物体表面后, 在各个方向上的散射率/Intensity与$\cos \theta$成正比例关系(红色箭头). 在观察时, 倾斜角度上面积被压缩(除以$\cos \theta$), 所以对于[lambert漫反射而言, 各个角度上看到的强度相同](https://en.wikipedia.org/wiki/Lambertian_reflectance).
+	$$
+	\int_0^\theta 2\pi \frac{\cos \theta}{\pi} \sin \theta d\theta = 1-\cos^2 \theta = r_2
+   $$
 	![[Lambert6.gif]]
 
 * Projection of light shape onto PDF
+	面积为$dA$的光源在物体表面单位球上的照射投影:
 	$$
 	d\omega = \frac{dA \cdot \cos(\theta)}{\operatorname{distance}^2(p,q)}
    $$
 	![[rc/shape-onto-pdf.jpg]]
+	如果我们在灯光区域A上均匀采样, 即$p(A) = \frac{1}{A}$. 对应到单位球面上,有:
+	$$
+	\begin{aligned}
+	&\int p(\omega) \cdot d\omega = \int p(A) \cdot dA\\
+	\Rightarrow &\frac{p(\omega)}{p(A)} = \frac{dA}{d\omega} = \frac{\operatorname{distance}^2(p,q)}{\cos(\theta)}\\
+	\Rightarrow &p(\omega) = \frac{\operatorname{distance}^2(p,q)}{A \cdot \cos(\theta)}
+	\end{aligned}
+   $$
+   
