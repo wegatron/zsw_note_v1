@@ -1,12 +1,43 @@
 
 # Blender Source code
-## Project Compile
-预编译的第三方库下载: https://svn.blender.org/svnroot/bf-blender/trunk/lib/win64_vc15/
-更新oidn: https://www.openimagedenoise.org/downloads.html
+## Project Compile On Linux/Docker
+参考: https://wiki.blender.org/wiki/Building_Blender/Linux/Arch
 
-Shader编译:
-1. CMAKE option WITH_GPU_SHADER_BUILDER=On.
-2. Only shaders that are part of the SHADER_CREATE_INFOS and .do_static_compilation(true) is set, will be compiled.
+* archlinux预先装一些必要的包
+    ```bash
+    FROM archlinux:latest
+    RUN pacman -Sy \
+        && pacman -Sy --noconfirm libxext libsm libxrender fontconfig gnu-free-fonts \
+        glu core/libxcrypt-compat gdk-pixbuf2 pixman libthai glibc python base-devel git \
+        subversion cmake libx11 libxxf86vm libxcursor libxi libxrandr libxinerama mesa \
+        vulkan-devel wayland wayland-protocols libxkbcommon-x11 dbus linux-headers icu
+    ```
+
+* 启动docker
+    ```bash
+    sudo docker run --gpus all -it --rm -e DISPLAY="host.docker.internal:0.0" \
+        -v /home/wegatron/win-data/opensource_code:/code archlinux /bin/bash
+    ```
+
+* 安装开发包(依赖库)
+    svn上的库比较陈旧, 直接安装系统库.
+    ```bash
+    ./build_files/build_environment/install_linux_packages.py --all
+    ```
+
+<!-- * 预编译的第三方依赖库: 
+    https://svn.blender.org/svnroot/bf-blender/trunk/lib/
+    更新oidn: https://www.openimagedenoise.org/downloads.html
+    更新openpgl: https://github.com/OpenPathGuidingLibrary/openpgl/archive/refs/tags/v0.5.0.zip -->
+
+* 使用系统的库
+    -DWITH_LIBS_PRECOMPILED=ON
+* Shader预编译(保证shader代码是正确的):
+    CMAKE option WITH_GPU_SHADER_BUILDER=On.
+    Only shaders that are part of the SHADER_CREATE_INFOS and .do_static_compilation(true) is set, will be compiled.
+
+## Project Compile On Windows
+
 
 ## Blender Rendering
 
@@ -56,18 +87,28 @@ c++源码: `source/blender/nodes/shader/nodes/node_shader_bsdf_principled.cc`
     ``` 
 
 * Shader code assemble
-    * `source/blender/draw/engines/eevee/eevee_shaders.cc`. 
+    * `source/blender/draw/engines/eevee_next/eevee_material.cc`
+        `material_create_info_ammend`, `material_pass_get` 调用`material_shader_get` 获取Material对应的GPUMaterial(此处利用shader uuid, 保证每一个Material的每种类型只有一个GPUMaterial)
+    <!-- * `source/blender/draw/engines/eevee/eevee_shaders.cc`. 
         `EEVEE_shaders_material_shaders_init` 初始化, 构建基础的code lib.
-        `EEVEE_material_default_get`/`EEVEE_material_get` 获取material对应的shader(在此过程中用到了cache).
+        `EEVEE_material_default_get`/`EEVEE_material_get` 获取Material对应的GPUMaterial(此处利用shader uuid, 保证每一个Material的每种类型只有一个GPUMaterial) -->
+    * `source/blender/gpu/intern/gpu_codegen.cc` 根据node tree组装shader源码, 
+        `GPU_generate_pass` 根据codegen的hash值进行cache
+        `GPU_pass_compile`中调用`GPU_shader_create_from_info`创建shader.
     * `source/blender/draw/engines/eevee_next/eevee_shader.cc`
         调用backend创建shader(没有shader cache). `source/blender/gpu/intern/gpu_shader.cc` : GPU_shader_create
-* Graphics pipeline and rendering(defered? or not)
 
 参考: [blender中添加自定义节点](https://zhuanlan.zhihu.com/p/508277873)
 
-Q: 如何实现既支持数值, 又支持从纹理采样?
+Q1: 如何实现既支持数值, 又支持从纹理采样?
+    通过code gen根据nodetree组装shader code
 
-Q: gpu_shader_material_principled.glsl在哪里被用到?
+Q2: gpu_shader_material_principled.glsl在哪里被用到? (Material, Nodetree从哪里来?)
+
+Q3: 在blender源码中大量使用了裸指针, 为什么?
+
+Q4: gpu material的uuid如何生成?
+    uuid只是代表material是在何种geometry+pipeline类型下.
 
 ## Ray Tracying
 

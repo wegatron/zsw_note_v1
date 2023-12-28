@@ -19,7 +19,6 @@ FROM archlinux:latest
 RUN pacman -Sy \
     && pacman -Sy --noconfirm libxext libsm libxrender fontconfig gnu-free-fonts glu core/libxcrypt-compat gdk-pixbuf2 pixman libthai glibc
 ```
-```
 
 ```bash
 docker build . -t arch_gtk:zsw
@@ -35,6 +34,7 @@ for linux
 ```bash
 xhost +local:
 ```
+
 用完后可以去除:
 ```bash
 xhost -local:

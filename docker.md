@@ -152,7 +152,7 @@ Removing intermediate container 9cdc27646c7b
 Successfully built 44aa4490ce2c
 ```
 
-## Docker运行Nvidia
+## Docker使用GPU
 
 安装`nvidia-toolkit`:
 对于mint需要根据`os-release`, 以及nvidia官网, 查看Identifier, linux mint20.3对应的是`ubuntu20.04`
@@ -164,6 +164,11 @@ distribution=ubuntu20.04 \
 
 sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
 sudo systemctl restart docker
+```
+
+主机测试:
+```bash
+docker run --help | grep -i gpus
 ```
 
 运行docker:
