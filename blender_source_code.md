@@ -10,13 +10,12 @@
         && pacman -Sy --noconfirm libxext libsm libxrender fontconfig gnu-free-fonts \
         glu core/libxcrypt-compat gdk-pixbuf2 pixman libthai glibc python base-devel git \
         subversion cmake libx11 libxxf86vm libxcursor libxi libxrandr libxinerama mesa \
-        vulkan-devel wayland wayland-protocols libxkbcommon-x11 dbus linux-headers icu
+        vulkan-devel wayland wayland-protocols libxkbcommon-x11 dbus linux-headers icu openvdb draco opensubdiv
     ```
 
 * 启动docker
     ```bash
-    sudo docker run --gpus all -it --rm -e DISPLAY="host.docker.internal:0.0" \
-        -v /home/wegatron/win-data/opensource_code:/code archlinux /bin/bash
+    sudo docker run --gpus all -it --rm -e --net=host --env="DISPLAY" -v /home/wegatron/win-data/opensource_code/blender:/code -v /tmp/.X11-unix:/tmp/.X11-unix zsw-dev /bin/bash
     ```
 
 * 安装开发包(依赖库)
@@ -109,6 +108,19 @@ Q3: 在blender源码中大量使用了裸指针, 为什么?
 
 Q4: gpu material的uuid如何生成?
     uuid只是代表material是在何种geometry+pipeline类型下.
+
+
+### NodeTree System
+
+bNode
+
+bNodeSocket
+
+bNodeLink
+
+Q: node中的shader/c++代码如何体现?
+
+Q: node link如何与shader对应起来?
 
 ## Ray Tracying
 

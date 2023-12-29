@@ -106,7 +106,8 @@ RUN buildDeps='gcc libc6-dev make wget' \
 
 ### 将container保存到image
 ```bash
-docker save [container]
+docker commit [container]
+docker tag [container] [tag_name]
 ```
 
 ### VOLUME命令
