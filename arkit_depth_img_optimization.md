@@ -3,10 +3,7 @@ tag: projects
 ---
 ## 深度图优化目标
 ### 闪烁处理
-<figure class="image">
-  <img src="rc/1.png">
-  <em><center>深度图闪烁</center></em>
-</figure>
+![](rc/1.png)
 
 对于相对静态的场景, 相邻帧confidence为high的深度像素任然会出现抖动(差异很大)的情况(如下图所示). 存在以下矛盾:
 ①若相信当前帧的深度, 则会出现比较大的抖动, 但对于动态物体的实时性会很好.
@@ -14,11 +11,8 @@ tag: projects
 
 一个好的方案是: 对图像帧做光流, 对对应上的像素点做加权平均. 但此方案计算量会加大.
 
-<figure class="image">
-  <img src="rc/depth_high_a.png">
-  <img src="rc/depth_high_b.png">
-  <em><center>相邻帧高置信度的像素任可能会出现抖动</center></em>
-</figure>
+![](rc/depth_high_a.png)
+ ![](rc/depth_high_b.png)
 
 ### 抗锯齿
 由于Lidar分辨率低, 直接使用在边界会存在很大的锯齿.
@@ -37,24 +31,13 @@ Face book: Fast Depth Densification for Occlusion-aware Augmented Reality
 该方法需要满足: 相机要有足够大的移动量(或相机中的物体有足够大的移动量).
 
 Google Depth api: 对深度图做抗锯齿, 简单快速, 但无法解决抖动的问题.
-<figure class="image">
-<center>
-<img src="rc/depth_map_antialiasing.png" width=500>
-
-<em>depth-guided FXAA抗锯齿</em>
-</center>
-</figure>
+![](rc/depth_map_antialiasing.png)
 
 ## 方案&结果
 ### 抗锯齿
 对深度图做抗锯齿(FXAA).
-<figure class="image">
-<center>
-<img src="rc/depth_img_fxaa2.png">
+![](rc/depth_img_fxaa2.png)
 
-<em>FXAA深度图抗锯齿效果</em>
-</center>
-</figure>
 
 1. 由于深度图本身的问题, 可以看到显示器边界线并不直. 
 2. 闪烁的问题任然存在.
@@ -64,10 +47,8 @@ metal
 ### Depth Densification
 参考: https://github.com/facebookresearch/AR-Depth/blob/master/AR-Depth.ipynb
 计算深度图的边界: soft_edge
-<figure class="image">
-<img src="rc/edge_00015.png">
-<em><center>与彩色图片做边界对齐结果</center></em>
-</figure>
+![](rc/edge_00015.png)
+
 
 计算图像的边界: hard_edge
 以depth作为初始值, 构建最小二乘问题:
@@ -76,27 +57,17 @@ metal
 * smooth约束
 
 结果:
-<figure class="image">
-<img src="rc/depth_refine_res1.png">
-<em><center>参考相机图片做深度图细化的结果</center></em>
-</figure>
-
+![](rc/depth_refine_res1.png)
 
 #### 性能优化
 1. 将solver的方式转化为filter的方式, 在GPU上实现.
   使用filter的方式需要较大的滤波半径, 且效果与solver相比差很多.
-  <figure class="image">
-  <img src="rc/depth_img_edge_filter.png">
-  <em><center>solver(左)和filter(右)结果对比</center></em>
-  </figure>
+ ![](rc/depth_img_edge_filter.png)
 
 2. 减少待优化量
   事实上我们仅需要对深度图的edge区域进行深度优化(抗锯齿)
-  <figure class="image">
-  <img src="rc/depth_edge_area.png" width=300>
-  <img src="rc/depth_edge_partial_solve.png">
-  <em><center>深度图边界(上). solver完整结果(左下)和只优化深度图边界(右下)的对比</center></em>
-  </figure>
+![](rc/depth_edge_area.png)
+![](rc/depth_edge_partial_solve.png)
 
 #### 移植
 使用[MPSImageSobel](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagesobel)来做图像梯度计算.

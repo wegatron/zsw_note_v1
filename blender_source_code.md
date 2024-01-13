@@ -36,7 +36,7 @@
     Only shaders that are part of the SHADER_CREATE_INFOS and .do_static_compilation(true) is set, will be compiled.
 
 ## Project Compile On Windows
-
+预编译第三库: https://svn.blender.org/svnroot/bf-blender/trunk/lib/win64_vc15
 
 ## Blender Rendering
 
@@ -93,6 +93,7 @@ c++源码: `source/blender/nodes/shader/nodes/node_shader_bsdf_principled.cc`
         `EEVEE_material_default_get`/`EEVEE_material_get` 获取Material对应的GPUMaterial(此处利用shader uuid, 保证每一个Material的每种类型只有一个GPUMaterial) -->
     * `source/blender/gpu/intern/gpu_codegen.cc` 根据node tree组装shader源码, 
         `GPU_generate_pass` 根据codegen的hash值进行cache
+        eevee_shader.cc: `eevee_shader_material_create_info_amend` 生成完整shader code.
         `GPU_pass_compile`中调用`GPU_shader_create_from_info`创建shader.
     * `source/blender/draw/engines/eevee_next/eevee_shader.cc`
         调用backend创建shader(没有shader cache). `source/blender/gpu/intern/gpu_shader.cc` : GPU_shader_create

@@ -264,7 +264,7 @@ using RenderableSoa = utils::StructureOfArrays<
 有app::run调用渲染主循环. 首先进行渲染准备.包括:
 1. 遍历entity, 抽取渲染数据 renderableSOA
 2. 对renderable进行可见性剔除.
-3. 关照数据准备(包括更新光照的uniform, IBL设置等)
+3. 光照数据准备(包括更新光照的uniform, IBL设置等)
 ![[rc/Pasted image 20230804181856.png]]
 
 
