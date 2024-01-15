@@ -108,22 +108,19 @@ public:
 ```
 
 FRenderableManager创建entity, 并添加components
-
 ```c++
-void FRenderableManager::create(
-    const RenderableManager::Builder& UTILS_RESTRICT builder,
-    Entity entity) {
-    ...
-	// 添加一个新的entity
-    Instance ci = manager.addComponent(entity);
-
-    // 添加components
-    setPrimitives(ci, { rp, size_type(entryCount) });
-    ...
+Instance ci = manager.addComponent(entity);
+// 添加components
+setPrimitives(ci, { rp, size_type(entryCount) })
+{
+    mManager[instance].primitives = primitives;
 }
 ```
-在FRenderableManager中, Sim类定义了该类entity所能够拥有的component类型:
+
+filament中ECS的实现基于`libs/utils/include/utils/StructureOfArrays.h`中的`StructureOfArraysBase`, 其本质是根据需要支持的component的类型, 申请一个大的内存空间, 然后给每一个component数组分配一块连续的内存.
+
 ```c++
+// 这里定义了该类entity所能够拥有的component类型:
 using Base = utils::SingleInstanceComponentManager<
     Box,                             // AABB
     uint8_t,                         // LAYERS
@@ -136,15 +133,33 @@ using Base = utils::SingleInstanceComponentManager<
     utils::Slice<MorphTargets>       // MORPH_TARGETS
 >;
 
+// 通过proxy返回特定类型的第i个element的数据引用
 struct Sim : public Base {
-    using Base::gc;
-    using Base::swap;
-    ...
+    struct Proxy {
+        // all of this gets inlined
+        UTILS_ALWAYS_INLINE
+        Proxy(Base& sim, utils::EntityInstanceBase::Type i) noexcept
+                : aabb{ sim, i } { }
+
+        union {
+            // this specific usage of union is permitted. All fields are identical
+            Field<AABB>             aabb;
+            Field<LAYERS>           layers;
+            Field<MORPH_WEIGHTS>    morphWeights;
+            Field<CHANNELS>         channels;
+            Field<INSTANCE_COUNT>   instanceCount;
+            Field<VISIBILITY>       visibility;
+            Field<PRIMITIVES>       primitives;
+            Field<BONES>            bones;
+            Field<MORPH_TARGETS>    morphTargets;
+        };
+    };
 };
 ```
 
 #### ECS 系统的更新
 将entity加入到场景中
+
 ```c++
 void FScene::addEntity(Entity entity) {
     mEntities.insert(entity);

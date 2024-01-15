@@ -1,23 +1,6 @@
 
 # Blender Source code
-## Project Compile On Linux/Docker
-参考: https://wiki.blender.org/wiki/Building_Blender/Linux/Arch
-
-* archlinux预先装一些必要的包
-    ```bash
-    FROM archlinux:latest
-    RUN pacman -Sy \
-        && pacman -Sy --noconfirm libxext libsm libxrender fontconfig gnu-free-fonts \
-        glu core/libxcrypt-compat gdk-pixbuf2 pixman libthai glibc python base-devel git \
-        subversion cmake libx11 libxxf86vm libxcursor libxi libxrandr libxinerama mesa \
-        vulkan-devel wayland wayland-protocols libxkbcommon-x11 dbus linux-headers icu openvdb draco opensubdiv
-    ```
-
-* 启动docker
-    ```bash
-    sudo docker run --gpus all -it --rm -e --net=host --env="DISPLAY" -v /home/wegatron/win-data/opensource_code/blender:/code -v /tmp/.X11-unix:/tmp/.X11-unix zsw-dev /bin/bash
-    ```
-
+## Project Compile On Linux
 * 安装开发包(依赖库)
     svn上的库比较陈旧, 直接安装系统库.
     ```bash
@@ -30,7 +13,7 @@
     更新openpgl: https://github.com/OpenPathGuidingLibrary/openpgl/archive/refs/tags/v0.5.0.zip -->
 
 * 使用系统的库
-    -DWITH_LIBS_PRECOMPILED=ON
+    -DWITH_LIBS_PRECOMPILED=OFF
 * Shader预编译(保证shader代码是正确的):
     CMAKE option WITH_GPU_SHADER_BUILDER=On.
     Only shaders that are part of the SHADER_CREATE_INFOS and .do_static_compilation(true) is set, will be compiled.
