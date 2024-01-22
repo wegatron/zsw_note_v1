@@ -98,7 +98,9 @@ flowchart
 
 
 ## Project
-https://shenhanqian.github.io/gaussian-avatars
+[https://shenhanqian.github.io/gaussian-avatars]()
+[COLMAP-Free 3D Gaussian Splatting](https://oasisyang.github.io/colmap-free-3dgs/)
+[Relightable 3D Gaussian: Real-time Point Cloud Relighting with BRDF Decomposition and Ray Tracing](https://nju-3dv.github.io/projects/Relightable3DGaussian/)
 
 dataset:
 1. https://github.com/tobias-kirschstein/nersemble

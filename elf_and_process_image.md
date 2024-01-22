@@ -9,7 +9,7 @@ tag: programming/basic_theory
 * Linux下的 __ELF__(Executable Linkable Format)
 
 目标文件就是源代码经过编译后但未进行连接的那些中间文件(windows的`.obj`, linux的`.o`), 它与可执行文件的格式非常相似, __所以一般跟可执行文件格式一起采用同一种格式存储__. 除此之外, 动态和静态链接库也采用该种格式存储. 在Windows下采用PE-COFF文件格式; Linux下采用ELF文件格式.
-![elf](elf-file-format.png)
+![elf](rc/elf-file-format.png)
 
 ELF 文件主要由四部分组成:
 * ELF Header
@@ -60,7 +60,7 @@ Section header string table index: 10
 #### Section
 节的分类参考Section Header Table中的节类型, 这里介绍一下一些重要的section:
 
-![elf-sections](elf-sections.png)
+![elf-sections](rc/elf-sections.png)
 
 * `.text` section
     程序代码指令的代码节. 一段可执行程序, 如果存在Phdr, 则`.text`节就会存在于`text`段中. 类型为`PROGBITS`.
@@ -150,7 +150,7 @@ Key to Flags:
 4. __文字常量区__ 常量字符串就是放在这里的. 程序结束后由系统释放.
 5. __程序代码区(text)__ 存放函数体的二进制代码.
 
-![process image](process_image.png)
+![process image](rc/process_image.png)
 
 example:
 ```c++
