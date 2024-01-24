@@ -246,12 +246,14 @@ Question: 在代码中如何体现?
 | radient flux: watt (W) | luminous flux: lumen(lm) |
 | irradiance: $\mathrm{W/m^2}$ | illuminance: lux(lx)|
 | radiant intensity: $\mathrm{W/sr}$ | luminance intensity: candela (cd) |
-| radiance: $\mathrm{W/(m^2 sr)}$ | luminance: $cd/m^2$ = nit $\to$ 感知的亮度|
+| radiance: $\mathrm{W/(m^2 sr)}$ | luminance: $cd/m^2$ = nit $\to$ 感知的亮度 |
 
 在UE中使用lux来度量方向光, 用cd来度量point、spot、area light(随着面积扩大强度减弱).
+
 ### Punctual lights
 点光源或几乎是点光源的光源, 光源从一个非常小的局部区域发出光，类似于空间中的一个点.
 在给定距离上接收到的 radiance的计算(与距离的平方成反比):
+
 * point light
 
 $$
@@ -259,13 +261,11 @@ L_{\text {out }}=f(\mathbf{v}, \mathbf{l}) E=f(\mathbf{v}, \mathbf{l}) L_{\text 
 $$
 
 * spot light
+
 $$
 L_{\text {out }}=f(\mathbf{v}, \mathbf{l}) \frac{I}{\text { distance }^2}\langle\mathbf{n} \cdot \mathbf{l}\rangle=f(\mathbf{v}, \mathbf{l}) \frac{\phi}{\pi \text { distance }^2}\langle\mathbf{n} \cdot \mathbf{l}\rangle \; \mathrm{getAngleAttenuation}()
 $$
 
-## Camera
-
-曝光Exposure EV
 ## 参考
 * [由浅入深学习PBR的原理和实现-0向往0](https://www.cnblogs.com/timlly/p/10631718.html)
 * Moving Frostbite to Physically Based Rendering 3.0
@@ -274,3 +274,4 @@ $$
 * [Unreal Physically Based Materials](https://docs.unrealengine.com/5.3/en-US/physically-based-materials-in-unreal-engine/) 最基本的BRDF
 * [mastering materials in unreal engine](https://awesometuts.com/blog/materials-unreal-engine/)
 * [filament pbr](https://google.github.io/filament/Filament.md.html)
+* [CIE 1931 XYZ详解](https://zhuanlan.zhihu.com/p/137639368)
