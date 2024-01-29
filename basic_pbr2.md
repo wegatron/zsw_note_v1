@@ -41,19 +41,37 @@ $$
 | Shutter speed | 快门速度 | $t$ |
 | Sensitivity/ISO | 感光度, 高ISO虽然速度快但图像颗粒粗，经不起精细放大出图 | $S$ |
 
-Exposure可以通过: Aperture, Shutter speed, Sensitivity的值计算得到:
+参考[Exposure_value](https://en.wikipedia.org/wiki/Exposure_value), Exposure可以通过Aperture, Shutter speed, Sensitivity的值计算得到, 值越小灵敏度越高:
 
 $$
-EV = \log_2(\frac{N^2}{t})\\
+\begin{aligned}
+EVs &= \log_2\frac{N^2}{t}\\
+EV100 &= \log_2(\frac{N^2}{t} \frac{100}{S})\\
+EV100 &= EVs - \log_2 \frac{S}{100}
+\end{aligned}
 $$
 
-Exposure与光照强度之间的关系, $L$是luminance, $K=12.5 cd s/m^2$.
+参考[Film speed](https://en.wikipedia.org/wiki/Film_speed), ev100, 照片上的曝光值$H$计算如下($q=0.65$):
 
 $$
-\frac{N^2}{t} = \frac{LS}{K}
+H = \frac{q \cdot t}{N^2} \cdot L = q\frac{1}{2^{EV100}} \cdot L
 $$
+
+
+在一定的光照下, 自动曝光(标准曝光)可以根据如下公式计算:
+
+$$
+\frac{N^2}{t} = \frac{LS}{K} = \frac{ES}{C}
+$$
+
+$L$是反射的luminance, $K=12.5 \mathrm{cd\;s/(m\;ISO)}^2$ 是light meater的标定值.
+$E$是illuminance, $C=250 \mathrm{lm\;s/(m^2\;ISO)}$ 是incident-light meter标定值.
+
+filament参考: View.cpp->mPerViewUniforms.prepareDirectionalLight
+[ue参考](https://docs.unrealengine.com/5.3/en-US/auto-exposure-in-unreal-engine/)
 
 透镜成像公式: $\frac{1}{f} = \frac{1}{u} + \frac{1}{v}$, $u$是相距离, $v$是物距.
+
 ![](rc/lens_formulation.jpg)
 
 手机摄像头一般是定焦组合, 拍摄过程中通过调整$u$进行对焦. 例如, 一个28mm焦距的主摄，一个14mm的广角，一个50mm的长焦，有的还有100mm以上的长焦.

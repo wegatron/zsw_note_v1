@@ -250,6 +250,14 @@ Question: 在代码中如何体现?
 
 在UE中使用lux来度量方向光, 用cd来度量point、spot、area light(随着面积扩大强度减弱).
 
+```mermaid
+stateDiagram
+    direction LR
+        亮度\ncd/m^2 --> 发光强度\ncd : 乘以发光面积
+        发光强度\ncd --> 光通量\nlm=cd*sr : 对立体角内积
+        光通量\nlm=cd*sr --> 照度\nlx=cd*sr/m^2 : 除以受光面积
+```
+
 ### Punctual lights
 点光源或几乎是点光源的光源, 光源从一个非常小的局部区域发出光，类似于空间中的一个点.
 在给定距离上接收到的 radiance的计算(与距离的平方成反比):
