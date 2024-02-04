@@ -275,6 +275,7 @@ L_{\text {out }}=f(\mathbf{v}, \mathbf{l}) \frac{I}{\text { distance }^2}\langle
 $$
 
 ## 参考
+* [PBR公式推导以及理论梳理](https://zhuanlan.zhihu.com/p/606407173)
 * [由浅入深学习PBR的原理和实现-0向往0](https://www.cnblogs.com/timlly/p/10631718.html)
 * Moving Frostbite to Physically Based Rendering 3.0
 * [Games-104 Game Engine 05:渲染光和材质的数学魔法](https://zhuanlan.zhihu.com/p/512998645)
