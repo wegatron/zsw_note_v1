@@ -112,6 +112,9 @@ f_{d}=\frac{\rho}{\pi}(1+F_{D90}(1-\langle{\bf n\cdot1}\rangle)^{5})(1+F_{D90}(1
 $$
 
 另外, $k_d = 1 - F$.
+
+在大部分引擎中又近似为: $f_d = \frac{\rho}{\pi}$
+
 ### BRDF实现
 
 为了保证能量守恒, Frostbite对diffuse进行修正, 而[filament中则是对reflection进行修正](https://google.github.io/filament/Filament.md.html#materialsystem/improvingthebrdfs/energylossinspecularreflectance).
