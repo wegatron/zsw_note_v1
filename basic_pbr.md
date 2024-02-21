@@ -72,7 +72,23 @@ $$
 f_r(v)=F(\mathbf{v},\mathbf{h},f_{0},f_{90})\;V(\mathbf{v},\mathbf{l},\mathbf{\alpha})\;L\!\!\!\!D(\mathbf{h},\alpha)
 $$
 
-Normal Distrbution Function选择"long-tailed" GGX:
+Normal Distrbution Function, 描述能够将来自$\mathbf{l}$的光反射到$\mathbf{v}$的面积密度——所有法线为$\mathbf{h}$的微平面的面积。
+
+将$D(m)$的投影到宏观表面上，会得到宏观表面的面积，其被约定等于1.
+
+$$
+\int_\mathbf{H} D(m) (n \cdot m)dm = 1
+$$
+
+更一般的, 微表面(Micro Surface)和宏观表面(Macro Surface)在垂直于任何观察方向的平面上的投影是相等的.
+
+$$
+\int_\mathbf{H} D(m) (v \cdot m)dm = n \cdot v
+$$
+
+![[rc/NDF_attribute.webp]]
+
+NDF选择"long-tailed" GGX:
 
 $$
 \large
@@ -82,6 +98,9 @@ D_{GGX} =
 { \alpha^2 }
 { \pi \left((\vec n \cdot \vec h)^2 *(\alpha^2 - 1) + 1\right)^2}
 $$
+
+NDF的形状不变性: 改变粗糙度$\alpha$, 等价于拉伸微表面, 并不改变微表面形状.
+具有形状不变性的NDF, 可以用于推导该函数的归一化的各向异性版本, 并且可以很方便地推导出对应的遮蔽阴影项G.
 
 Geometry Function, Smith visibility function能够精确地表示. 采用height-corrleated Smith function近似表示会更好:
 
