@@ -40,7 +40,7 @@ Ada Lovelace: GTX40x0系列
 		cudatoolkit=10.1 -c pytorch
 		```
 * 可以安装多个cuda版本
-	通过 `export LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH` + `export PATH=/usr/local/cuda-11.8/bin:$PATH`
+	通过 `export CUDA_HONE=` + `export LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH` + `export PATH=/usr/local/cuda-11.8/bin:$PATH`
 ## Reference
 * [一文讲清楚CUDA、CUDA toolkit、CUDNN、NVCC关系](https://blog.csdn.net/qq_41094058/article/details/116207333)
 
