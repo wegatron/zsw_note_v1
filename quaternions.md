@@ -62,7 +62,8 @@ $$
 \end{aligned}
 $$
 
->单位四元素保点积
+    单位四元素保点积.
+
 2. 
 $$
     (\dot{p} \dot{q}) \cdot \dot{r} = \dot{p} \cdot{\dot{r} \dot{q}^*}

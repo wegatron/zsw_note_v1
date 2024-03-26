@@ -41,7 +41,7 @@ sudo apt install docker-ce docker-compose
     ## 打开标准输入流 -i
     ## 这里不会执行完
     docker run -ti ubuntu:18.04 /bin/bash # 执行bash
-    docker run -dit ubuntu:18.04 # 默认的entrypoint
+    docker run -it ubuntu:18.04 # 默认的entrypoint
     docker run -p 127.0.0.1:80:8080/tcp ubuntu bash # 将容器的8080端口映射到宿主机的80端口
     ```
     执行完毕后容器被终止.

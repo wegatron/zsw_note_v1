@@ -37,9 +37,20 @@ git remote add [name] [url]
 ```
 
 ## 创建本地远程仓库
+
 ```bash
 git init --bare e:/tmp2/remote.git
 git clone e:/tmp2/remote.git local
+git clone user@server:/path/to/repo/name_to_repo.git
+```
+
+worktree
+```bash
+mkdir [src_dir]
+cd [src_dir]
+git clone --bare [url] .bare
+echo "gitdir: ./.bare" > .git
+git worktree add main
 ```
 
 ## ssh
@@ -117,81 +128,6 @@ git lfs ls-files # 查看被lfs跟踪的文件
 
 git lfs untrack 1.png # 取消lfs跟踪的文件
 ```
-
-
-## svn git 一起工作方法
-以git为主, 使用一个专用的git branch `svn`来跟踪svn的版本. svn的更新只在该branch中进行, 然后通过merge的方式合并到其他branch.
-
-### 创建工作
-1. 保存/备份当前的修改.
-
-2. 重新download一个新的`svn`仓库, 并提交到git.
-
-3. 将`git`仓库下载到本地. 取出`.git`文件并替换到`svn目录下`.
-
-4. 新建分支`svn`与svn同步, `svn_local`存储一些本地的不需要提交的修改.
-
-5. 每一个任务创建一个新的`feature`分支在上边开发.
-
-6. 当需要合并svn更新时, 切换到`svn`分支, 提交svn版本更新到git.
-
-### 树形结构
-```
-.
-├── master #主线[弃用]
-├── svn #与svn保持完全同步
-│    ├── svn_local #存储一些本地的不需要提交的修改
-│    │    ├── feature1 #新功能开发分支
-│    │    ├── feature2 #... 
-```
-
-### 后期如何更新
-* git分支如何合并来自svn的更新
-    1. git切换到`svn`分支
-        ```bash
-        svn update
-        ```
-    2. 切换到`svn_local`, rebase其到`svn`(可以在source tree上操作).
-        ```bash
-        git rebase 
-        ```
-    3. 切换到`feature`分支, rebase其到`svn_local`.
-        ```bash
-        git rebase
-        ```
-* feature分支如何合并到svn
-    1. 创建当前分支的拷贝
-        ```bash
-        git checkout -b tmp 8b30a59
-        ```
-    2. 使用rebase分离出feature的修改序列(不包含`svn_local`)部分
-        ```bash
-        # 这里表示以svn 这个分支为base, 应用a9df44e ~ 8b30a59的修改到tmp
-        git rebase --onto svn a9df44e^
-        ```
-    3. 若上一步成功, 则将之前的`svn`删除, 将`tmp`改为`svn`. 然后切换到`svn`, 提交到svn.
-
-* 其他常用操作
-    1. 删除一个分支上的某些git commit
-    ```bash
-    git rebase -i <commit-hash> # 将pick改为drop
-    ```
-
-    2. 直接rebase到同源的一个分支
-    ```bash
-    git rebase <branch_name>
-    ```
-
-    3. 将多个git提交合并
-    ```bash
-    git rebase -i <base_hash>
-    # 第一行 r, 其余选择s
-    ```
-
-    4. 终止git rebase
-    ```bash
-    git rebase --abort
-    ```
 
 ## git rebase
 ```bash

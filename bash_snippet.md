@@ -145,3 +145,8 @@ scp /path/to/file username@a:/path/to/destination
 df -h
 du -sh [dir] #查询目录空间占用
 ```
+
+同步文件内容:
+```bash
+rsync -ar [src] [dest exp: xxx@10.0.0.1:/data/]
+```
