@@ -140,16 +140,6 @@ exec：执行shell命令（缩写:x）
 drop：我要丢弃该commit（缩写:d）
 ```
 
-## svn patch 制作
-
-```bash
-svn up # 更新到最新
-svn diff -r [old revision] [files]
-
-# windows powershell set utf8
-chcp 65001
-```
-
 ## git 仓库过大问题
 修改 `~/gitconfig`, 添加如下信息
 ```file

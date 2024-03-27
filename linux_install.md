@@ -1,23 +1,13 @@
 ---
 tag: tools
 ---
-# Linux安装踩坑
-自以为安装个系统再简单不过了, 制作完启动盘, 分好区, 一路next半小时就完了. 没想到这次折腾了一天, 触及到了很多认知的盲点, 这里做一些小记.
-
-
-## ios 刻录
-建议使用: https://www.balena.io/etcher/ 开源+带刻录校验+支持多种操作系统
-
-## 准备工作&新的认知
+# Linux安装Note
+## 准备工作
 * Linux版本选择
     无脑选ubuntu, 支持最好(源最全)的一个系统. 但ubuntu的UI实在太丑, 用起来也不方便. 很久之前接触了mint(ubuntu的改良版本, cinnamon桌面), 这个UI好用很多, 且完全支持ubuntu的源.
 
-* 启动盘的制作
-    ①utriso 这个工具使用很久了, 但是现在使用EFI作为引导之后, 这个工具就不是很好用了. usb hdd这些格式无法正常引导, 使用raw格式的话使用完毕之后要还原U盘也很麻烦.
-    
-    ②[rufus](https://rufus.ie/), 用该工具刻录了mint 19.3的iso, 均无法正常引导.
-    
-    ✔️③推荐使用mint自带的usb image writer, 这个[教程](https://linuxmint-installation-guide.readthedocs.io/zh_CN/latest/burn.html)写得很好
+* 启动盘的制作    
+    参考[教程](https://linuxmint-installation-guide.readthedocs.io/zh_CN/latest/burn.html), 可以使用mint自带的usbwriter, 或者使用[Etcher](https://www.balena.io/etcher/)
 
 * 系统引导([参考博文](https://blog.nanpuyue.com/2017/037.html))
     以前知道BIOS(Legacy BIOS)+MBR来引导系统启动. BIOS历史悠久, 数十年没有太大的变化, 已经不太适应计算机的发展, 如今, UEFI已经全面取代BIOS.
@@ -42,8 +32,8 @@ tag: tools
 
     ✔️解决办法: 在Dell的BIOS设置中可以手动添加引导efi文件. 不过后来mint19.1和ubuntu18.04都不需要此操作即可正常引导进入(不知道为什么).
 2. NVME SSD
-✔️Dell 默认是使用RAID的磁盘模式, linux只有在ACHI下才能识别到NVME的盘, 而且ACHI模式貌似访问速度更快, bug更少. 改完之后, 第一次引导会跳出内存检测的页面(真心bug, 还以为失败了).
-[一些关于ACHI, RAID, NVME的讨论](https://www.v2ex.com/t/534791)
+    ✔️Dell 默认是使用RAID的磁盘模式, linux只有在ACHI下才能识别到NVME的盘, 而且ACHI模式貌似访问速度更快, bug更少. 改完之后, 第一次引导会跳出内存检测的页面(真心bug, 还以为失败了).
+    [一些关于ACHI, RAID, NVME的讨论](https://www.v2ex.com/t/534791)
 
 3. 关于分区
     以前使用MBR引导时, 安装linux只需要分自己要用到的分区就行了, 我的习惯是: `/`, `/home`, `swap`.
@@ -54,20 +44,19 @@ tag: tools
     
     ✔️解决办法: ubuntu 18.04(kernel 5.3)可以正常安装使用.
 
-## linux 挂在 windows分区无法写入的问题
-> This issue is caused by the Windows fast startup (also called hybrid boot or hybrid shutdown) option, which is enabled by default. When shutting down Windows, it hibernates, allowing for a faster boot. This is a nice option to have on Windows, but it causes the problem I mentioned above when dual booting Windows and Linux.
+5. linux 挂在 windows分区无法写入的问题
+    > This issue is caused by the Windows fast startup (also called hybrid boot or hybrid shutdown) option, which is enabled by default. When shutting down Windows, it hibernates, allowing for a faster boot. This is a nice option to have on Windows, but it causes the problem I mentioned above when dual booting Windows and Linux.
 
-> You can disable fast startup in Windows 10 or 8 this by launching the Control Panel, search for Power Options and click it. Next, click on the Choose what the power buttons do item from the left-hand sidebar.
+    > You can disable fast startup in Windows 10 or 8 this by launching the Control Panel, search for Power Options and click it. Next, click on the Choose what the power buttons do item from the left-hand sidebar.
 
-[Fix Windows 10 Or 8 Partition Mounted As Read-Only On Linux When Dual Booting](https://www.linuxuprising.com/2019/01/fix-windows-10-or-8-partition-mounted.html)
+    [Fix Windows 10 Or 8 Partition Mounted As Read-Only On Linux When Dual Booting](https://www.linuxuprising.com/2019/01/fix-windows-10-or-8-partition-mounted.html)
 
 ## 基本软件安装
 
+sogou, 参考官方安装方式. [mint可能遇到的问题](https://blog.jackeylea.com/linux/install-sogoupinyin-on-linux-mint/)
+
 ```bash
-sudo apt install -y cmake synaptic git emacs openssh-server filezilla fcitx foxit-reader
-sudo dpkg -i google-chrome-stable_current_amd64.deb wps-office_11.1.0.9505_amd64.deb 
-tar -jxvf Zotero-5.0.85_linux-x86_64.tar.bz2 -C ~/opt/
-tar -zxvf pycharm-community-2020.1.tar.gz  -C ~/opt/
+sudo apt install -y cmake synaptic git openssh-server filezilla
 chmod 400 id_rsa
 cp id_rsa ~/.ssh
 ssh-add
@@ -85,9 +74,10 @@ ssh-add
 
 * sougou
     `CTRL` + `;` 默认为选择粘贴历史. 可以通过系统的 `Fcitx Configuration`-> `Add on` -> `clipboard fcitx access`进行去除
+    ![[rc/input_method_remove_shortcut.png]]
 
-
-## linux 删除多余的kernel
+## 常用操作
+### linux 删除多余的kernel
 
 ```bash
 #显示当前分区
@@ -107,7 +97,7 @@ sudo apt-get autoclean && sudo apt-get autoremove # 自动清理不需要的软�
 # apt-get autoremove 清理独立的package, 不被其他地方引用到的package
 ```
 
-## fix broken package
+### fix broken package
 
 ```bash
 sudo apt --fix-broken install
@@ -118,13 +108,11 @@ list packages installed
 apt list --installed
 ```
 
-## 显卡驱动问题
+### 显卡驱动问题
 进入recovery-mode, enable network, `apt install nvidia-driver-[515]`
 
 在更新显卡驱动失败的时候, 可以尝试在命令行安装, 此时会显示依赖失败的问题, 从而逐个解决.
 
-## 输入法快捷键去除
-![[input_method_remove_shortcut.png]]
 
 ## Reference
 [linux 安装教程](https://linuxmint-installation-guide.readthedocs.io/zh_CN/latest/burn.html)

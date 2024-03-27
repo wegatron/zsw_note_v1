@@ -38,7 +38,6 @@ ffmpeg -i input.mp4 -c:v libtheora -q:v 7 -c:a libvorbis -q:a 4 output.ogv
 ```bash
 find . -type f -size +100M
 ```
-
 ## gdown 下载google drive 文件
 
 需要下载的链接: `https://drive.google.com/file/d/1jUB5yD7DP97-EqqU2A9mmr61JpNwZBVK/view`, 这里标志符为:`1jUB5yD7DP97-EqqU2A9mmr61JpNwZBVK`.
@@ -60,7 +59,6 @@ gdown.download(
 ```bash
 curl -L -o data/my-file.h5 'https://drive.google.com/uc?id=my-file-id-here&confirm=t
 ```
-
 ## sed 命令
 sed 是一种在线编辑器，它一次处理一行内容.
 
@@ -117,9 +115,15 @@ grep -rl "SDKROOT = macosx" ./ --exclude-dir=.git | \
 xargs sed -i 's/SDKROOT = macosx/SDKROOT = iphoneos/g'
 ```
 ## 不同文件多次执行
+
 ```bash
 find ./ -name=project.pbxproj -exec git stage {} \;
 ```
+
+```bash
+for i in $(seq 10 25); do python subtitle_remover.py data_3/${i}.mp4 results3/res_temp_${i}.mp4; done
+```
+
 ## 同步文件内容
 ```bash
 # -v verbose
@@ -149,4 +153,14 @@ du -sh [dir] #查询目录空间占用
 同步文件内容:
 ```bash
 rsync -ar [src] [dest exp: xxx@10.0.0.1:/data/]
+```
+
+## Mount
+
+```bash
+mkdir ~/remote_directory
+sshfs username@remote_host:/path/to/remote_directory ~/remote_directory
+
+#unmount
+fusermount -u ~/remote_directory
 ```
