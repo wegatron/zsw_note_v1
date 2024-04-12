@@ -113,6 +113,12 @@ git pull --recurse-submodules
 git submodule update --remote --merge # 更新到与remote相同的版本
 ```
 
+5. 清除远程已经被删除的分支
+
+```bash
+git fetch --prune origin
+```
+
 reference: https://git-scm.com/docs/git-submodule
 
 ## git lfs
