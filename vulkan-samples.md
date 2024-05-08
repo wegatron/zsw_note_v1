@@ -69,6 +69,9 @@ frame buffer
     加载ktx纹理(支持不同种类的纹理结构2D texture, cube map array等. 以及不同种类的纹理压缩方式.), 但例子中没有用到压缩. 
 
     这里提到: __通常情况下图片保存的是SRGB__
+    BTW, SRGB纹理, 表示颜色以值是SRGB空间中的值. 在进行采样时会自动转换到线性空间. 同样在fragment shader中输出的颜色属于RGB空间, 若attachment是SRGB纹理, 则会自动转换到非线性空间.
+    BTW, 在vulkan 的swapchain中, 有vkformat和color space. 这里最终显示不以vkformat格式而是以color space解析像素数据.
+    BTW, 在HDR渲染中, swapchain vkformat应该是浮点纹理, 而color space应该是相应支持的HDR color space.
 
     创建Image分为两种: GPU only(需要使用staging buffer进行拷贝, 可以将mipmap数据同时拷贝到vkimage中), 或是VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, 可以直接拷贝. 这里使用的都是optimal_tiling, 也是直接拷贝原始图片数据(没有进行对齐之类的操作).
 

@@ -124,8 +124,6 @@ install(CODE
 fixup_bundle(${CMAKE_INSTALL_PREFIX}/${app_name}${CMAKE_RELEASE_POSTFIX}.exe \"\" \"${path}\")")
 ```
 
-
-
 # 一些基本的库的find
 * Boost
 ```cmake
@@ -209,6 +207,10 @@ foreach(dir ${sub_dirs})
     source_group(headers\\${dir} FILES ${dir_headers})
     source_group(src\\${dir} FILES ${dir_src})
 endforeach()
+
+# 简单地根据已有目录分组
+file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS "base/*" ...)
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCE_FILES})
 ```
 
 * 项目分组 for `vs`
@@ -289,3 +291,11 @@ cmake
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./
     ```
     参考:[How executable look for dynamic library](https://unix.stackexchange.com/questions/22926/where-do-executables-look-for-shared-objects-at-runtime)
+
+2. 静态库被链接多次导致的一些问题
+  在实际项目中, 可能会存在一个静态库被多个其他静态库依赖的情况. 多次链接, 一方面增加了程序的大小; 另一方面, 还有可能因为两次版本不一致导致意外的崩溃.
+  在构建静态库时, 可以将一些可能被再次依赖的库不进行链接, 只设置include_directory.
+    ```cmake
+    target_include_directories(engine PRIVATE
+      $<TARGET_PROPERTY:your_library_name,INTERFACE_INCLUDE_DIRECTORIES>
+    ```

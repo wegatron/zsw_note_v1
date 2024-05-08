@@ -113,6 +113,24 @@ apt list --installed
 
 在更新显卡驱动失败的时候, 可以尝试在命令行安装, 此时会显示依赖失败的问题, 从而逐个解决.
 
+### 添加应用程序快捷方式到系统
+`~/.local/share/applications` 用户自己的应用程序快捷方式
+
+gitkraken:
+```
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Terminal=false
+Icon=/home/wegatron/opt/gitkraken/gitkraken.png
+Exec=/home/wegatron/opt/gitkraken/gitkraken
+StartupWMClass=gitkraken
+Name=gitkraken
+Name[zh_CN]=gitkraken
+Comment=Code version control
+Comment[zh_CN]=git工具
+Categories=Development;Application;
+```
 
 ## Reference
 [linux 安装教程](https://linuxmint-installation-guide.readthedocs.io/zh_CN/latest/burn.html)
