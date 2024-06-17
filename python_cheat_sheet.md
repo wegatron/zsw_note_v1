@@ -267,3 +267,12 @@ curl -L -o data/my-file.h5 'https://drive.google.com/uc?id=my-file-id-here&confi
 ## refere to https://xmfbit.github.io/2017/08/21/debugging-with-ipdb/
 ipdb.set_trace()
 ```
+
+## python perf
+* [pyinstrument](https://github.com/joerick/pyinstrument)
+    ```bash
+    pip install pyinstrument
+    pyinstrument --renderer html -o perf.html [pyscript.py]
+    ```
+
+* [使用pycharm 的profile](https://www.jetbrains.com/help/pycharm/profiler.html#review-snapshots)

@@ -41,7 +41,7 @@ git remote add [name] [url]
 ```bash
 git init --bare e:/tmp2/remote.git
 git clone e:/tmp2/remote.git local
-git clone user@server:/path/to/repo/name_to_repo.git
+git clone user@server[port]:/path/to/repo/name_to_repo.git
 ```
 
 worktree

@@ -11,7 +11,7 @@ tag: cg/tools
 
 * 将骨骼显示到最前面
 	`Object mode` ->  `Object data properties` 右侧边栏小人 -> `view display` -> `in front`
-	![[blender_display_front.png]]
+	![[rc/blender_display_front.png]]
 
 * 自动weight: `Object mode` -> 选中mesh, shift, 选中bone -> `ctrl + P` -> `With Automatic weight`
 
@@ -20,7 +20,7 @@ tag: cg/tools
 	若要继续切换bone, 可以 `ctrl` + 鼠标左键选取其他的 bone
 	
 	在`edit mode`下可以查看每个顶点与其相连的bone的weight
-	![[blender_vertex_weight.png]]
+	![[rc/blender_vertex_weight.png]]
 
 * 骨骼动画预览: `Object mode` -> 选中骨骼 -> `Pose mode` -> 选中骨骼点 -> 拖动
 
