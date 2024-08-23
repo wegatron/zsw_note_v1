@@ -112,3 +112,14 @@ Q: node link如何与shader对应起来?
 源码: intern/cycles/integrator/denoiser.h
 
 使用[OpenPGL](https://github.com/OpenPathGuidingLibrary/openpgl)(包含了STOA的基于ML的算法)进行path guiding, 提高采样质量.
+
+## good idea
+文档 https://developer.blender.org/docs/features/
+
+* [decision tree](https://developer.blender.org/docs/handbook/guidelines/design/decision_tree/)
+* [dependency graph](https://developer.blender.org/docs/features/core/depsgraph/)
+    dependency graph 不止是一个依赖图, 还保存着当前的计算结果数据(DNA), 渲染系统只能从dependency graph中获取当前的数据, 不能访问原始的DNA数据.
+    核心的数据结构
+    核心计算
+* [function system]()
+
