@@ -117,9 +117,57 @@ Q: node link如何与shader对应起来?
 文档 https://developer.blender.org/docs/features/
 
 * [decision tree](https://developer.blender.org/docs/handbook/guidelines/design/decision_tree/)
+
 * [dependency graph](https://developer.blender.org/docs/features/core/depsgraph/)
     dependency graph 不止是一个依赖图, 还保存着当前的计算结果数据(DNA), 渲染系统只能从dependency graph中获取当前的数据, 不能访问原始的DNA数据.
-    核心的数据结构
-    核心计算
-* [function system]()
+    核心的数据结构 + 核心计算
+    在blender中, 每种数据块都有一个自己的ID, 放在struct(数据块)的头部. 数据块的类型在`idtype.cc`中可以查询得到. 通过`GS(id-\>name)`可以将name转化为idtype enum类型. BTW不同的数据块, 放到IDNode中, 则成了不同类型的数据节点.
+    cow实现: IDNode中有两个ID的指针: id_org和id_cow. 当本地数据有修改时, 则id_cow需要进行深度拷贝, 并evaluate.
 
+     DepsgraphNodeBuilder::build_scene_render --> DepsgraphNodeBuilder::build_scene_compositor中可以看到整个场景的node tree的depsgraph构建过程.
+
+     tag和数据更新的逻辑
+        depsgraph_eval.cc:DEG_evaluate_on_framechange
+            deg_graph->tag_time_source(); deg_flush_updates_and_refresh
+                deg::deg_graph_flush_updates
+        可以通过python函数debug_relations_graphviz将图导出
+
+* [function system](https://developer.blender.org/docs/features/nodes/proposals/function_system/)
+    这里作者提到, 使用LLVM固然是一种选择, 但会使得过程变得复杂(不好调试). 而MultiFunction其实是处理批量数据, 所以单个evaluate方式进行.
+    [runtime function system >> MultiFunction](source/blender/functions/FN_multi_function.hh)
+    [runtime type system >> CPPType](source/blender/blenlib/BLI_cpp_types.hh)
+    [example](source/blender/functions/tests/FN_multi_function_test.cc)
+    
+    ```c++
+    class AddFunction : public MultiFunction {
+    public:
+        AddFunction()
+        {
+            static Signature signature = []() {
+            Signature signature;
+            SignatureBuilder builder("Add", signature);
+            builder.single_input<int>("A");
+            builder.single_input<int>("B");
+            builder.single_output<int>("Result");
+            return signature;
+            }();
+            this->set_signature(&signature);
+        }
+        void call(const IndexMask &mask, Params params, Context /*context*/) const override
+        {
+            const VArray<int> &a = params.readonly_single_input<int>(0, "A");
+            const VArray<int> &b = params.readonly_single_input<int>(1, "B");
+            MutableSpan<int> result = params.uninitialized_single_output<int>(2, "Result");
+            mask.foreach_index([&](const int64_t i) { result[i] = a[i] + b[i]; });
+        }
+    };
+    ```
+
+    [Procedure](source/blender/functions/FN_multi_function_procedure.hh) 将多个MultiFunction组件成网络, 支持以图形界面的方式进行动态组装. branch/loop
+    [example](source/blender/functions/tests/FN_multi_function_procedure_test.cc)
+    
+    LazyFunction???
+
+* Allocator
+
+* Blender的自动测试

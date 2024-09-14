@@ -165,24 +165,32 @@ git clone --depth 1 <repo_URI>
 git fetch --unshallow 
 ```
 
-修改`./git/config`
+## git LF/CRLF
+`git config --global autocrlf [true|false|input]`
+在windows上设置为true, 在下载时自动将LF转化为CRLF, 提交时自动将CRLF转化为LF.
+mac/linux上设置为input, 在提交时自动转化为LF.
+
+更稳妥的方式, 设置为false, git不进行转换.
+可以在项目中指定各类文件的eol, 在项目根目录下创建一个 .gitattributes 文件
 ```
-[remote "origin"]
-    url=<git repo url>
-    fetch = +refs/heads/master:refs/remotes/origin/master
+# 为所有文本文件设置 LF 换行符
+*.txt text eol=lf
+
+# 为所有 Markdown 文件设置 LF 换行符
+*.md text eol=lf
+
+# 为所有 HTML 文件设置 CRLF 换行符
+*.html text eol=crlf
+
+# 为所有二进制文件禁用自动换行符转换
+*.png binary
+*.jpg binary
 ```
 
-```
-fetch = +refs/heads/master:refs/remotes/origin/master
-```
-
-to
-
-```
-fetch = +refs/heads/svn:refs/remotes/origin/svn
-```
-
-do fetch again.
+如果 .gitattributes `git add --renormalize .` 将清理后的文件添加到索引(更新索引中文件的eol)
+然后, 若本地文件eol与配置不同, 则将会在提交时自动修正, 会清除未配置之前的CRLF/LF导致的diff.
+(可以看到, 执行该命令后, 所有因为LF/CRLF导致的diff消失了), 而git diff时会提示文件eol与目标不适配,
+git会在提交时自动修正.
 
 
 ## gitkaren
