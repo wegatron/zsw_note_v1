@@ -135,7 +135,9 @@ Q: node link如何与shader对应起来?
 * [function system](https://developer.blender.org/docs/features/nodes/proposals/function_system/)
     这里作者提到, 使用LLVM固然是一种选择, 但会使得过程变得复杂(不好调试). 而MultiFunction其实是处理批量数据, 所以单个evaluate方式进行.
     [runtime function system >> MultiFunction](source/blender/functions/FN_multi_function.hh)
+        通过定义signature来设置了function的input/output
     [runtime type system >> CPPType](source/blender/blenlib/BLI_cpp_types.hh)
+        在signature中需要知道input的type信息
     [example](source/blender/functions/tests/FN_multi_function_test.cc)
     
     ```c++
@@ -163,10 +165,14 @@ Q: node link如何与shader对应起来?
     };
     ```
 
-    [Procedure](source/blender/functions/FN_multi_function_procedure.hh) 将多个MultiFunction组件成网络, 支持以图形界面的方式进行动态组装. branch/loop
+    [Procedure](source/blender/functions/FN_multi_function_procedure.hh) 将多个MultiFunction组件成网络, 支持以图形界面的方式进行动态组装. branch/loop/call/deconstruct...
+        这里分为: procedure, procedure_builder, procedure_optimizer, procedure_executor
     [example](source/blender/functions/tests/FN_multi_function_procedure_test.cc)
-    
-    LazyFunction???
+        这玩意感觉和frame graph异曲同工
+    LazyFunction
+        Geometry Node真正使用的方式
+    GPU Shader Graph
+        对于GPU上的node graph如何生成 LLVM IR
 
 * Allocator
 
