@@ -165,12 +165,49 @@ Q: node link如何与shader对应起来?
     };
     ```
 
-    [Procedure](source/blender/functions/FN_multi_function_procedure.hh) 将多个MultiFunction组件成网络, 支持以图形界面的方式进行动态组装. branch/loop/call/deconstruct...
+    * [Procedure](source/blender/functions/FN_multi_function_procedure.hh) 将多个MultiFunction组件成网络, 支持以图形界面的方式进行动态组装. branch/loop/call/deconstruct...
         这里分为: procedure, procedure_builder, procedure_optimizer, procedure_executor
     [example](source/blender/functions/tests/FN_multi_function_procedure_test.cc)
-        这玩意感觉和frame graph异曲同工
-    LazyFunction
-        Geometry Node真正使用的方式
+        
+    * [LazyFunction](FN_lazy_function_test.cc) CPU Lazy Function Graph used by Geometry Node
+        SideEffectProvider 用来标记function会有额外的输出操作(修改全局变量、记录日志...)
+        GraphExecutor 本身也是一个LazyFunction, 与filament的FrameGraph先compile+culling的逻辑不同, LazyFunction采用由输出去请求输入计算的方式(省去了预处理操作)
+        ```c++
+        /**
+        * Main entry point to the execution of this graph.
+        */
+        void execute(Params &params, const Context &context)
+        {
+            //...
+            CurrentTask current_task;
+            if (is_first_execution_) {
+            /* Allocate a single large buffer instead of making many smaller allocations below. */
+            char *buffer = static_cast<char *>(
+                local_data.allocator->allocate(self_.init_buffer_info_.total_size, alignof(void *)));
+            this->initialize_node_states(buffer); // 并行初始化buffer
+            // ...
+            /* Retrieve and tag side effect nodes. */
+            Vector<const FunctionNode *> side_effect_nodes;
+            if (self_.side_effect_provider_ != nullptr) {
+                side_effect_nodes = self_.side_effect_provider_->get_nodes_with_side_effects(context);
+                for (const FunctionNode *node : side_effect_nodes) {
+                BLI_assert(self_.graph_.nodes().contains(node));
+                const int node_index = node->index_in_graph();
+                NodeState &node_state = *node_states_[node_index];
+                node_state.has_side_effects = true;
+                }
+            }
+            // side effect node need compute
+            this->schedule_side_effect_nodes(side_effect_nodes, current_task, local_data);
+            }
+
+            this->schedule_for_new_output_usages(current_task, local_data);
+            this->forward_newly_provided_inputs(current_task, local_data);
+
+            this->run_task(current_task, local_data); // 真正执行
+        }
+        ```
+        
     GPU Shader Graph
         对于GPU上的node graph如何生成 LLVM IR
 
