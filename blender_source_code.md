@@ -211,6 +211,17 @@ Q: node link如何与shader对应起来?
     GPU Shader Graph
         对于GPU上的node graph如何生成 LLVM IR
 
+* RenderSystem
+    blender/render/RE_** 渲染相关接口
+    blender/draw/engines/eevee_next eevee_next渲染引擎
+    
+    | 文件 类 | 函数 | 作用 ｜
+    | --- | --- | --- |
+    | eevee_camera.hh | sync() | 将camera的数据信息, 更新到CameraData中, 后续通过data_get函数获取, 传递到gpu |
+    | eevee_instance.hh | render_sample() | 一次采样的渲染, 在blender中使用了sampling.step()来随机每次采样的偏移量, 这里会有多个view的渲染:capture_view(捕捉环境光和探针)、main_view(最终场景的渲染)、lookdev_view(开发和调试视图) |
+    | eevee_view.hh | render() | 其中有6个view(为了后续支持全景相机panoramic camera), 但真正启用的却只有一个 |
+    | eevee_pipeline.hh | | 
+
 * Allocator
 
 * Blender的自动测试
