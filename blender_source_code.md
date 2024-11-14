@@ -219,8 +219,17 @@ Q: node link如何与shader对应起来?
     | --- | --- | --- |
     | eevee_camera.hh | sync() | 将camera的数据信息, 更新到CameraData中, 后续通过data_get函数获取, 传递到gpu |
     | eevee_instance.hh | render_sample() | 一次采样的渲染, 在blender中使用了sampling.step()来随机每次采样的偏移量, 这里会有多个view的渲染:capture_view(捕捉环境光和探针)、main_view(最终场景的渲染)、lookdev_view(开发和调试视图) |
-    | eevee_view.hh | render() | 其中有6个view(为了后续支持全景相机panoramic camera), 但真正启用的却只有一个 |
-    | eevee_pipeline.hh | | 
+    | eevee_view.hh | render() | 其中有6个view(为了后续支持全景相机panoramic camera), 但真正启用的却只有一个. 具体步骤包括: setup(RT,Lights,HiZ), volume prepass, defered.render, background.render, ao.render, forward.render, transparent_pass, postfx |
+    | eevee_pipeline.hh | DeferredPipeline::render | opaque_layer渲染不透明物体, 具体步骤包括: Pre-pass, G-buffer pass, Light Evaluation, Combine Pass; refraction_layer渲染反射 |
+    | eevee_hizbuffer.cc | HiZBuffer::sync | 使用compute pass计算zbuffer的mip map(取最大值), 然后取物体的bbox, 定位到mip level的4个depth值进行判断是否被剔除. 真正的mip数据保存在2个hiz_tex_中 |
+    | draw_manager.cc | Manager::submit | 绑定视图、计算可见性、设置绘制状态并提交绘制命令。 |
+    |
+
+    * [Hiz pass](https://www.rastergrid.com/blog/2010/10/hierarchical-z-map-based-occlusion-culling/)
+        source/blender/draw/engines/eevee_next/shaders/infos/eevee_hiz_info.hh 相关的shader,c++数据定义
+        source/blender/draw/engines/eevee_next/shaders/eevee_hiz_update_comp.glsl
+
+
 
 * Allocator
 
