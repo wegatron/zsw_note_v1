@@ -229,7 +229,21 @@ Q: node link如何与shader对应起来?
         source/blender/draw/engines/eevee_next/shaders/infos/eevee_hiz_info.hh 相关的shader,c++数据定义
         source/blender/draw/engines/eevee_next/shaders/eevee_hiz_update_comp.glsl
 
+渲染过程堆栈:
 
+Manager::submit(PassSimple &pass, View &view)
+Manager::submit(PassMain &pass, View &view)
+submit(PassSortable &pass, View &view) 
+Manager::submit(PassSimple &pass)
+source\blender\draw\intern\draw_manager.cc
+
+eevee_draw_scene blender\source\blender\draw\engines\eevee_next\eevee_engine.cc
+drw_engines_draw_scene blender\source\blender\draw\intern\draw_manager_c.cc
+DRW_draw_render_loop_ex blender\source\blender\draw\intern\draw_manager_c.cc
+
+
+using PassSimple = detail::Pass<command::DrawCommandBuf>;
+using PassMain = detail::Pass<command::DrawMultiBuf>;
 
 * Allocator
 
