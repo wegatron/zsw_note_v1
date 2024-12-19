@@ -215,7 +215,17 @@ Q: node link如何与shader对应起来?
     blender/render/RE_** 渲染相关接口
     blender/draw/engines/eevee_next eevee_next渲染引擎
     
-    | 文件 类 | 函数 | 作用 ｜
+    | 文件 类 | 数据结构 | 作用 |
+    | --- | --- | --- |
+    | draw_view.hh | View | 视图矩阵、视口信息、可见性属性 |
+    | draw_manager.hh | Manager | 场景数据和视口之间的接口 |
+    | draw_command.hh | DrawCommandBuf | 用来记录和发射单个draw command |
+    | | DrawGroup | |
+    | | gpu::Batch | |
+    | draw_command.hh | DrawMultiBuf | 渲染合批: 将一系列draw command根据render state进行重排, 将相同render state的draw |
+    | | DrawPrototype | |
+
+    | 文件 类 | 函数 | 作用 |
     | --- | --- | --- |
     | eevee_camera.hh | sync() | 将camera的数据信息, 更新到CameraData中, 后续通过data_get函数获取, 传递到gpu |
     | eevee_instance.hh | render_sample() | 一次采样的渲染, 在blender中使用了sampling.step()来随机每次采样的偏移量, 这里会有多个view的渲染:capture_view(捕捉环境光和探针)、main_view(最终场景的渲染)、lookdev_view(开发和调试视图) |
@@ -223,7 +233,7 @@ Q: node link如何与shader对应起来?
     | eevee_pipeline.hh | DeferredPipeline::render | opaque_layer渲染不透明物体, 具体步骤包括: Pre-pass, G-buffer pass, Light Evaluation, Combine Pass; refraction_layer渲染反射 |
     | eevee_hizbuffer.cc | HiZBuffer::sync | 使用compute pass计算zbuffer的mip map(取最大值), 然后取物体的bbox, 定位到mip level的4个depth值进行判断是否被剔除. 真正的mip数据保存在2个hiz_tex_中 |
     | draw_manager.cc | Manager::submit | 绑定视图、计算可见性、设置绘制状态并提交绘制命令。 |
-    |
+    | 
 
     * [Hiz pass](https://www.rastergrid.com/blog/2010/10/hierarchical-z-map-based-occlusion-culling/)
         source/blender/draw/engines/eevee_next/shaders/infos/eevee_hiz_info.hh 相关的shader,c++数据定义
