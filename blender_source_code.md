@@ -2,15 +2,12 @@
 # Blender Source code
 ## Project Compile On Linux
 * 安装开发包(依赖库)
-    svn上的库比较陈旧, 直接安装系统库.
+    windows: `make.bat`
+    linux:
     ```bash
-    ./build_files/build_environment/install_linux_packages.py --all
+    make update
+    make
     ```
-
-<!-- * 预编译的第三方依赖库: 
-    https://svn.blender.org/svnroot/bf-blender/trunk/lib/
-    更新oidn: https://www.openimagedenoise.org/downloads.html
-    更新openpgl: https://github.com/OpenPathGuidingLibrary/openpgl/archive/refs/tags/v0.5.0.zip -->
 
 * 使用系统的库
     -DWITH_LIBS_PRECOMPILED=OFF
