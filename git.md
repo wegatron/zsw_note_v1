@@ -73,7 +73,15 @@ ssh-add
 ```bash
 ssh -T git@github.com
 ```
-⑤. 在windows上, 需要开启openssh服务.
+
+⑤. 在windows上, 
+    [使用自带的openssh](https://blog.thecjw.me/?p=1026)
+    Git修改~/.gitconfig文件，设置sshCommand：
+    ```
+    [core]
+    sshCommand = \"C:/Windows/System32/OpenSSH/ssh.exe\"
+    ```
+    开启openssh服务.
 	安装: win -> 设置 -> 应用 -> 可选功能 -> openssh
 	启动服务: win-> 服务 -> openssh
 
