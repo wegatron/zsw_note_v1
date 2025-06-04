@@ -1,6 +1,12 @@
 ## Spherical Harmonics
-一组正交基, 将lighting 数据往这组正交基上投影, 可以得到每项的系数. 一般到2~3阶SH来近似irradiance(单位面积上受到的辐射/光照量).
+一组 __正交基__, 将lighting 数据往这组正交基上投影, 可以得到每项的系数. 一般到2~3阶SH来近似irradiance(单位面积上受到的辐射/光照量).
 在重建时, 根据角度可得到每项的值, 再根据系数进行加权还原.
+
+正交基积分性质:
+
+$$
+\int_{\theta=0}^{\pi} \int_{\varphi=0}^{2 \pi} Y_{\ell}^{m} Y_{\ell^{\prime}}^{m^{\prime} *} d \Omega=\delta_{\ell \ell^{\prime}} \delta_{m m^{\prime}}
+$$
 
 公式:
 
@@ -177,11 +183,30 @@ $$
 light(\theta, \phi) = \sum_{l=0}^N \sum_{m=-l}^l C_l^mY_l^m(\theta, \phi) = \sum_{i=0}^n C_iY_i(\theta, \phi)
 $$
 
+### 应用
+
+快速的计算近似球面积分, 将函数$\mathbf{A}(\omega_i), \mathbf{B}(\omega_i)$ encode 得到 SH系数 $a_l^m, b_l^m$, 由于SH是一组正交基, 从而:
+
+$$
+\int\limits_\Omega{A(\boldsymbol\omega_i) B(\boldsymbol\omega_i) \; \mathrm{d\omega_i}} \; = \; \displaystyle\sum_{l=0}^{\infty} \displaystyle\sum_{m=-l}^{l} a_l^m \, b_l^m
+$$
+
+1. Irradiance Estimate
+    $$
+    E(\mathbf n) = \int\limits_\Omega{L(\boldsymbol{\omega_i}) \lfloor (\boldsymbol\omega_i\cdot\mathbf n )\rfloor \; \mathrm{d\omega_i}}
+    $$
+    这里$L(\boldsymbol{\omega_i})$入射radiance, $E(\mathbf n)$是法向为$\mathbf n$的表面上受到的irradiance.
+
+2. Radiance Estimate
+    $$
+    L(\boldsymbol{\omega_o}) = \int\limits_{\Omega^+}{L(\boldsymbol{\omega_i}) \, f_r( \boldsymbol{\omega_o}, \boldsymbol{\omega_i} ) \, (\boldsymbol\omega_i\cdot\mathbf n ) \; \mathrm{d\omega_i}}
+    $$
+
 ### 参考
 * [Explain to me like I am 5 : using Spherical Harmonics coefficients](https://www.reddit.com/r/GraphicsProgramming/comments/m19ith/explain_to_me_like_i_am_5_using_spherical/)
 * https://patapom.com/blog/SHPortal/
 * [Spherical Harmonics](https://orlandoaguilar.github.io/sh/spherical/harmonics/irradiance/map/2017/02/12/SphericalHarmonics.html)
 * papers&books/papers/rendering/Green2003Spherical.pdf
+* [Integral of spherical harmonics over sphere](https://math.stackexchange.com/questions/2377595/integral-of-spherical-harmonics-over-sphere)
 
-demo:
-https://github.com/diharaw/runtime-ibl
+* demo: https://github.com/diharaw/runtime-ibl
