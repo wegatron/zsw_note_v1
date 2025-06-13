@@ -192,10 +192,55 @@ $$
 $$
 
 1. Irradiance Estimate
+
     $$
-    E(\mathbf n) = \int\limits_\Omega{L(\boldsymbol{\omega_i}) \lfloor (\boldsymbol\omega_i\cdot\mathbf n )\rfloor \; \mathrm{d\omega_i}}
+    E(\mathbf n) = \int\limits_\Omega{L(\boldsymbol{\omega_i}) \lfloor (\boldsymbol\omega_i\cdot\mathbf n )\rfloor \; \mathrm{d\omega_i}}\\\
+    L(\theta_n, \phi_n) \; = \; \displaystyle\sum_{l,m} L_l^m \, Y_l^m(\theta_n, \phi_n)\\\\
+E(\theta_n, \phi_n) \; = \; \displaystyle\sum_{l,m} E_l^m \, Y_l^m(\theta_n, \phi_n)
     $$
+
     这里$L(\boldsymbol{\omega_i})$入射radiance, $E(\mathbf n)$是法向为$\mathbf n$的表面上受到的irradiance.
+    使用SH表示transfer function有:
+
+    $$
+    A(\theta_i) \; = \; \lfloor\cos(\theta_i)\rfloor \; = \; \displaystyle\sum_{l=0}^\infty A_l Y_l^0(\theta_i)
+    $$
+    
+    从而有:
+
+    $$
+    A_l \, = \, \int\limits_0^{2\pi} \int\limits_0^\pi \lfloor\cos(\theta_i)\rfloor Y_l^0(\theta_i) \sin(\theta_i) \; \mathrm{d\theta_i} \; \mathrm{d\phi_i}\\
+    = 2\pi \int\limits_0^{\frac{\pi}{2}} \cos(\theta_i) Y_l^0(\theta_i) \sin(\theta_i) \; \mathrm{d\theta_i}
+    $$
+
+    经过推导, 可以得到:
+    
+    $$
+    \qquad A_l = \left\{
+        \begin{aligned}
+        \sqrt{\pi/3} \quad\quad l&=1\\
+        0 \quad\quad l&>1, odd\\
+        2\pi\sqrt{\frac{2l+1}{4\pi}} \frac{(-1)^{l/2-1}}{(l+2)(l-1)} \left(\frac{l!}{2^l(l!/2)^2}\right) \quad\quad l&>1, even, decreases \space very \space rapidly
+        \end{aligned}
+        \right.
+    $$
+
+    最终有:
+
+    $$
+    E(\theta_n, \phi_n) \; = \; \displaystyle\sum_{l,m} L_l^m \, A_l \, \times [R^l_{m,m'}(\theta_n) \sin(-m \phi_n)]
+    $$
+
+    最后一项是入射光的旋转.
+
+    $$
+    \begin{aligned}
+    &R^l_{m,0}(\theta_n) sin(-m \phi_n) \, = \, \sqrt{\frac{4\pi}{2l+1}} Y_l^m(\theta_n, \phi_n)\\
+    &\Rightarrow E(\theta_n, \phi_n) \; = \; \displaystyle\sum_{l,m} \sqrt{\frac{4\pi}{2l+1}} \, A_l \, L_l^m \, Y_l^m(\theta_n, \phi_n)\\
+    &\Rightarrow E_l^m \, = \, \sqrt{\frac{4\pi}{2l+1}} \, A_l \, L_l^m\\
+    &\hat{A}_l \, = \, \sqrt{\frac{4\pi}{2l+1}} \, A_l \Rightarrow E_l^m \, = \, \hat{A}_l \, L_l^m
+    \end{aligned}
+    $$
 
 2. Radiance Estimate
     $$
@@ -208,5 +253,5 @@ $$
 * [Spherical Harmonics](https://orlandoaguilar.github.io/sh/spherical/harmonics/irradiance/map/2017/02/12/SphericalHarmonics.html)
 * papers&books/papers/rendering/Green2003Spherical.pdf
 * [Integral of spherical harmonics over sphere](https://math.stackexchange.com/questions/2377595/integral-of-spherical-harmonics-over-sphere)
-
+* https://zvxryb.github.io/blog/2015/09/03/sh-lighting-part2/
 * demo: https://github.com/diharaw/runtime-ibl

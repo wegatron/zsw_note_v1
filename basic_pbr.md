@@ -254,12 +254,12 @@ Question: 在代码中如何体现?
 ### 度量
 * 辐射度量(Radiometry), 关注物理的电磁辐射量. 包含了非可见光(某些材质在紫外光下可能呈现出不同的颜色或外观).
 
-|Name | Symbol | Units | Description |
-|---|---|---|---|
-| radiant flux | $\Phi$ | watt(W) | 辐射通量是随时间流动的辐射能量，也就是功率，以瓦特（W）为单位测量. |
-| irradiance | E | $W/m^2$ | 辐射通量相对与面积的密度(单位面积上的辐射通量) |
-| radiant intensity | I | $W/sr$ | flux density with respect to direction—more precisely, solid angle $(d\Phi/d\omega)$. |
-| radiance | L | $W/(m^2sr)$ | a measure of electromagnetic radiation in a single ray, 在某一方向上, 单位面积上的辐射通量. 这也是眼睛/相机能够感受到的度量. |
+| Name              | Symbol | Units       | Description                                                                                   |
+| ----------------- | ------ | ----------- | --------------------------------------------------------------------------------------------- |
+| radiant flux      | $\Phi$ | watt(W)     | 辐射通量是随时间流动的辐射能量，也就是功率，以瓦特（W）为单位测量.                                                            |
+| irradiance        | E      | $W/m^2$     | 辐射通量相对与面积的密度(单位面积上的辐射通量)                                                                      |
+| radiant intensity | I      | $W/sr$      | flux density with respect to direction—more precisely, solid angle $(d\Phi/d\omega)$.         |
+| radiance          | L      | $W/(m^2sr)$ | a measure of electromagnetic radiation in a single ray, 在某一方向上, 单位面积上的辐射通量. 这也是眼睛/相机能够感受到的度量. |
 
 * 光度量(Photometry), 将测量结果根据人眼的敏感度(CIE photometric curve)进行加权.
 
