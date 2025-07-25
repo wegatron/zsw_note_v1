@@ -253,5 +253,8 @@ E(\theta_n, \phi_n) \; = \; \displaystyle\sum_{l,m} E_l^m \, Y_l^m(\theta_n, \ph
 * [Spherical Harmonics](https://orlandoaguilar.github.io/sh/spherical/harmonics/irradiance/map/2017/02/12/SphericalHarmonics.html)
 * papers&books/papers/rendering/Green2003Spherical.pdf
 * [Integral of spherical harmonics over sphere](https://math.stackexchange.com/questions/2377595/integral-of-spherical-harmonics-over-sphere)
+* [Spherical Harmonics 参数系列](https://en.wikipedia.org/wiki/Table_of_spherical_harmonics#Real_spherical_harmonics)
+* [SH 应用](https://seblagarde.wordpress.com/2012/01/08/pi-or-not-to-pi-in-game-lighting-equation/)
+    blender: source\blender\draw\engines\eevee_next\shaders\eevee_spherical_harmonics_lib.glsl
 * https://zvxryb.github.io/blog/2015/09/03/sh-lighting-part2/
 * demo: https://github.com/diharaw/runtime-ibl
