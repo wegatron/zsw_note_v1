@@ -10,11 +10,16 @@ $$
 * 1st sum stored in cubemap mips
     * Pre-filter for specific roughness’s 
     * Fixed distribution, assume n = v
+        GGX normal distribution, 不同的视角, 分布有所不同, 这里做了简化
     * Loses stretched highlights
 
     $$
     \frac{1}{N}\sum_{k=1}^N L_i(l_k) \approx \mathrm{Cubemap.sample(r, mip)}
     $$
+
+    blender实现: `lib\windows_x64\usd\lib\usd\hdSt\resources\shaders\domeLight.glslfx`
+
+    environmentTexture
 
 * 2nd sum stored in 2D lookup texture(LUT)
     根据$F(v,h) = F_0 + (1-F_0)(1 - v\cdot h)^5$, 有:
@@ -32,9 +37,9 @@ $$
     ![](rc/split_sum_lut.png)
 
 
-Blender 中的实现
-    `source\blender\draw\engines\eevee_next\shaders\eevee_lut_comp.glsl`
+    Blender 中的实现: `source\blender\draw\engines\eevee_next\shaders\eevee_lut_comp.glsl`
 
 ## reference
 [基于预计算的实时环境光照(Precomputed Real-time Environment Lighting)](https://www.cnblogs.com/KillerAery/p/15335369.html)
+[sig2013](2013SiggraphPresentationsNotes-26915738.pdf)
 Games 202 Lecture_05
